@@ -34,3 +34,16 @@ function mytheme_register_nav_menu() {
 	) );
 }
 add_action( 'after_setup_theme', 'mytheme_register_nav_menu', 0 );
+
+// ACF Options Page
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Egyéni Téma Beállítások',
+		'menu_title'	=> 'Téma Beállítások',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+}
