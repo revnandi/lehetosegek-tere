@@ -27,6 +27,26 @@ function load_vue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'load_vue_scripts', 100 );
 
+// Disable Admin Bar for All Users Except for Administrators
+function remove_admin_bar() {
+	if (!current_user_can('administrator') && !is_admin()) {
+		show_admin_bar(false);
+	}
+}
+add_action('after_setup_theme', 'remove_admin_bar');
+
+// Limit Access to WordPress Dashboard for Subscribers
+function disable_dashboard() {
+	if (!is_user_logged_in()) {
+		return null;
+	}
+	if (!current_user_can('administrator') && is_admin()) {
+		wp_redirect(home_url());
+		exit;
+	}
+}
+add_action('admin_init', 'disable_dashboard');
+
 // Register Menu
 function mytheme_register_nav_menu() {
 	register_nav_menus( array(
