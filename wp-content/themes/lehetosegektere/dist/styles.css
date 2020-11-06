@@ -1,4 +1,46 @@
-/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+.c-scroll-box[data-v-d0885b60]{
+  height:400px;
+  padding:0 1.15vw;
+  font-size:1.3vw;
+  overflow:hidden
+}
+.c-scroll-box[data-v-d0885b60],.c-scroll-box__inner[data-v-d0885b60]{
+  position:relative;
+  background-color:#fff
+}
+.c-scroll-box__inner[data-v-d0885b60]{
+  height:100%;
+  width:calc(100% + 40px);
+  padding:1.15vw 3.5vw 1.15vw 0;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch
+}
+.c-scroll-box__inner[data-v-d0885b60]::-webkit-scrollbar{
+  display:none
+}
+.c-scroll-box__bar[data-v-d0885b60]{
+  position:absolute;
+  top:1.15vw;
+  right:1.75vw;
+  bottom:16px;
+  width:2px;
+  height:calc(100% - 2.3vw);
+  background:#575757;
+  border-radius:4px
+}
+.c-scroll-box__knob[data-v-d0885b60]{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:.5vw;
+  height:.5vw;
+  border-radius:50%;
+  background:#fd1d1d;
+  background:linear-gradient(0deg,#fd1d1d,#fa52f4);
+  transform:translate(-50%,-50%);
+  will-change:top;
+  cursor:pointer
+}/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
    ========================================================================== */
@@ -18903,6 +18945,11 @@ h4{
 
 .animate-bounce{
   animation:bounce 1s infinite;
+}
+
+body,html{
+  font-family:Krona One,sans-serif;
+  background:#66c79a
 }
 
 .loader{
@@ -91976,12 +92023,47 @@ h4{
   .xl\:animate-bounce{
     animation:bounce 1s infinite;
   }
+}.page{
+  padding:0 3.475vw
 }.page-content[data-v-3eaf23d0] p{
   margin-bottom:1rem
-}.logo-cls-1[data-v-580b52f3]{
-  fill:#fff
+}.c-logo[data-v-74ee41ba]{
+  width:calc(66.666% - .5rem)
 }
-.site-header[data-v-580b52f3]{
-  background:linear-gradient(90deg,#92025f,#3b1e58)
+.c-logo__image[data-v-74ee41ba]{
+  width:100%
+}.c-main-navigation__list[data-v-ca7d789c]{
+  display:flex
+}
+.c-main-navigation__item[data-v-ca7d789c]{
+  width:14.28571%;
+  text-align:center;
+  font-size:.625vw;
+  text-transform:uppercase
+}.c-top-social[data-v-7355b53c]{
+  display:flex
+}
+.c-top-social__item[data-v-7355b53c]{
+  position:relative;
+  margin-right:.625vw;
+  font-size:.625vw;
+  text-transform:uppercase
+}
+.c-top-social__item[data-v-7355b53c]:after{
+  content:"";
+  position:absolute;
+  right:-.35vw;
+  width:.2em;
+  height:100%;
+  background:#fd1d1d;
+  background:linear-gradient(90deg,#fd1d1d,#fa52f4)
+}.c-header[data-v-2ad4ded6]{
+  padding:.9vw 3.475vw .775vw;
+  background:#fff
+}
+.c-header__inner[data-v-2ad4ded6]{
+  display:flex;
+  flex-direction:row;
+  align-items:center
 }
 /*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZXMuY3NzIiwic291cmNlUm9vdCI6IiJ9*/

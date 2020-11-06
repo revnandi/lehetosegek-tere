@@ -4,4 +4,5 @@
    your CSS as normal! */
 
 @import './_tailwind';
+@import './global';
 @import './components/progress-bar';

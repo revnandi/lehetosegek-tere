@@ -1,5 +1,10 @@
 <template>
   <div class="page page--home">
+    <div class="grid grid-cols-12 gap-6 items-center">
+      <div  class="col-start-7 col-span-6">
+        <ScrollBox/>
+      </div>
+    </div>
     <a href="https://vuewordpress.com">
       <img src="https://res.cloudinary.com/evanagee/image/upload/c_scale,w_700/v1580244758/VueWP/VWP-hero.png" />
     </a>
@@ -21,12 +26,19 @@
 import RecentPostsWidget from './widgets/RecentPosts.vue';
 import PagesWidget from './widgets/Pages.vue';
 
+import ScrollBox from './partials/ScrollBox';
+
 export default {
   components: {
     RecentPostsWidget,
     PagesWidget,
+    ScrollBox
   },
 };
 </script>
 
-<style type="postcss"></style>
+<style type="postcss">
+  .page {
+    padding: 0 3.475vw;
+  }
+</style>

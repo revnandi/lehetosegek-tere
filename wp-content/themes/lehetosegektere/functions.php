@@ -67,3 +67,11 @@ if( function_exists('acf_add_options_page') ) {
 	));
 	
 }
+
+// Whitelist api routes
+add_filter( 'jwt_auth_whitelist', function ( $endpoints ) {
+	return array(
+			'/wp-json/acf/v3/options/options/*',
+			'/wp-json/menus/v1/menus/fomenu/',
+	);
+} );
