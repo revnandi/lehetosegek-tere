@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style stylelang="postcss" scoped>
+<style lang="scss" scoped>
   .c-login {
     
   }

@@ -14,7 +14,7 @@
   </header>
 </template>
 
-<style type="postcss" scoped>
+<style lang="scss" scoped>
   .c-header {
     padding: 0.900vw 3.475vw 0.775vw 3.475vw;
     background: #fff;

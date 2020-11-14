@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style type="postcss" scoped>
+<style lang="scss" scoped>
 .page-content {
   & >>> p {
     margin-bottom: 1rem;

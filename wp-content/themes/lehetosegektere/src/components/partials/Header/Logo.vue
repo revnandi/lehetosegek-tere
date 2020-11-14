@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style type="postcss" scoped>
+<style lang="scss" scoped>
   .c-logo {
     width: calc(66.666% - 0.5rem);
     &__image {

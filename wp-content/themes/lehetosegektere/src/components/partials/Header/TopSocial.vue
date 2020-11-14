@@ -12,7 +12,7 @@
   </ul>
 </template>
 
-<style stylelang="postcss" scoped>
+<style lang="scss" scoped>
   .c-top-social {
     display: flex;
     &__item {

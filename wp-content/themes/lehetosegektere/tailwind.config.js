@@ -3,6 +3,11 @@ module.exports = {
   important: false,
   separator: ':',
   theme: {
+    extend: {
+      gap: {
+        '7': '0.825vw',
+      }
+    },
     screens: {
       sm: '640px',
       md: '768px',

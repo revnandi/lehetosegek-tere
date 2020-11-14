@@ -1,7 +1,30 @@
 <template>
-  <footer class="site-footer bg-teal-500 text-white flex items-center justify-between flex-wrap bg-teal-500 px-6 py-10">
-    This is the footer.
+  <footer class="c-footer">
+    <Section>
+      <Button>Események</Button>
+      <div>
+        <div>Kövessetek bennünket!</div>
+      </div>
+      <Button>Hírlevél</Button>
+    </Section>
   </footer>
 </template>
 
-<style type="postcss" scoped></style>
+<style lang="scss" scoped>
+  .c-footer {
+    display: block;
+  }
+</style>
+
+<script>
+import Section from './Layout/Section';
+
+import Button from './Button';
+
+export default {
+  components: {
+    Section,
+    Button
+  }
+}
+</script>

@@ -75,3 +75,6 @@ add_filter( 'jwt_auth_whitelist', function ( $endpoints ) {
 			'/wp-json/menus/v1/menus/fomenu/',
 	);
 } );
+
+// Add lqip image sizes
+add_image_size( 'lqip', 16);

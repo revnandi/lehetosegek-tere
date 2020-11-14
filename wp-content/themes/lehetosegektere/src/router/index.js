@@ -1,5 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import {Swiper as SwiperClass, Pagination, Navigation, Mousewheel, Autoplay} from 'swiper/js/swiper.esm';
+import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter';
+
+import VueSmoothScroll from 'vue2-smooth-scroll';
 
 // Components
 import Home from '../components/Home.vue';
@@ -7,6 +11,16 @@ import Post from '../components/Post/Post.vue';
 import Page from '../components/Page/Page.vue';
 
 Vue.use(Router);
+Vue.use(VueSmoothScroll, {
+  duration: 600, 
+  easingFunction: t => 1+(--t)*t*t*t*t
+});
+
+SwiperClass.use([Pagination, Mousewheel, Navigation, Autoplay])
+Vue.use(getAwesomeSwiper(SwiperClass))
+const {Swiper, SwiperSlide} = getAwesomeSwiper(SwiperClass)
+
+import 'swiper/swiper.scss';
 
 const router = new Router({
   routes: [

@@ -11,10 +11,11 @@
   </div>
 </template>
 
-<style stylelang="postcss" scoped>
+<style lang="scss" scoped>
   .c-scroll-box {
     position: relative;
-    height: 400px;
+    height: 29.8vw;
+    margin-bottom: 1.150vw;
     padding: 0 1.150vw;
     font-size: 1.300vw;
     background-color: #fff;
