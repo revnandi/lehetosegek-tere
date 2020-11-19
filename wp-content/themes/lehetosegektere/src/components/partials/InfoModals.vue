@@ -8,7 +8,7 @@
           </div>
           <div class="c-info-modals__buttons">
             <Button v-if="!showAdultModal" @click.native="toggleAdultModal">
-              <span>Elmúltam 26 éves</span>
+              <span>Nem múltam 26 éves</span>
             </Button>
             <CloseButton v-if="showAdultModal" @click.native="toggleAdultModal"/>
           </div>
@@ -26,7 +26,9 @@
           <div v-if="showKidsModal" class="c-info-modals__modal">
             <h2 class="c-info-modals__heading">Kiknek szól?</h2>
             <div class="c-info-modals__modal-content">
-              <p>Szoktál unatkozni a tanórákon? Érezted már, hogy szeretnél elérni valamit, de nem tudod, hogyan is kellene? Hogy attól tartasz, nem fog sikerülni? Nálunk nem számít, milyen eredményeid vannak, honnan jössz és mi érdekel. Sokfélék vagyunk és hiszünk a sokféleség erejében, abban, hogy tudunk adni egymásnak és a tapasztalataink összeadódnak. Egy olyan közegben, ahol nincs kirekesztés és előítélet, megélheted, hogy tanulni nem csak tankönyvekből lehet!</p>
+              <ScrollBox height="75%">
+                <p>Szoktál unatkozni a tanórákon? Érezted már, hogy szeretnél elérni valamit, de nem tudod, hogyan is kellene? Hogy attól tartasz, nem fog sikerülni? Nálunk nem számít, milyen eredményeid vannak, honnan jössz és mi érdekel. Sokfélék vagyunk és hiszünk a sokféleség erejében, abban, hogy tudunk adni egymásnak és a tapasztalataink összeadódnak. Egy olyan közegben, ahol nincs kirekesztés és előítélet, megélheted, hogy tanulni nem csak tankönyvekből lehet!</p>
+              </ScrollBox>
               <Button >
                 <span>Tovább a Foglalkozásokra</span>
               </Button>
@@ -35,11 +37,11 @@
         </div>
         <div class="c-info-modals__controls">
           <div class="c-info-modals__face">
-            <FaceChild></FaceChild>
+            <FaceAdult></FaceAdult>
           </div>
           <div class="c-info-modals__buttons">
             <Button v-if="!showKidsModal" @click.native="toggleKidsModal">
-              <span>Nem múltam el 26 éves</span>
+              <span>Elmúltam el 26 éves</span>
             </Button>
             <CloseButton v-if="showKidsModal" @click.native="toggleKidsModal"/>
           </div>
@@ -57,7 +59,10 @@
           <div v-if="showAdultModal" class="c-info-modals__modal">
             <h2 class="c-info-modals__heading">Kiknek szól?</h2>
             <div class="c-info-modals__modal-content">
-              <p>Szoktál unatkozni a tanórákon? Érezted már, hogy szeretnél elérni valamit, de nem tudod, hogyan is kellene? Hogy attól tartasz, nem fog sikerülni? Nálunk nem számít, milyen eredményeid vannak, honnan jössz és mi érdekel. Sokfélék vagyunk és hiszünk a sokféleség erejében, abban, hogy tudunk adni egymásnak és a tapasztalataink összeadódnak. Egy olyan közegben, ahol nincs kirekesztés és előítélet, megélheted, hogy tanulni nem csak tankönyvekből lehet!</p>
+              <!-- <p>Szoktál unatkozni a tanórákon? Érezted már, hogy szeretnél elérni valamit, de nem tudod, hogyan is kellene? Hogy attól tartasz, nem fog sikerülni? Nálunk nem számít, milyen eredményeid vannak, honnan jössz és mi érdekel. Sokfélék vagyunk és hiszünk a sokféleség erejében, abban, hogy tudunk adni egymásnak és a tapasztalataink összeadódnak. Egy olyan közegben, ahol nincs kirekesztés és előítélet, megélheted, hogy tanulni nem csak tankönyvekből lehet!</p> -->
+              <ScrollBox height="75%">
+                <p>Szoktál unatkozni a tanórákon? Érezted már, hogy szeretnél elérni valamit, de nem tudod, hogyan is kellene? Hogy attól tartasz, nem fog sikerülni? Nálunk nem számít, milyen eredményeid vannak, honnan jössz és mi érdekel. Sokfélék vagyunk és hiszünk a sokféleség erejében, abban, hogy tudunk adni egymásnak és a tapasztalataink összeadódnak. Egy olyan közegben, ahol nincs kirekesztés és előítélet, megélheted, hogy tanulni nem csak tankönyvekből lehet!</p>
+              </ScrollBox>
               <Button >
                 <span>Tovább a Foglalkozásokra</span>
               </Button>
@@ -114,10 +119,16 @@
       font-size: 2.600vw;
     }
     &__modal-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       flex-basis: 50%;
       font-size: 1.300vw;
       p {
         margin-bottom: 2vw;
+      }
+      button {
+        margin-left: 1.150vw;
       }
     }
   }
@@ -125,6 +136,7 @@
 
 <script>
 import CloseButton from './CloseButton';
+import FaceAdult from './VisualElements/FaceAdult';
 import FaceChild from './VisualElements/FaceChild';
 
 import Button from './Button';
@@ -134,6 +146,7 @@ export default {
   components: {
     Button,
     CloseButton,
+    FaceAdult,
     FaceChild,
     ScrollBox
   },

@@ -3,7 +3,7 @@
     <div class="c-puzzle__grid">
       <div class="c-puzzle__item c-puzzle__item--rotateable" data-position="0" data-rotation="0" @click="handleClick">
         <div class="c-puzzle__item-inner">
-          <div class="c-puzzle__circle"></div>
+            <GradientCircle/>
         </div>
       </div>
       <div class="c-puzzle__item c-puzzle__item--first-letter" data-position="1" data-rotation="0" @click="handleClick">
@@ -13,12 +13,12 @@
       </div>
       <div class="c-puzzle__item c-puzzle__item--rotateable" data-position="3" data-rotation="0" @click="handleClick">
         <div class="c-puzzle__item-inner">
-          <div class="c-puzzle__square"></div>
+          <GradientSquare/>
         </div>
       </div>
       <div class="c-puzzle__item c-puzzle__item--rotateable" data-position="4" data-rotation="0" @click="handleClick">
         <div class="c-puzzle__item-inner">
-          <div class="c-puzzle__rounded-square"></div>
+          <GradientCircleSlice/>
         </div>
       </div>
       <div class="c-puzzle__item c-puzzle__item--second-letter" data-position="5" data-rotation="0" @click="handleClick">
@@ -26,7 +26,7 @@
       </div>
       <div class="c-puzzle__item c-puzzle__item--rotateable" data-position="6" data-rotation="0" @click="handleClick">
         <div class="c-puzzle__item-inner">
-          <div class="c-puzzle__double-circles"></div>
+          <GradientDoubleHalfCircles/>
         </div>
       </div>
       <div class="c-puzzle__item c-puzzle__item--rotateable" data-position="7" data-rotation="0" @click="handleClick">
@@ -189,7 +189,18 @@
 </style>
 
 <script>
+import GradientSquare from "./VisualElements/GradientSquare";
+import GradientCircle from "./VisualElements/GradientCircle";
+import GradientCircleSlice from "./VisualElements/GradientCircleSlice";
+import GradientDoubleHalfCircles from "./VisualElements/GradientDoubleHalfCircles";
+
 export default {
+  components: {
+    GradientSquare,
+    GradientCircle,
+    GradientCircleSlice,
+    GradientDoubleHalfCircles
+  },
   data() {
     return {
       firstLetter: 'L',
@@ -215,20 +226,30 @@ export default {
       const emptyItemPosition = this.$refs.emptyElement.dataset.position;
       // console.log(emptyItemPosition)
       console.log('elementPosition ' + elementPosition);
-      if(elementPosition=== '1') {
+      if (elementPosition=== '1') {
         if(emptyItemPosition === '2') {
           element.style.transform = 'translateX(100%)';
           element.dataset.position = '2';
           this.$refs.emptyElement.dataset.position = '1';
           console.log(this.$refs.emptyElement.dataset.position);
         }
-      } else if(elementPosition=== '2') {
+      } else if (elementPosition=== '2') {
         console.log('elementPosition === 2')
         if(emptyItemPosition === '1') {
           element.style.transform = 'translateX(0)';
           element.dataset.position = '1';
           this.$refs.emptyElement.dataset.position = '2';
           console.log(this.$refs.emptyElement.dataset.position);
+        }
+      } else {
+        if (element.classList.contains('c-puzzle__item--first-letter')) {
+          this.shuffleFirstLetter();
+        }
+        if (element.classList.contains('c-puzzle__item--second-letter')) {
+          this.shuffleSecondLetter();
+        }
+        if (element.classList.contains('c-puzzle__item--rotateable')) {
+          this.rotateItem(event);
         }
       }
     },

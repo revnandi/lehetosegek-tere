@@ -1,5 +1,5 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 150">
+  <svg class="c-gradient-bridge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 300 150">
     <defs>
       <linearGradient id="bridge" y1="75" x2="300" y2="75" gradientUnits="userSpaceOnUse">
         <stop offset="0" stop-color="#e8332b"/>
@@ -14,6 +14,12 @@
     </g>
   </svg>
 </template>
+
+<style lang="scss" scoped>
+  .c-gradient-bridge {
+    width: 100%
+  }
+</style>
 
 <script>
 export default {

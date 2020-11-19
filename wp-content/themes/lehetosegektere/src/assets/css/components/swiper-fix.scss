@@ -1,0 +1,24 @@
+span.swiper-pagination-bullet {
+  width: 0.500vw!important;
+  height: 0.500vw!important;
+  background: #000!important;
+  opacity: 1!important;
+  margin: 0 0.225vw!important;
+}
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: rgb(255,0,253)!important;
+  background: -moz-linear-gradient(180deg, rgba(255,0,253,1) 0%, rgba(249,16,30,1) 100%)!important;
+  background: -webkit-linear-gradient(180deg, rgba(255,0,253,1) 0%, rgba(249,16,30,1) 100%)!important;
+  background: linear-gradient(180deg, rgba(255,0,253,1) 0%, rgba(249,16,30,1) 100%)!important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff00fd",endColorstr="#f9101e",GradientType=1)!important;
+}
+
+.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets {
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 33.3333333333%);
+  padding: 0.9vw 0;
+  margin-left: calc(33.3333333333%);
+}

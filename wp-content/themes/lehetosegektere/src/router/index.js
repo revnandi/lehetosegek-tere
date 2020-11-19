@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import {Swiper as SwiperClass, Pagination, Navigation, Mousewheel, Autoplay} from 'swiper/js/swiper.esm';
+import {Swiper as SwiperClass, Pagination, Navigation, Mousewheel, Autoplay, EffectFade} from 'swiper/js/swiper.esm';
 import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter';
 
 import VueSmoothScroll from 'vue2-smooth-scroll';
@@ -16,7 +16,7 @@ Vue.use(VueSmoothScroll, {
   easingFunction: t => 1+(--t)*t*t*t*t
 });
 
-SwiperClass.use([Pagination, Mousewheel, Navigation, Autoplay])
+SwiperClass.use([Pagination, Mousewheel, Navigation, Autoplay, EffectFade])
 Vue.use(getAwesomeSwiper(SwiperClass))
 const {Swiper, SwiperSlide} = getAwesomeSwiper(SwiperClass)
 

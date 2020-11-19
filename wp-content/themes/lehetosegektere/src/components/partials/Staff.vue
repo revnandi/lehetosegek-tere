@@ -7,7 +7,7 @@
             <img class="c-staff__image lazyload"
               data-sizes="auto"
               :src="member.image.sizes.lqip"
-              :data-srcset="`${member.image.sizes.thumbnail} 300w,
+              :data-srcset="`${member.image.sizes.thumbnail} 150w,
               ${member.image.sizes.medium} 300w,
               ${member.image.sizes.medium_large} 600w,
               ${member.image.sizes.large} 900w`"

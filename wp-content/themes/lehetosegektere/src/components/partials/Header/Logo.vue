@@ -1,7 +1,7 @@
 <template>
   <div class="c-logo">
     <a href="/">
-      <img class="c-logo__image" :src="logo.sizes.large" alt="">
+      <img class="c-logo__image" :src="this.logo.sizes.large" alt="">
     </a>
   </div>
 </template>

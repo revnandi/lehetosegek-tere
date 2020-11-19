@@ -1,18 +1,23 @@
 <template>
-  <div class="c-gradient-circle"></div>
+  <svg class="c-gradient-circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="cirle-linear-gradient" x1="200" y1="400" x2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f9101e"/>
+      <stop offset="1" stop-color="#eb6b2d"/>
+    </linearGradient>
+  </defs>
+  <title>crlclAsset 4</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <circle cx="200" cy="200" r="200" style="fill: url(#cirle-linear-gradient)"/>
+    </g>
+  </g>
+</svg>
 </template>
 
 <style lang="scss" scoped>
   .c-gradient-circle {
     width: 100%;
-    height: 0;
-    padding-top: 100%;
-    border-radius: 50%;
-    background: rgb(235,107,45);
-    background: -moz-linear-gradient(180deg, rgba(235,107,45,1) 15%, rgba(249,16,30,1) 100%);
-    background: -webkit-linear-gradient(180deg, rgba(235,107,45,1) 15%, rgba(249,16,30,1) 100%);
-    background: linear-gradient(180deg, rgba(235,107,45,1) 15%, rgba(249,16,30,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eb6b2d",endColorstr="#f9101e",GradientType=1);
   } 
 </style>
 
