@@ -7,9 +7,9 @@
     </transition>
 
     <transition name="page-transition" mode="out-in" appear>
-      <div class="site-content mx-auto flex-1 md:px-0">
+      <main class="site-content mx-auto flex-1 md:px-0">
         <router-view :scrollPosition="lastScrollPosition"></router-view>
-      </div>
+      </main>
     </transition>
 
     <app-footer />

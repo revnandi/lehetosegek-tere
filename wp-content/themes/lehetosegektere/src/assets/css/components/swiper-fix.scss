@@ -14,11 +14,14 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 }
 
 .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets {
+  position: absolute;
   bottom: 0;
+  left: calc((100% / 3) + 6vw);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(100% - 33.3333333333%);
-  padding: 0.9vw 0;
-  margin-left: calc(33.3333333333%);
+  width: calc(((100% / 3) * 2) - 12vw);
+  height: calc(0.625vw * 2);
+  margin-bottom: 0.525vw;
+  margin-right: 0vw;
 }

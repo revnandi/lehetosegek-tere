@@ -2,6 +2,19 @@ import axios from 'axios';
 import SETTINGS from '../settings';
 
 export default {
+  getOptions(cb) {
+    axios
+      .get(
+        SETTINGS.API_OPTIONS_PATH
+      )
+      .then(response => {
+        cb(response.data.acf);
+      })
+      .catch(e => {
+        cb(e);
+      });
+  },
+
   getCategories(cb) {
     axios
       .get(

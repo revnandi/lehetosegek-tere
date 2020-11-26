@@ -11,17 +11,24 @@
 
 <style lang="scss" scoped>
   .c-scroll-box {
+    $self: &;
     position: relative;
     height: 29.8vw;
-    margin-bottom: 1.150vw;
     padding: 0 1.150vw;
     font-size: 1.300vw;
     background-color: #fff;
     overflow: hidden;
+    &--hero {
+      height: 0!important;
+      padding: 0 1.150vw calc((100% / 3) * 2) 1.150vw;
+      #{ $self }__inner {
+        position: absolute;
+      }
+    }
     &__inner {
       position: relative;
       height: 100%;
-      width: calc(100% + 1.150vw);
+      width: calc(100% - 1.150vw);
       padding: 1.15vw 3.500vw 1.15vw 0;
       background-color: #fff;
       overflow-y: auto;

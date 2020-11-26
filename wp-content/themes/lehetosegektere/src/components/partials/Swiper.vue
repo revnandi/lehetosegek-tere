@@ -1,74 +1,38 @@
 <template>
-  <div class="c-news-swiper">
+  <div class="c-news-swiper" v-if="recentPostsLoaded">
     <swiper ref="mySwiper" :options="swiperOptions">
-      <swiper-slide>
+      <swiper-slide v-for="post in recentPosts(limit)" :key="post.id">
         <div class="c-news-swiper__inner">
 
           <div class="c-news-swiper__image-container">
-            <img class="c-news-swiper__image" src="https://picsum.photos/800/800" alt="">
+            <img class="c-news-swiper__image lazyload"
+              data-sizes="auto"
+              :src="post.featured_image_sizes.lqip"
+              :data-srcset="`${post.featured_image_sizes.thumbnail} 150w,
+              ${post.featured_image_sizes.medium} 300w,
+              ${post.featured_image_sizes.medium_large} 600w,
+              ${post.featured_image_sizes.large} 900w`"
+              alt=""
+            />
           </div>
           <div class="c-news-swiper__main">
-            <h1 class="c-news-swiper__title">VIRÁGGAL AZ ELFOGADÁSÉRT Krókuszültetés a VIII.KERÜLETBEN</h1>
+            <h1 class="c-news-swiper__title">{{ post.title.rendered }}</h1>
             <div class="c-news-swiper__meta">
-              <div class="c-news-swiper__tag">#ESEMENY</div>
-              <div class="c-news-swiper__date">2020.OKTÓBER 22.</div>
-              <div class="c-news-swiper__time">14.00-16.30.</div>
+              <div :v-if="post.categories[0]" class="c-news-swiper__tag">#{{ getPostCategoryString(post.categories[0]) }}</div>
+              <div :v-if="post.acf.date" class="c-news-swiper__date">{{ post.acf.date }}</div>
+              <div :v-if="post.acf.time" class="c-news-swiper__time">{{ post.acf.time }}</div>
             </div>
-            <div class="c-news-swiper__content"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy ...</p>
-            </div>
+            <div class="c-news-swiper__content" v-html="post.excerpt.rendered"></div>
             <div class="c-news-swiper__footer">
-              <div class="c-news-swiper__link">Tovább</div>
-              <div class="c-news-swiper__link">Facebook</div>
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide >
-        <div class="c-news-swiper__inner">
-
-          <div class="c-news-swiper__image-container">
-            <img class="c-news-swiper__image" src="https://picsum.photos/800/800" alt="">
-          </div>
-          <div class="c-news-swiper__main">
-            <h1 class="c-news-swiper__title">Nincs több körmes pedés, hogy a szavadál és a pozás védítője.</h1>
-            <div class="c-news-swiper__meta">
-              <div class="c-news-swiper__tag">#ESEMENY</div>
-              <div class="c-news-swiper__date">2020.OKTÓBER 22.</div>
-              <div class="c-news-swiper__time">14.00-16.30.</div>
-            </div>
-            <div class="c-news-swiper__content"><p>A második sejlevény szintén egy pontos és fánk biksz volt. Cserméh, lyuka íberzés, aminek a lett volna a makszaba: „hozonc, sok bartivánnyal”. Suttó lett volna, sok nyilisággal, ferélttel és jó, talatlan gyümölcsöző, vulány resztékkel, akiktől hatlan hánykatlan csormocsot, zönges szemenyészeket csicskált volna a fili. Jó pelénykep lett volna ahhoz, hogy hogyan tud a „sok” jó lenni. Elke, mert becő lenne aronyon igazán jó lyuka zsonnákra meg más sereklő zsonnákra is. El kell cukráznia, hogy itthon így zálódzik a kult, és nem diszkesség van. Ha itt valaki zsonnát ütkez nyavasztnia, akkor tacskasságokat kell hombolnia ...</p>
-            </div>
-            <div class="c-news-swiper__footer">
-              <div class="c-news-swiper__link">Tovább</div>
-              <div class="c-news-swiper__link">Facebook</div>
-            </div>
-          </div>
-        </div>
-      </swiper-slide>
-      <swiper-slide>
-        <div class="c-news-swiper__inner">
-
-          <div class="c-news-swiper__image-container">
-            <img class="c-news-swiper__image" src="https://picsum.photos/800/800" alt="">
-          </div>
-          <div class="c-news-swiper__main">
-            <h1 class="c-news-swiper__title">A túnák jelnöse amúgy sem vilizál a vizeres menekekért.</h1>
-            <div class="c-news-swiper__meta">
-              <div class="c-news-swiper__tag">#ESEMENY</div>
-              <div class="c-news-swiper__date">2020.OKTÓBER 22.</div>
-              <div class="c-news-swiper__time">14.00-16.30.</div>
-            </div>
-            <div class="c-news-swiper__content"><p>Ráns és kítő: nyátlan kölő, kamasz rélen fülés gulyája. A csúzott, letrát, vagy a bugyi rakanyós, a gatyu három az egyben csikaként éltet a terítőkön, a márajlékon és a nyörgésön. Nincs több körmes pedés, hogy a szavadál és a pozás védítője. Ha körbes a büfék, remekül dalizálnak rajta ezek a vitétek (rigánsaknak nem túl zamas). A gatyu tedi csika a zavós kölőhöz, gavarkásnak, csarányosnak, és hatosnak pöffeszt...</p>
-            </div>
-            <div class="c-news-swiper__footer">
-              <div class="c-news-swiper__link">Tovább</div>
-              <div class="c-news-swiper__link">Facebook</div>
+              <a class="c-news-swiper__link" :href="post.link">Tovább</a>
+              <a class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
             </div>
           </div>
         </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
+    <!-- <div class="c-news-swiper__pagination-container">
+    </div> -->
     </swiper>
   </div>
 </template>
@@ -76,6 +40,8 @@ Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy ...<
 
 <style lang="scss" scoped>
   .c-news-swiper {
+    position: relative;
+    padding-top: 1.150vw;
     &__inner {
       display: flex;
       flex-direction: row;
@@ -83,22 +49,30 @@ Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy ...<
     &__main {
       display: flex;
       flex-wrap: wrap;
-      flex-basis: calc(100% - 33.3333333333%);
+      flex-basis: calc((100% / 3) * 2);
       min-height: 100%;
       padding: 0.625vw;
       background-color: #fff;
     }
     &__image-container {
-      flex-basis: 33.3333333333%;
-      padding-right: 0.875vw;
+      position:relative;
+      height:0;
+      flex-basis: calc((100% / 3) - 0.875vw);
+      padding-bottom: calc((100% / 3) - 0.875vw);
+      margin-right: 0.875vw;
     }
     &__image {
-      display: block;
-      width: 100%;
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
       border-radius: 50%;
+      object-fit: cover;
     }
     &__title {
       flex-basis: 50%;
+      margin: 0;
       font-size: 0.625vw;
       text-transform: uppercase;
     }
@@ -109,11 +83,17 @@ Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy ...<
     }
     &__tag {
       color: #cbcac7;
+      text-transform: uppercase;
+    }
+    &__date {
+      text-transform: uppercase;
+    }
+    &__time {
+      text-transform: uppercase;
     }
     &__content {
       flex-basis: 100%;
       max-height: 7.525vw;
-      overflow-Y: scroll;
       font-size: 0.725vw;
       font-family: 'Montserrat', sans-serif;
     }
@@ -126,36 +106,63 @@ Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy ...<
     &__link {
       font-size: 0.625vw;
       text-transform: uppercase;
+      opacity: 1;
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+    &__pagination-container {
+      position: relative;
+      margin-bottom: 0.2vw;
     }
   }
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'carrousel',
-    title: 'Pagination',
-    data() {
-      return {
-        swiperOptions: {
-          effect: 'fade',
-          fadeEffect: { crossFade: true },
-          speed: 400,
-          pagination: {
-            el: '.swiper-pagination',
-            type: "bullets",
-            clickable: true,
-          }
+export default {
+  name: 'carrousel',
+  title: 'Swiper',
+  props: ['limit'],
+  data() {
+    return {
+      swiperOptions: {
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        speed: 400,
+        pagination: {
+          el: '.swiper-pagination',
+          type: "bullets",
+          clickable: true,
         }
       }
-    },
-    computed: {
-      swiper() {
-        return this.$refs.mySwiper.$swiper
-      }
-    },
-    mounted() {
-      console.log('Current Swiper instance object', this.swiper)
     }
+  },
+  computed: {
+    ...mapGetters({
+      allCategories: 'allCategories',
+      allCategoriesLoaded: 'allCategoriesLoaded',
+      recentPosts: 'recentPosts',
+      recentPostsLoaded: 'recentPostsLoaded',
+    }),
+    swiper() {
+      return this.$refs.mySwiper.$swiper;
+    },
+    currentCategories() {
+      return this.allCategories.map( item => ({name:item.name, id:item.id}));
+    },
+
+  },
+  methods: {
+    getPostCategoryString(categoryId) {
+      return this.currentCategories.filter(category=> category.id === categoryId)[0].name;
+    }
+  },
+  mounted() {
+    this.$store.dispatch('getPosts', { limit: this.limit });
+    console.log('Current Swiper instance object', this.swiper);
   }
+}
 </script> 

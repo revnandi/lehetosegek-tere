@@ -7,8 +7,8 @@
           <div class="c-footer__social-title">Kövessetek bennünket!</div>
           <div class="c-footer__heart-container">
             <GradientHeart/>
-            <a class="c-footer__social-link c-footer__social-link--top" href="#" target="blank_">facebook</a>
-            <a class="c-footer__social-link c-footer__social-link--bottom" href="#" target="blank_">insta</a>
+            <a class="c-footer__social-link c-footer__social-link--top" :href="allOptions.social_media.facebook.link" target="blank_">facebook</a>
+            <a class="c-footer__social-link c-footer__social-link--bottom" :href="allOptions.social_media.instagram.link" target="blank_">insta</a>
           </div>
         </div>
         <Button>Hírlevél</Button>
@@ -56,16 +56,30 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import GradientHeart from "./VisualElements/GradientHeart";
 import Section from './Layout/Section';
 
 import Button from './Button';
 
 export default {
+  name: 'Footer',
   components: {
     Section,
     Button,
     GradientHeart
-  }
+  },
+
+  computed: {
+    ...mapGetters({
+      allOptions: 'allOptions',
+      allOptionsLoaded: 'allOptionsLoaded',
+    }),
+  },
+
+  mounted() {
+    this.$store.dispatch('getAllOptions');
+  },
 }
 </script>

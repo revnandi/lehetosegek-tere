@@ -76,5 +76,45 @@ add_filter( 'jwt_auth_whitelist', function ( $endpoints ) {
 	);
 } );
 
-// Add lqip image sizes
+// Add image image sizes
 add_image_size( 'lqip', 16);
+add_image_size( 'extra_large', 1400);
+
+// Add featured image to posts
+add_theme_support( 'post-thumbnails' );
+
+// Register Custom Post Type
+// require_once( trailingslashit( get_template_directory() ). '/custom_post_types/news.php' );
+
+// Add post featured image to REST API
+
+add_action('rest_api_init', 'register_post_featured_image_in_rest' );
+function register_post_featured_image_in_rest(){
+    register_rest_field( array('post'),
+        'featured_image_sizes',
+        array(
+            'get_callback'    => 'get_rest_featured_image',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+function get_rest_featured_image( $object, $field_name, $request ) {
+    if( $object['featured_media'] ){
+        // $img = wp_get_attachment_image_src( $object['featured_media'], 'app-thumb' );
+				$lqip = wp_get_attachment_image_src( $object['featured_media'], 'lqip');
+				$thumbnail = wp_get_attachment_image_src( $object['featured_media'], 'thumbnail');
+				$medium = wp_get_attachment_image_src( $object['featured_media'], 'medium');
+				$medium_large = wp_get_attachment_image_src( $object['featured_media'], 'medium_large');
+				$large = wp_get_attachment_image_src( $object['featured_media'], 'large');
+				$img = (object) [
+					"lqip" => $lqip[0],
+					"thumbnail" => $thumbnail[0],
+					"medium" => $medium[0],
+					"medium_large" => $medium_large[0],
+					"large" => $large[0],
+				];
+        return $img;
+    }
+    return false;
+}

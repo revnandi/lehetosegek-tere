@@ -34,9 +34,9 @@
   }
 
   @keyframes scroll-icon {
-      0% { transform: translateY(-12px); opacity: 0; }
+      0% { transform: translateY(-150%); opacity: 0; }
     30%, 70% { opacity: 1; }
-    100% { transform: translateY(12px); opacity: 0; }
+    100% { transform: translateY(150%); opacity: 0; }
   }
 </style>
 

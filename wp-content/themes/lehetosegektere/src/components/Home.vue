@@ -1,20 +1,20 @@
 <template>
-  <div class="page page--home">
+  <div class="">
     <Section padding="0 3.475vw 3.475vw 3.475vw">
       <PartnerLogos/>
       <div class="grid grid-cols-12 gap-6 items-center relative">
-        <ScrollIcon :isVisible="showScrollIcon"></ScrollIcon>
-        <div class="col-span-6">
+        <div class="col-span-6 h-full">
           <Puzzle/>
         </div>
-        <div class="col-start-7 col-span-6">
-          <ScrollBox height="30.4vw">
+        <div class="col-start-7 col-span-6 h-full">
+          <ScrollBox class="c-scroll-box--hero">
             <p>Művészeti szakemberek, társadalomkutatók, szülők, pedagógusok közösségeként, mi is, mint sokan mások, azzal a ténnyel szembesülünk, hogy az állami közoktatás rendszeréből nagyrészt hiányoznak a hagyományos tantárgyi oktatáson, a lexikális tudás számonkérésén túlmutató tanulási lehetőségek. A gyerekek és fiatalok személyiségét, gondolkodását, kreativitását fejlesztő, és a felnőtt élethez elengedhetetlen képességeket csak különórákon és iskolán kívüli képzéseken pótolhatják azok, akiknek a szülei ezt lehetővé tudják tenni. Ugyanakkor nagyon sok fiatal nem juthat hozzá ezekhez a szemléletformáló tudásokhoz, és ezáltal ahhoz a meggyőződéshez, hogy saját életét felelősen irányíthatja, megtalálhatja az érdeklődésének és képességeinek megfelelő életutat.</p>
-            <p>Művészeti szakemberek, társadalomkutatók, szülők, pedagógusok közösségeként, mi is, mint sokan mások, azzal a ténnyel szembesülünk, hogy az állami közoktatás rendszeréből nagyrészt hiányoznak a hagyományos tantárgyi oktatáson, a lexikális tudás számonkérésén túlmutató tanulási lehetőségek. A gyerekek és fiatalok személyiségét, gondolkodását, kreativitását fejlesztő, és a felnőtt élethez elengedhetetlen képességeket csak különórákon és iskolán kívüli képzéseken pótolhatják azok, akiknek a szülei ezt lehetővé tudják tenni. Ugyanakkor nagyon sok fiatal nem juthat hozzá ezekhez a szemléletformáló tudásokhoz, és ezáltal ahhoz a meggyőződéshez, hogy saját életét felelősen irányíthatja, megtalálhatja az érdeklődésének és képességeinek megfelelő életutat.</p>
-            <p>Művészeti szakemberek, társadalomkutatók, szülők, pedagógusok közösségeként, mi is, mint sokan mások, azzal a ténnyel szembesülünk, hogy az állami közoktatás rendszeréből nagyrészt hiányoznak a hagyományos tantárgyi oktatáson, a lexikális tudás számonkérésén túlmutató tanulási lehetőségek. A gyerekek és fiatalok személyiségét, gondolkodását, kreativitását fejlesztő, és a felnőtt élethez elengedhetetlen képességeket csak különórákon és iskolán kívüli képzéseken pótolhatják azok, akiknek a szülei ezt lehetővé tudják tenni. Ugyanakkor nagyon sok fiatal nem juthat hozzá ezekhez a szemléletformáló tudásokhoz, és ezáltal ahhoz a meggyőződéshez, hogy saját életét felelősen irányíthatja, megtalálhatja az érdeklődésének és képességeinek megfelelő életutat.</p>
+            <p>Ezek a hiányok és tapasztalatok hívták életre első találkozásunkat, az a vízió, hogy e tudásokat azok számára is elérhetővé tehetjük, akik más-más okokból nem férhetnek hozzá. A tenni akarás közös motorja mellett egymást és egymás módszereit is megismertük. Az elmúlt egy év során foglalkozások keretében próbáltuk ki a különböző munkamódszereket, megéltük az együtt gondolkodás dinamikáit, a közös célok kialakítását, kutatásokat folytattunk és kerestük a tudásmegosztás, a kapcsolódás formáit, miközben valódi közösséggé váltunk.</p>
+            <p>Felelősséget érzünk a fiatal generáció tagjai iránt, hiszen ha fiatalok nem látnak jövőt maguk előtt, hogyan válhatnak saját véleménnyel rendelkező, a szűkebb és tágabb környezetükért felelős, cselekvő felnőttekké? Ezért döntöttünk úgy, hogy elindítjuk a LEHETŐSÉGEK TERÉT, egy olyan helyet, ahol a tanulásról és a közösségről is új élményeket lehet szerezni, és amelyet a fiatalokkal organikus folyamat során közösen formálunk.</p>
           </ScrollBox>
           <Swiper></Swiper>
         </div>
+        <ScrollIcon :isVisible="showScrollIcon"></ScrollIcon>
       </div>
     </Section>
     <Section id="about" padding="0">
@@ -23,11 +23,11 @@
     <Section id="location" backgroundColor="purple-red">
       <Location/>
     </Section>
-    <Section id="specs" backgroundColor="orange-red">
-      <Perks/>
+    <Section id="perks" backgroundColor="orange-red">
+      <Perks :gallery="allOptions.gallery"/>
     </Section>
     <Section id="staff" backgroundColor="white">
-      <Staff :staff="this.options.staff"></Staff>
+      <Staff :staff="allOptions.staff"/>
     </Section>
     <!-- <recent-posts-widget limit="5" class="mb-10">Recent Posts</recent-posts-widget>
     <pages-widget limit="5">Pages</pages-widget> -->
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import axios from "axios";
 import SETTINGS from "../settings";
 import {debounce} from '../helpers';
@@ -78,27 +79,17 @@ export default {
       options: false
     }
   },
-  beforeMount() {
-    this.fetchOptions();
+  mounted() {
+    this.$store.dispatch('getAllOptions');
   },
   computed: {
+    ...mapGetters({
+      allOptions: 'allOptions',
+      allOptionsLoaded: 'allOptionsLoaded',
+    }),
     showScrollIcon() {
       return this.scrollPosition < 350;
     }
-  },
-  methods: {
-    async fetchOptions() {
-      axios
-        .get(
-          SETTINGS.API_OPTIONS_PATH
-        )
-        .then(response => {
-          this.options = response.data.acf;
-        })
-        .catch(e => {
-          console.log(e);
-        });
-    }
-  },
+  }
 };
 </script>

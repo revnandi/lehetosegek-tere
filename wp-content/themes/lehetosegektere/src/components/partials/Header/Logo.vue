@@ -8,7 +8,7 @@
 
 <style lang="scss" scoped>
   .c-logo {
-    width: calc(66.666% - 0.5rem);
+    width: calc(66.666% - 0.5em);
     &__image {
       width: 100%;
     }

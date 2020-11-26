@@ -37,6 +37,9 @@ export default {
 <style lang="scss" scoped>
   .l-section {
     $self: &;
+    &--green {
+      background: #66c79a;
+    }
     &--white{
       background: #fff;
     }

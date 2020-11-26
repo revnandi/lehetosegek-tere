@@ -1,0 +1,7 @@
+@mixin hover-fade {
+  opacity: 1;
+  transition:  0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  &:hover {
+    opacity: 0.75;
+  }
+}

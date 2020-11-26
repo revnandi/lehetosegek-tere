@@ -5,6 +5,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import hub from './modules/hub'
 import user from './modules/user'
+import options from './modules/options'
 import post from './modules/post'
 import page from './modules/page'
 import categories from './modules/categories'
@@ -25,6 +26,7 @@ export default new Vuex.Store({
   modules: {
     hub,
     user,
+    options,
     post,
     page,
     categories
