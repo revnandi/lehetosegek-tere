@@ -8,7 +8,7 @@
 
     <transition name="page-transition" mode="out-in" appear>
       <main class="site-content mx-auto flex-1 md:px-0">
-        <router-view :scrollPosition="lastScrollPosition"></router-view>
+        <router-view :scrollPosition="lastScrollPosition" :windowWidth="windowWidth"></router-view>
       </main>
     </transition>
 

@@ -84,7 +84,7 @@ add_image_size( 'extra_large', 1400);
 add_theme_support( 'post-thumbnails' );
 
 // Register Custom Post Type
-// require_once( trailingslashit( get_template_directory() ). '/custom_post_types/news.php' );
+require_once( trailingslashit( get_template_directory() ). '/custom_post_types/activity.php' );
 
 // Add post featured image to REST API
 

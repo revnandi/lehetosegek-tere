@@ -6,9 +6,11 @@
       </div>
       <div class="col-span-3">
         <div class="c-location__buttons">
-          <Button>
-            Tovább a foglalkozásokra
-          </Button>
+          <a href="/foglalkozasok">
+            <Button >
+              <span>Tovább a Foglalkozásokra</span>
+            </Button>
+          </a>
           <Button>
             Térkép
           </Button>

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="page">
     <Section padding="0 3.475vw 3.475vw 3.475vw">
       <PartnerLogos/>
       <div class="grid grid-cols-12 gap-6 items-center relative">

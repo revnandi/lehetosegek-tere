@@ -9,6 +9,7 @@ import VueSmoothScroll from 'vue2-smooth-scroll';
 import Home from '../components/Home.vue';
 import Post from '../components/Post/Post.vue';
 import Page from '../components/Page/Page.vue';
+import Activities from '../components/Activities.vue';
 
 Vue.use(Router);
 Vue.use(VueSmoothScroll, {
@@ -28,6 +29,11 @@ const router = new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/foglalkozasok',
+      name: 'Activities',
+      component: Activities,
     },
     {
       // Assuming you're using the default permalink structure for posts

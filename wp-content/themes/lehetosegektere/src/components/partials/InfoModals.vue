@@ -29,9 +29,11 @@
               <ScrollBox height="75%">
                 <p>{{ adultModalContent }}</p>
               </ScrollBox>
-              <Button >
-                <span>Tovább a Foglalkozásokra</span>
-              </Button>
+              <a href="/foglalkozasok">
+                <Button >
+                  <span>Tovább a Foglalkozásokra</span>
+                </Button>
+              </a>
             </div>
           </div>
         </div>
@@ -40,9 +42,11 @@
             <FaceAdult></FaceAdult>
           </div>
           <div class="c-info-modals__buttons">
-            <Button v-if="!showAdultModal" @click.native="toggleAdultModal">
-              <span>Elmúltam el 26 éves</span>
-            </Button>
+            <a href="#about" v-smooth-scroll>
+              <Button v-if="!showAdultModal" @click.native="toggleAdultModal">
+                <span>Elmúltam el 26 éves</span>
+              </Button>
+            </a>
             <CloseButton v-if="showAdultModal" @click.native="toggleAdultModal"/>
           </div>
           <div class="c-info-modals__buttons">
@@ -63,9 +67,13 @@
               <ScrollBox height="75%">
                 <p>{{ kidsModalContent }}</p>
               </ScrollBox>
-              <Button >
-                <span>Tovább a Foglalkozásokra</span>
-              </Button>
+              <a href="/foglalkozasok">
+                <a href="#about" v-smooth-scroll>
+                  <Button >
+                    <span>Tovább a Foglalkozásokra</span>
+                  </Button>
+                </a>
+              </a>
             </div>
           </div>
         </div>

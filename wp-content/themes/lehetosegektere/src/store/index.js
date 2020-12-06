@@ -8,6 +8,7 @@ import user from './modules/user'
 import options from './modules/options'
 import post from './modules/post'
 import page from './modules/page'
+import activity from './modules/activity'
 import categories from './modules/categories'
 
 Vue.use(Vuex)
@@ -29,6 +30,7 @@ export default new Vuex.Store({
     options,
     post,
     page,
+    activity,
     categories
   },
   strict: debug,

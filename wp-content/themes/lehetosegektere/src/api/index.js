@@ -64,4 +64,18 @@ export default {
         cb(e);
       });
   },
+
+  getActivities(cb) {
+    axios
+      .get(
+        SETTINGS.API_ACTIVITIES_PATH
+      )
+      .then(response => {
+        cb(response.data);
+      })
+      .catch(e => {
+        cb(e);
+      });
+  },
+
 };
