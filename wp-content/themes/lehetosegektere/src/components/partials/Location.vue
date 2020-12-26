@@ -1,8 +1,9 @@
 <template>
   <div class="c-location">
+    <HiddenTitle text="Hol lehet?"/>
     <Grid>
       <div class="col-span-12">
-        <h1 class="c-location__title">Práter 63.</h1>
+        <h2 class="c-location__title">Práter 63.</h2>
       </div>
       <div class="col-span-3">
         <div class="c-location__buttons">
@@ -73,6 +74,7 @@ import Grid from './Layout/Grid';
 import GradientBridge from './VisualElements/GradientBridge';
 
 import Button from './Button';
+import HiddenTitle from './HiddenTitle';
 import ScrollBox from './ScrollBox';
 
 export default {
@@ -80,6 +82,7 @@ export default {
     Grid,
     GradientBridge,
     Button,
+    HiddenTitle,
     ScrollBox
   }
 }

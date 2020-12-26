@@ -1,5 +1,5 @@
 <template>
-  <svg :style="{ height: this.height, width: this.width }" class="c-tranzit-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 332.45 325.49">
+  <svg class="c-tranzit-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 332.45 325.49">
     <title>tranzit.hu logó</title>
     <g id="tranzit_layer_2" data-name="tranzit_layer 2">
       <g id="tranzit_layer_1-2" data-name="tranzit_layer 1">
@@ -28,15 +28,5 @@
 
 <script>
 export default {
-  props: {
-    width: {
-      type: String,
-      default: '100%'
-    },
-    height: {
-      type: String,
-      default: 'auto'
-    }
-  },
 }
 </script>

@@ -9,15 +9,25 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../../assets/css/breakpoints.scss";
   .c-main-navigation {
     &__list {
       display: flex;
+      @include media("<=tablet") {
+        flex-direction: column;
+      }
     }
     &__item {
-      width: calc(100% / 7 * 1);
       text-align: center;
       font-size: 0.625vw;
       text-transform: uppercase;
+      @include media("<=tablet") {
+        margin-bottom: 0.85em;
+        font-size: 4vw;
+      }
+      @include media(">tablet") {
+        width: calc(100% / 7 * 1);
+      }
     }
   }
 </style>

@@ -10,17 +10,23 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
   .c-scroll-box {
     $self: &;
     position: relative;
     height: 29.8vw;
     padding: 0 1.150vw;
-    font-size: 1.300vw;
     background-color: #fff;
     overflow: hidden;
+    @include media("<=tablet") {
+      font-size: 4.267vw;
+    }
+    @include media(">tablet") {
+      font-size: 1.300vw;
+    }
     &--hero {
       height: 0!important;
-      padding: 0 1.150vw calc((100% / 3) * 2) 1.150vw;
+      padding: 0 1.150vw calc((100% / 3) * 1) 1.150vw;
       #{ $self }__inner {
         position: absolute;
       }
@@ -59,6 +65,14 @@
       transform: translate(-50%, -50%);
       will-change: top;
       cursor: pointer;
+      @include media("<=tablet") {
+        width: 1.500vw;
+        height: 1.500vw;
+      }
+      @include media(">tablet") {
+        width: 0.500vw;
+        height: 0.500vw;
+      }
     }
   }
 </style>

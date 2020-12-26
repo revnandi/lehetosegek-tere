@@ -3,9 +3,12 @@
     <app-header :isVisible="showHeader"/>
 
     <transition name="loader-animation" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-      <progress-bar :show-loader="showLoader" :loader-style="loaderStyle" />
+      <MenuButton :isOpened="showHeader" @click.native="toggleHeader"/>
     </transition>
 
+    <transition name="loader-animation" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+      <progress-bar :show-loader="showLoader" :loader-style="loaderStyle" />
+    </transition>
     <transition name="page-transition" mode="out-in" appear>
       <main class="site-content mx-auto flex-1 md:px-0">
         <router-view :scrollPosition="lastScrollPosition" :windowWidth="windowWidth"></router-view>
@@ -17,8 +20,14 @@
 </template>
 
 <style lang="scss">
+  @import "./assets/css/breakpoints.scss";
   .site-content {
-    margin-top: 3.700vw;
+    @include media("<=tablet") {
+      // margin-top: 15vw;
+    }
+    @include media(">tablet") {
+      margin-top: 3.700vw;
+    }
   }
 </style>
 
@@ -27,6 +36,7 @@ import { mapGetters, mapActions, mapMutations } from 'vuex';
 import Header from './components/partials/Header.vue';
 import Footer from './components/partials/Footer.vue';
 import ProgressBar from './components/partials/ProgressBar.vue';
+import MenuButton from './components/partials/Header/MenuButton';
 
 export default {
   name: 'App',
@@ -55,6 +65,7 @@ export default {
     appHeader: Header,
     appFooter: Footer,
     ProgressBar,
+    MenuButton
   },
 
   methods: {
@@ -70,7 +81,9 @@ export default {
         if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
           return
         }
-        this.showHeader = currentScrollPosition < this.lastScrollPosition
+        if (this.windowWidth > 768 ) {
+          this.showHeader = currentScrollPosition < this.lastScrollPosition
+        }
         this.lastScrollPosition = currentScrollPosition
         // this.scrollPosition = window.scrollY;
       }, 100);
@@ -81,6 +94,9 @@ export default {
     getWindowHeight (event) {
       this.windowHeight = document.documentElement.clientHeight
     },
+    toggleHeader () {
+      this.showHeader = !this.showHeader;
+    }
   },
 
   mounted() {

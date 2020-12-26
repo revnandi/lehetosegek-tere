@@ -1,6 +1,7 @@
 <template>
   <footer class="c-footer">
     <Section>
+      <HiddenTitle text="Kövessetek bennünket!"/>
       <div class="c-footer__inner">
         <Button>Események</Button>
         <div class="c-footer__social">
@@ -62,12 +63,14 @@ import GradientHeart from "./VisualElements/GradientHeart";
 import Section from './Layout/Section';
 
 import Button from './Button';
+import HiddenTitle from './HiddenTitle';
 
 export default {
   name: 'Footer',
   components: {
     Section,
     Button,
+    HiddenTitle,
     GradientHeart
   },
 

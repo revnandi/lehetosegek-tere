@@ -1,17 +1,15 @@
 <template>
   <header :v-if="this.isLoaded === true" class="c-header" :class="{ 'c-header--visible' : isVisible}">
-    <div :v-if="this.isLoaded === true" class="grid grid-cols-12 gap-6 items-center">
-      <div class="col-span-3">
-        <div class="c-header__logo-container">
-          <a href="/">
-            <Logo></Logo>
-          </a>
-        </div>
+    <div class="c-header__inner">
+      <div class="c-header__logo-container">
+        <a href="/">
+          <Logo></Logo>
+        </a>
       </div>
-      <div  class="col-span-7">
+      <div class="c-header__navigation-container">
         <Menu :menu="menu"></Menu>
       </div>
-      <div  class="col-span-2">
+      <div class="c-header__social-container">
         <TopSocial :socials="allOptions.social_media"/>
       </div>
     </div>
@@ -19,7 +17,9 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
   .c-header {
+    $self: &;
     z-index: 2;
     position: fixed;
     width: 100%;
@@ -27,16 +27,65 @@
     background: #fff;
     transform: translateY(-100%);
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    @include media("<=tablet") {
+      height: 100vh;
+      transform: translateX(-100%);
+    }
+    @include media(">tablet") {
+      transform: translateY(-100%);
+    }
     &--visible {
       transform: translateY(0);
+      @include media("<=tablet") {
+        transform: translateX(0);
+      }
+      @include media(">tablet") {
+        transform: translateY(0);
+      }
     }
     &__inner {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+      @include media("<=tablet") {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      @include media(">tablet") {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-gap: 1.5rem;
+        gap: 1.5rem;
+        height: auto;
+        align-items: center;
+      }
     }
     &__logo-container {
-      width: calc(66.666% - 0.5em);
+      @include media("<=tablet") {
+        position: absolute;
+        top: 3.475vw;
+        left: 3.475vw;
+        width: 60%;
+      }
+      @include media(">tablet") {
+        grid-column: span 3 / span 3;
+        margin: auto;
+        width: calc(66.666% - 0.5em);
+      }
+    }
+    &__navigation-container {
+      @include media("<=tablet") {
+      }
+      @include media(">tablet") {
+        grid-column: span 7 / span 7;
+      }
+    }
+    &__social-container {
+      @include media("<=tablet") {
+      }
+      @include media(">tablet") {
+        grid-column: span 2 / span 2;
+      }
     }
   }
 </style>

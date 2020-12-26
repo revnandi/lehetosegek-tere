@@ -1,5 +1,5 @@
 <template>
-  <svg :style="{ height: this.height, width: this.width }" class="c-erste-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 110.76">
+  <svg class="c-erste-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 110.76">
     <title>Erste Stiftung logó</title>
     <g id="erste_logo_layer_2" data-name="layer 2">
       <g id="erste_logo_layer_3" data-name="erste_logo_layer_3">
@@ -50,15 +50,5 @@
 
 <script>
 export default {
-  props: {
-    width: {
-      type: String,
-      default: '100%'
-    },
-    height: {
-      type: String,
-      default: 'auto'
-    }
-  },
 }
 </script>

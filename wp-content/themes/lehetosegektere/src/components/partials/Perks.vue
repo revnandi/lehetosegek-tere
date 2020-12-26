@@ -1,5 +1,6 @@
 <template>
   <div class="c-perks">
+    <HiddenTitle text="Mit lehet még?"/>
     <div class="c-perks__circle-element-container">
       <GradientCircle/>
     </div>
@@ -123,12 +124,15 @@
 <script>
 import GradientCircle from './VisualElements/GradientCircle';
 
+import HiddenTitle from './HiddenTitle';
+
 export default {
   name: 'Perks',
   title: 'Perks Swiper',
   props: ['gallery'],
   components: {
-    GradientCircle
+    GradientCircle,
+    HiddenTitle
   },
   data() {
     return {

@@ -4,6 +4,7 @@ module.exports = new BrowserSyncPlugin({
   files: ['*.php', '*.vue', '*.js', 'dist'],
   reloadDelay: 0,
   proxy: "localhost:8888",
+  open: false,
   notify: {
     styles: {
       top: 'auto',

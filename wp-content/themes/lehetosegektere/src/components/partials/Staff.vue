@@ -1,5 +1,6 @@
 <template>
   <div class="c-staff">
+    <HiddenTitle text="Kikkel lehet?" />
     <Grid rowGap="7vw">
       <div class="col-span-3 h-full" v-for="(member, index) in this.staff" :key="index">
         <div class="c-staff__item">
@@ -67,12 +68,15 @@ import 'lazysizes';
 
 import Grid from './Layout/Grid';
 
+import HiddenTitle from './HiddenTitle';
+
 export default {
   props: [
     'staff'
   ],
   components: {
-    Grid
+    Grid,
+    HiddenTitle
   }
 }
 </script>

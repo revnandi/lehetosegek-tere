@@ -68,34 +68,45 @@
 </template>
 
 <style lang="scss" scoped>
+@import "../../assets/css/breakpoints.scss";
 .c-puzzle {
   width: 100%;
   height: 100%;
   .c-puzzle__grid {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    @include media(">tablet") {
+      height: 100%;
+    }
   }
   &__item {
     position: absolute;
     width: calc(100% / 3);
     left: 0%;
     top: 0%;
-    padding-bottom: calc(100% / 3);
+    height: calc(100% / 3);
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     cursor: pointer;
+    @include media(">tablet") {
+      padding-bottom: calc(100% / 3);
+    }
   }
   &__item-inner {
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    font-size: 12vw;
+    font-size: 24vw;
     color: #fff;
     overflow: hidden;
     //background-color: #fff;
+    @include media(">tablet") {
+      position: absolute;
+      font-size: 12vw;
+    }
     &::selection {
       background-color: rgba(0, 0, 0,.0);
     }

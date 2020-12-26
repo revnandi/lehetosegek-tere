@@ -1,80 +1,81 @@
 <template>
-  <div>
-    <div class="c-info-modals">
-      <div class="c-info-modals__inner">
-        <div class="c-info-modals__controls">
-          <div class="c-info-modals__face">
-            <FaceChild></FaceChild>
-          </div>
-          <div class="c-info-modals__buttons">
+  <div class="c-info-modals">
+    <HiddenTitle text="Mit lehet?"/>
+    <div class="c-info-modals__inner">
+      <div class="c-info-modals__controls">
+        <div class="c-info-modals__face">
+          <FaceChild></FaceChild>
+        </div>
+        <div class="c-info-modals__buttons">
+          <a href="#about" v-smooth-scroll>
             <Button v-if="!showKidsModal" @click.native="toggleKidsModal">
               <span>Nem múltam 26 éves</span>
             </Button>
-            <CloseButton v-if="showKidsModal" @click.native="toggleKidsModal"/>
+          </a>
+          <CloseButton v-if="showKidsModal" @click.native="toggleKidsModal"/>
+        </div>
+        <div class="c-info-modals__buttons">
+          <Button v-if="showKidsModal" @click.native="changekidsContent('for_who')">
+            <span>Kiknek szól?</span>
+          </Button>
+          <Button v-if="showKidsModal" @click.native="changekidsContent('what')">
+            <span>Mi ez a hely?</span>
+          </Button>
+          <Button v-if="showKidsModal" @click.native="changekidsContent('who')">
+            <span>Mit lehet itt csinálni?</span>
+          </Button>
+        </div>
+        <div v-if="showAdultModal" class="c-info-modals__modal">
+          <h2 class="c-info-modals__heading">{{ adultModalTitle }}</h2>
+          <div class="c-info-modals__modal-content">
+            <ScrollBox height="75%">
+              <p>{{ adultModalContent }}</p>
+            </ScrollBox>
+            <a href="/foglalkozasok">
+              <Button >
+                <span>Tovább a Foglalkozásokra</span>
+              </Button>
+            </a>
           </div>
-          <div class="c-info-modals__buttons">
-            <Button v-if="showKidsModal" @click.native="changekidsContent('for_who')">
-              <span>Kiknek szól?</span>
+        </div>
+      </div>
+      <div class="c-info-modals__controls">
+        <div class="c-info-modals__face">
+          <FaceAdult></FaceAdult>
+        </div>
+        <div class="c-info-modals__buttons">
+          <a href="#about" v-smooth-scroll>
+            <Button v-if="!showAdultModal" @click.native="toggleAdultModal">
+              <span>Elmúltam el 26 éves</span>
             </Button>
-            <Button v-if="showKidsModal" @click.native="changekidsContent('what')">
-              <span>Mi ez a hely?</span>
-            </Button>
-            <Button v-if="showKidsModal" @click.native="changekidsContent('who')">
-              <span>Mit lehet itt csinálni?</span>
-            </Button>
-          </div>
-          <div v-if="showAdultModal" class="c-info-modals__modal">
-            <h2 class="c-info-modals__heading">{{ adultModalTitle }}</h2>
-            <div class="c-info-modals__modal-content">
-              <ScrollBox height="75%">
-                <p>{{ adultModalContent }}</p>
-              </ScrollBox>
-              <a href="/foglalkozasok">
+          </a>
+          <CloseButton v-if="showAdultModal" @click.native="toggleAdultModal"/>
+        </div>
+        <div class="c-info-modals__buttons">
+          <Button v-if="showAdultModal" @click.native="changeAdultContent('for_who')">
+            <span>Kiknek szól?</span>
+          </Button>
+          <Button v-if="showAdultModal" @click.native="changeAdultContent('what')">
+            <span>Mi ez a hely?</span>
+          </Button>
+          <Button v-if="showAdultModal" @click.native="changeAdultContent('who')">
+            <span>Mit lehet itt csinálni?</span>
+          </Button>
+        </div>
+        <div v-if="showKidsModal" class="c-info-modals__modal">
+          <h2 class="c-info-modals__heading">{{ kidsModalTitle }}</h2>
+          <div class="c-info-modals__modal-content">
+            <!-- <p>Szoktál unatkozni a tanórákon? Érezted már, hogy szeretnél elérni valamit, de nem tudod, hogyan is kellene? Hogy attól tartasz, nem fog sikerülni? Nálunk nem számít, milyen eredményeid vannak, honnan jössz és mi érdekel. Sokfélék vagyunk és hiszünk a sokféleség erejében, abban, hogy tudunk adni egymásnak és a tapasztalataink összeadódnak. Egy olyan közegben, ahol nincs kirekesztés és előítélet, megélheted, hogy tanulni nem csak tankönyvekből lehet!</p> -->
+            <ScrollBox height="75%">
+              <p>{{ kidsModalContent }}</p>
+            </ScrollBox>
+            <a href="/foglalkozasok">
+              <a href="#about" v-smooth-scroll>
                 <Button >
                   <span>Tovább a Foglalkozásokra</span>
                 </Button>
               </a>
-            </div>
-          </div>
-        </div>
-        <div class="c-info-modals__controls">
-          <div class="c-info-modals__face">
-            <FaceAdult></FaceAdult>
-          </div>
-          <div class="c-info-modals__buttons">
-            <a href="#about" v-smooth-scroll>
-              <Button v-if="!showAdultModal" @click.native="toggleAdultModal">
-                <span>Elmúltam el 26 éves</span>
-              </Button>
             </a>
-            <CloseButton v-if="showAdultModal" @click.native="toggleAdultModal"/>
-          </div>
-          <div class="c-info-modals__buttons">
-            <Button v-if="showAdultModal" @click.native="changeAdultContent('for_who')">
-              <span>Kiknek szól?</span>
-            </Button>
-            <Button v-if="showAdultModal" @click.native="changeAdultContent('what')">
-              <span>Mi ez a hely?</span>
-            </Button>
-            <Button v-if="showAdultModal" @click.native="changeAdultContent('who')">
-              <span>Mit lehet itt csinálni?</span>
-            </Button>
-          </div>
-          <div v-if="showKidsModal" class="c-info-modals__modal">
-            <h2 class="c-info-modals__heading">{{ kidsModalTitle }}</h2>
-            <div class="c-info-modals__modal-content">
-              <!-- <p>Szoktál unatkozni a tanórákon? Érezted már, hogy szeretnél elérni valamit, de nem tudod, hogyan is kellene? Hogy attól tartasz, nem fog sikerülni? Nálunk nem számít, milyen eredményeid vannak, honnan jössz és mi érdekel. Sokfélék vagyunk és hiszünk a sokféleség erejében, abban, hogy tudunk adni egymásnak és a tapasztalataink összeadódnak. Egy olyan közegben, ahol nincs kirekesztés és előítélet, megélheted, hogy tanulni nem csak tankönyvekből lehet!</p> -->
-              <ScrollBox height="75%">
-                <p>{{ kidsModalContent }}</p>
-              </ScrollBox>
-              <a href="/foglalkozasok">
-                <a href="#about" v-smooth-scroll>
-                  <Button >
-                    <span>Tovább a Foglalkozásokra</span>
-                  </Button>
-                </a>
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -148,6 +149,7 @@ import FaceAdult from './VisualElements/FaceAdult';
 import FaceChild from './VisualElements/FaceChild';
 
 import Button from './Button';
+import HiddenTitle from './HiddenTitle';
 import ScrollBox from './ScrollBox';
 
 const content = {
@@ -174,6 +176,7 @@ export default {
     CloseButton,
     FaceAdult,
     FaceChild,
+    HiddenTitle,
     ScrollBox
   },
   data() {

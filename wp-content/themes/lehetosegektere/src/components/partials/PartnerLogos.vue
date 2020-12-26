@@ -1,18 +1,34 @@
 <template>
   <div class="c-partner-logos">
-    <ErsteLogo width="3.825vw"/>
-    <TranzitLogo width="1.550vw"/>
+    <ErsteLogo/>
+    <TranzitLogo/>
   </div>
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
   .c-partner-logos {
     position: relative;
     display: flex;
     justify-content: flex-end;
     padding: 0.775vw 0 1.175vw 0;
-    & > * {
-      margin-left: 0.875vw;
+    svg:first-child {
+      @include media("<=tablet") {
+        width: 19.525vw;
+      }
+      @include media(">tablet") {
+        width: 3.825vw;
+      } 
+    }
+    svg:last-child {
+      @include media("<=tablet") {
+        width: 7.7vw;
+        margin-left: 3.375vw;
+      }
+      @include media(">tablet") {
+        width: 1.550vw;
+        margin-left: 0.875vw;
+      } 
     }
   }
 </style>
