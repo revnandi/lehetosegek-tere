@@ -76,15 +76,8 @@ add_filter( 'jwt_auth_whitelist', function ( $endpoints ) {
 	);
 } );
 
-// Add image image sizes
-add_image_size( 'lqip', 16);
-add_image_size( 'extra_large', 1400);
-
 // Add featured image to posts
 add_theme_support( 'post-thumbnails' );
-
-// Register Custom Post Type
-require_once( trailingslashit( get_template_directory() ). '/custom_post_types/activity.php' );
 
 // Add post featured image to REST API
 

@@ -48,23 +48,38 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
+  @import "../../assets/css/variables.scss";
   .c-perks {
     z-index: 1;
     position: relative;
     display: flex;
     align-items: stretch; 
     width: 100%;
+    @include media("<=tablet") {
+      flex-direction: column;
+    }
     &__circle-element-container {
       z-index: -1;
       position: absolute;
       display: flex;
-      align-items: center;
       width: 50%;
       height: 100%;
+      @include media("<=tablet") {
+        width: 100%;
+        height: auto;
+      }
+      @include media(">tablet") {
+        align-items: center;
+      }
     }
     &__list {
       width: 50%;
       padding-right: 0.450vw;
+      @include media("<=tablet") {
+        width: 100%;
+        margin-bottom: 25vw;
+      }
     }
     @for $i from 1 through 4 {
       &__item{
@@ -73,35 +88,56 @@
         margin-top: 1.5em;
         font-size: 2.600vw;
         color: #fff;
+        @include media("<=tablet") {
+          font-size: $text-base-mobile;
+        }
+        @include media(">tablet") {
+          font-size: $text-xxl-desktop;
+        }
         &:nth-child(#{$i})::after {
           content: '0#{$i}';
           position: absolute;
-          top: -3em;
           left: 0.500vw;
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 3.375vw;
-          height: 3.375vw;
-          font-size: 1.300vw;
           border-radius: 50%;
           background: rgb(235,107,45);
           background: -moz-linear-gradient(180deg, rgba(235,107,45,1) 15%, rgba(249,16,30,1) 100%);
           background: -webkit-linear-gradient(180deg, rgba(235,107,45,1) 15%, rgba(249,16,30,1) 100%);
           background: linear-gradient(180deg, rgba(235,107,45,1) 15%, rgba(249,16,30,1) 100%);
           filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eb6b2d",endColorstr="#f9101e",GradientType=1);
+          @include media("<=tablet") {
+            top: -2.25em;
+            width: 5.375vw;
+            height: 5.375vw;
+            font-size: 2.5vw;
+          }
+          @include media(">tablet") {
+            top: -3em;
+            width: 3.375vw;
+            height: 3.375vw;
+            font-size: 1.300vw;
+          }
         }
       }
     }
     &__gallery{
       position: relative;
-      max-width: 50vw;
-      width: 50%;
       min-height: 100%;
-      // padding-left: 0.450vw;
+      @include media("<=tablet") {
+        max-width: calc(100vw - (3.475vw * 2));
+        width: 100%;
+      }
+      @include media(">tablet") {
+        max-width: 50vw;
+        width: 50%;
+      }
     }
     &__gallery .swiper-container.swiper-container-fade.swiper-container-initialized.swiper-container-horizontal {
-      transform: translateY(5%);
+      @include media(">tablet") {
+        transform: translateY(5%);
+      }
     }
     &__gallery-inner {
       width: 100%;

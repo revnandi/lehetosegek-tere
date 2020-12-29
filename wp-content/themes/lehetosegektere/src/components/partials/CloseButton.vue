@@ -7,11 +7,12 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
+  @import "../../assets/css/variables.scss";
   .c-close-button {
     cursor: pointer;
     position: relative;
     display: inline-block;
-    padding: 1vw;
     border-radius: 50%;
     background: rgb(255,0,253);
     background: -moz-linear-gradient(180deg, rgba(255,0,253,1) 0%, rgba(249,16,30,1) 100%);
@@ -20,6 +21,12 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff00fd",endColorstr="#f9101e",GradientType=1);
     box-shadow: 0 1px 2px rgba(255,255,255,0.15);
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    @include media("<=tablet") {
+      padding: 2vw;
+    }
+    @include media(">tablet") {
+      padding: 1vw;
+    }
     &::after {
       content: '';
       position: absolute;
@@ -45,7 +52,13 @@
       box-shadow: 0 0 0 0.15em #fff;
     }
     &__icon {
-      width: 0.800vw;
+      transform: rotateZ(45deg);
+      @include media("<=tablet") {
+        width: 6vw;
+      }
+      @include media(">tablet") {
+        width: 0.800vw;
+      }
     }
   }
 </style>

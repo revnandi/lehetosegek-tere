@@ -22,6 +22,8 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
+  @import "../../assets/css/variables.scss";
   .c-activities-item {
     display: flex;
     height: 100%;
@@ -49,16 +51,34 @@
       margin: 1.5vw 0 1vw 0;
       font-size: 0.525vw;
       text-transform: uppercase;
+      @include media("<=tablet") {
+        font-size: $text-base-mobile;
+      }
+      @include media(">tablet") {
+        font-size: $text-md-desktop;
+      }
     }
     &__title {
-      margin-bottom: 1vw;
-      font-size: 1.150vw;
       text-align: center;
       text-transform: uppercase;
+      @include media("<=tablet") {
+        min-height: auto!important;
+        margin-bottom: 2vw;
+        font-size: $text-base-mobile;
+      }
+      @include media(">tablet") {
+        margin-bottom: 1vw;
+        font-size: 1.150vw;
+      }
     }
     &__description {
-      margin-top: 1vw;
-      font-size: 0.725vw;
+      margin-top: 2vw;
+      @include media("<=tablet") {
+        font-size: $text-base-mobile;
+      }
+      @include media(">tablet") {
+        font-size: 0.725vw;
+      }
     }
   }
 </style>

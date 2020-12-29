@@ -44,7 +44,7 @@ export default {
     return {
       showLoader: true,
       // scrollPosition: null,
-      showHeader: true,
+      showHeader: false,
       windowWidth: 0,
       windowHeight: 0,
       lastScrollPosition: 0
@@ -106,6 +106,9 @@ export default {
       window.addEventListener('resize', this.getWindowHeight);
       this.getWindowWidth();
       this.getWindowHeight();
+      if (this.windowWidth > 768 ) {
+        this.showHeader = true;
+      }
     })
   },
 

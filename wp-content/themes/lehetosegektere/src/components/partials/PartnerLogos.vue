@@ -10,15 +10,21 @@
   .c-partner-logos {
     position: relative;
     display: flex;
-    justify-content: flex-end;
-    padding: 0.775vw 0 1.175vw 0;
+    @include media("<=tablet") {
+      justify-content: flex-start;
+    }
+    @include media(">tablet") {
+      justify-content: flex-end;
+    }
     svg:first-child {
       @include media("<=tablet") {
         width: 19.525vw;
+        padding: 2.475vw 0 1.175vw 0;
       }
       @include media(">tablet") {
         width: 3.825vw;
-      } 
+        padding: 0.775vw 0 1.175vw 0;
+      }
     }
     svg:last-child {
       @include media("<=tablet") {
@@ -28,7 +34,7 @@
       @include media(">tablet") {
         width: 1.550vw;
         margin-left: 0.875vw;
-      } 
+      }
     }
   }
 </style>

@@ -75,6 +75,7 @@
     }
     &__navigation-container {
       @include media("<=tablet") {
+        margin-bottom: 15vw;
       }
       @include media(">tablet") {
         grid-column: span 7 / span 7;

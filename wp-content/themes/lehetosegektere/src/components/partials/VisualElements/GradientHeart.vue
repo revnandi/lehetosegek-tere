@@ -35,8 +35,15 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../../assets/css/breakpoints.scss";
+  @import "../../../assets/css/variables.scss";
   .c-gradient-heart {
-    width: 8.950vw;
+    @include media("<=tablet") {
+      width: 34vw;
+    }
+    @include media(">tablet") {
+      width: 8.950vw;
+    }
   }
 </style>
 

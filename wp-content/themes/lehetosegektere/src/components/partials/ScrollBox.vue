@@ -26,7 +26,12 @@
     }
     &--hero {
       height: 0!important;
-      padding: 0 1.150vw calc((100% / 3) * 1) 1.150vw;
+      @include media("<=tablet") {
+        padding: 0 1.150vw 100% 1.150vw;
+      }
+      @include media(">tablet") {
+        padding: 0 1.150vw calc((100% / 3) * 1) 1.150vw;
+      }
       #{ $self }__inner {
         position: absolute;
       }

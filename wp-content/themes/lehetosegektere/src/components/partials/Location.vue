@@ -5,8 +5,13 @@
       <div class="col-span-12">
         <h2 class="c-location__title">Práter 63.</h2>
       </div>
-      <div class="col-span-3">
+      <div class="col-span-12 md:col-span-5">
         <div class="c-location__buttons">
+          <a href="#events" v-smooth-scroll>
+            <Button >
+              <span>Aktuális programok</span>
+            </Button>
+          </a>
           <a href="/foglalkozasok">
             <Button >
               <span>Tovább a Foglalkozásokra</span>
@@ -18,11 +23,11 @@
         </div>
       </div>
       <div class="col-span-12">
-        <div class="flex">
-          <div class="w-1/2">
+        <div class="flex flex-wrap md:flex-nowrap">
+          <div class="w-full md:w-1/2">
             <GradientBridge/>
           </div>
-          <div class="w-1/2">
+          <div class="w-full md:w-1/2">
             <ScrollBox height="23vw">
               <p>2020 őszén egy olyan teret és programot hozunk létre a 8. kerületben, ahol a motiváció, a kíváncsiság újralesztésével és a közösségben megélt értékesség élményével átfordítható a hátrányokból megélt sikertelenség tapasztalata.</p>
 
@@ -48,6 +53,8 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
+  @import "../../assets/css/variables.scss";
   .c-location {
     &__title {
       font-size: 11.6vw;
@@ -58,11 +65,33 @@
       display: flex;
       justify-content: space-evenly;
       margin-bottom: 1.875vw;
+      @include media("<=tablet") {
+        flex-direction: column;
+        align-items: center;
+      }
       & > *:first-child {
-        width: 14.125vw;
+        @include media("<=tablet") {
+          margin-bottom: 5vw;
+        }
+        @include media(">tablet") {
+          width: 14.125vw;
+        }
+      }
+      & > *:nth-child(2) {
+        @include media("<=tablet") {
+          margin-bottom: 5vw;
+        }
+        @include media(">tablet") {
+          width: 14.125vw;
+        }
       }
       & > *:last-child {
-        width: 6.325vw;
+        @include media("<=tablet") {
+          margin-bottom: 5vw;
+        }
+        @include media(">tablet") {
+          width: 6.325vw;
+        }
       }
     }
   }

@@ -3,7 +3,9 @@
     <Section>
       <HiddenTitle text="Kövessetek bennünket!"/>
       <div class="c-footer__inner">
-        <Button>Események</Button>
+        <a href="#events" v-smooth-scroll>
+          <Button>Események</Button>
+        </a>
         <div class="c-footer__social">
           <div class="c-footer__social-title">Kövessetek bennünket!</div>
           <div class="c-footer__heart-container">
@@ -19,23 +21,38 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
+  @import "../../assets/css/variables.scss";
   .c-footer {
     display: block;
     &__inner {
       display: flex;
       align-items: center;
       justify-content: center;
+      @include media("<=tablet") {
+        flex-direction: column;
+      }
     }
     &__social {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin: 0 6.125vw;
+      @include media("<=tablet") {
+        margin: 3.0625vw 6.125vw;
+      }
+      @include media(">tablet") {
+        margin: 0 6.125vw;
+      }
     }
     &__social-title {
-      font-size: 0.625vw;
       text-transform: uppercase;
       margin-bottom: 1.200vw;
+      @include media("<=tablet") {
+        font-size: $text-base-mobile;
+      }
+      @include media(">tablet") {
+        font-size: $text-lg-desktop;
+      }
     }
     &__heart-container {
       position: relative;
@@ -45,7 +62,12 @@
     &__social-link {
       position: absolute;
       display: inline-block;
-      font-size: 2.600vw;
+      @include media("<=tablet") {
+        font-size: 10vw;
+      }
+      @include media(">tablet") {
+        font-size: $text-xxl-desktop;
+      }
       &--top {
         top: 10%;
       }

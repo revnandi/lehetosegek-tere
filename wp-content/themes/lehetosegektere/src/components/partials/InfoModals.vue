@@ -84,7 +84,12 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
+  @import "../../assets/css/variables.scss";
   .c-info-modals {
+    @include media("<=tablet") {
+      margin-top: 100%;
+    }
     &__inner {
       display: flex;
       flex-direction: column;
@@ -96,26 +101,45 @@
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
-      min-height: 50vh;
       padding: 0 3.475vw;
+      @include media("<=tablet") {
+        flex-wrap: wrap;
+        min-height: 85vh;
+      }
+      @include media(">tablet") {
+        min-height: 50vh;
+      }
     }
     &__face {
       display: flex;
       align-items: center;
-      flex-basis: 33.333%;
+      @include media("<=tablet") {
+        flex-basis: 100%;
+      }
+      @include media(">tablet") {
+        flex-basis: 33.333%;
+      }
     }
     &__buttons {
-      flex-basis: 33.333%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      @include media("<=tablet") {
+        margin: 2.5vw 0 5vw 0;
+        flex-basis: 100%;
+      }
+      @include media(">tablet") {
+        flex-basis: 33.333%;
+      }
       & > * {
         margin: 0.450vw 0;
       }
     }
     &__modal {
       position: absolute;
+      top: 0;
+      left: 0;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -126,13 +150,22 @@
     }
     &__heading {
       font-size: 2.600vw;
+      @include media("<=tablet") {
+        display: none;
+      }
     }
     &__modal-content {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      flex-basis: 50%;
       font-size: 1.300vw;
+      @include media("<=tablet") {
+        flex-basis: 100%;
+        align-items: center;
+      }
+      @include media(">tablet") {
+        flex-basis: 50%;
+      }
       p {
         margin-bottom: 2vw;
       }

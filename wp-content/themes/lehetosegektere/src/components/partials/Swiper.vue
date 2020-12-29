@@ -16,13 +16,14 @@
             />
           </div>
           <div class="c-news-swiper__main">
-            <h1 class="c-news-swiper__title">{{ post.title.rendered }}</h1>
-            <div class="c-news-swiper__meta">
-              <div :v-if="post.categories[0]" class="c-news-swiper__tag">#{{ getPostCategoryString(post.categories[0]) }}</div>
-              <div :v-if="post.acf.date" class="c-news-swiper__date">{{ post.acf.date }}</div>
-              <div :v-if="post.acf.time" class="c-news-swiper__time">{{ post.acf.time }}</div>
+            <div class="c-news-swiper__info">
+              <h1 class="c-news-swiper__title">{{ post.title.rendered }}</h1>
+              <div class="c-news-swiper__meta">
+                <div :v-if="post.categories[0]" class="c-news-swiper__tag">#{{ getPostCategoryString(post.categories[0]) }}</div>
+                <div :v-if="post.acf.date" class="c-news-swiper__date">{{ post.acf.date }}</div>
+                <div :v-if="post.acf.time" class="c-news-swiper__time">{{ post.acf.time }}</div>
+              </div>
             </div>
-            <div class="c-news-swiper__content" v-html="post.excerpt.rendered"></div>
             <div class="c-news-swiper__footer">
               <a class="c-news-swiper__link" :href="post.link">Tovább</a>
               <a class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
@@ -39,47 +40,72 @@
 
 
 <style lang="scss" scoped>
+  @import "../../assets/css/breakpoints.scss";
+  @import "../../assets/css/variables.scss";
   .c-news-swiper {
     position: relative;
-    padding-top: 1.150vw;
+    width: 100%;
+    height: 100%;
+    padding-top: 5vw;
+    @include media(">tablet") {
+      height: calc((100% / 3) * 2);
+    }
     &__inner {
-      display: flex;
-      flex-direction: row;
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
     &__main {
+      position: absolute;
+      top: 0;
+      left: 0;
       display: flex;
-      flex-wrap: wrap;
-      flex-basis: calc((100% / 3) * 2);
-      min-height: 100%;
-      padding: 0.625vw;
-      background-color: #fff;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
     }
     &__image-container {
-      position:relative;
-      height:0;
-      flex-basis: calc((100% / 3) - 0.875vw);
-      padding-bottom: calc((100% / 3) - 0.875vw);
-      margin-right: 0.875vw;
+      position: absolute;
+      width: 100%;
+      height: 100%;
     }
     &__image {
-      position:absolute;
-      top:0;
-      left:0;
       width:100%;
       height:100%;
-      border-radius: 50%;
       object-fit: cover;
+      object-position: center;
+    }
+    &__info {
+      padding: 1.15vw;
+      margin: 1.15vw;
+      background: #fff;
+      @include media("<=tablet") {
+      }
+      @include media(">tablet") {
+        max-width: 65%;
+      }
     }
     &__title {
       flex-basis: 50%;
       margin: 0;
-      font-size: 0.625vw;
+      font-size: 1.300vw;
       text-transform: uppercase;
+      @include media("<=tablet") {
+        font-size: $text-base-mobile;
+      }
+      @include media(">tablet") {
+        font-size: $text-xl-desktop;
+      }
     }
     &__meta {
       flex-basis: 50%;
-      text-align: right;
-      font-size: 0.625vw;
+      margin-top: 1em;
+      @include media("<=tablet") {
+        font-size: $text-base-mobile;
+      }
+      @include media(">tablet") {
+        font-size: $text-lg-desktop;
+      }
     }
     &__tag {
       color: #cbcac7;
@@ -102,9 +128,17 @@
       justify-content: space-between;
       align-items: flex-end;
       width: 100%;
+      margin-top: auto;
+      padding: 1.15vw;
+      background: #fff;
+      @include media("<=tablet") {
+        font-size: $text-base-mobile;
+      }
+      @include media(">tablet") {
+        font-size: $text-lg-desktop;
+      }
     }
     &__link {
-      font-size: 0.625vw;
       text-transform: uppercase;
       opacity: 1;
       transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -115,6 +149,10 @@
     &__pagination-container {
       position: relative;
       margin-bottom: 0.2vw;
+    }
+    & .swiper-container {
+      width: 100%;
+      height: 100%;
     }
   }
 </style>
