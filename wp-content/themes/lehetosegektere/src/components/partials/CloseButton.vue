@@ -1,5 +1,5 @@
 <template>
-  <div class="c-close-button">
+  <div class="c-close-button" :class="{ 'c-close-button--rotated' : isRotated, 'c-close-button--disabled' : isDisabled }">
     <svg class="c-close-button__icon" id="close_button" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.28 28.28">
       <polygon points="28.28 22.63 19.8 14.14 28.28 5.66 22.63 0 14.14 8.48 5.66 0 0 5.66 8.48 14.14 0 22.63 5.66 28.28 14.14 19.8 22.63 28.28 28.28 22.63" style="fill: #fff"/>
     </svg>
@@ -10,6 +10,7 @@
   @import "../../assets/css/breakpoints.scss";
   @import "../../assets/css/variables.scss";
   .c-close-button {
+    $self: &;
     cursor: pointer;
     position: relative;
     display: inline-block;
@@ -26,6 +27,9 @@
     }
     @include media(">tablet") {
       padding: 1vw;
+    }
+    &--rotated #{ $self }__icon {
+      transform: rotateZ(45deg);
     }
     &::after {
       content: '';
@@ -51,8 +55,14 @@
       outline: none;
       box-shadow: 0 0 0 0.15em #fff;
     }
+    &--disabled {
+      cursor: not-allowed;
+      background: gray;
+      &:hover {
+
+      }
+    }
     &__icon {
-      transform: rotateZ(45deg);
       @include media("<=tablet") {
         width: 6vw;
       }
@@ -65,6 +75,15 @@
 
 <script>
 export default {
-  
+  props: {
+    isRotated: {
+      type: Boolean,
+      default: false
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>

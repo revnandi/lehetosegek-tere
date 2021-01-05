@@ -14,8 +14,8 @@
     <div class="c-activities-item__name">
       {{ activity.acf.name }}
     </div>
-    <div class="c-activities-item__title" v-html="activity.title.rendered" :style="{ 'min-height' : `${minimumTitleHeight}px` }"></div>
-    <CloseButton></CloseButton>
+    <h2 class="c-activities-item__title" v-html="activity.title.rendered" :style="{ 'min-height' : `${minimumTitleHeight}px` }"></h2>
+    <CloseButton :isRotated="true" :isDisabled="!hasPdf" @click.native="handleClick"></CloseButton>
     <div class="c-activities-item__description" v-html="activity.content.rendered"></div>
     <div></div>
   </div>
@@ -104,18 +104,29 @@ export default {
   computed: {
     minimumTitleHeight() {
       let heightValue = Math.max(...this.heights);
-      console.log(heightValue)
       return heightValue.toString();
+    },
+    hasPdf() {
+      if(this.activity.acf.pdf && typeof this.activity.acf.pdf.url !== 'undefined') {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   methods: {
     setup() {
       const activityTitleElements = document.querySelectorAll('.c-activities-item__title');
-      console.log(activityTitleElements );
       const activityTitleElementsArray = Array.from(activityTitleElements);
       this.heights = activityTitleElementsArray.map(x => x.clientHeight);
-      // console.log(windowWidth)
-      // console.log((this.minimumTitleHeight / this.windowWidth) * 100)
+    },
+    handleClick() {
+      if(this.hasPdf) {
+        this.$store.dispatch('changePdfUrl', { url: this.activity.acf.pdf.url } );
+        this.$store.dispatch('toggleModal');
+      } else {
+        return;
+      }
     }
   },
   mounted() {

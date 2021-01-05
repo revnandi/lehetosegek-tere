@@ -31,11 +31,11 @@
             <ScrollBox height="75%">
               <p>{{ adultModalContent }}</p>
             </ScrollBox>
-            <a href="/foglalkozasok">
+            <router-link :to="{ name: 'Activities' }">
               <Button >
                 <span>Tovább a Foglalkozásokra</span>
               </Button>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
@@ -69,13 +69,11 @@
             <ScrollBox height="75%">
               <p>{{ kidsModalContent }}</p>
             </ScrollBox>
-            <a href="/foglalkozasok">
-              <a href="#about" v-smooth-scroll>
-                <Button >
-                  <span>Tovább a Foglalkozásokra</span>
-                </Button>
-              </a>
-            </a>
+            <router-link :to="{ name: 'Activities' }">
+              <Button >
+                <span>Tovább a Foglalkozásokra</span>
+              </Button>
+            </router-link>
           </div>
         </div>
       </div>
@@ -88,13 +86,13 @@
   @import "../../assets/css/variables.scss";
   .c-info-modals {
     @include media("<=tablet") {
-      margin-top: 100%;
+      margin-top: 10vw;
     }
     &__inner {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      min-height: 100vh;
+      // min-height: 100vh;
     }
     &__controls {
       position: relative;

@@ -7,4 +7,5 @@ export default {
   API_MENUS_PATH: "/wp-json/menus/v1/menus/fomenu",
   API_OPTIONS_PATH: "/wp-json/acf/v3/options/options/",
   API_ACTIVITIES_PATH: "/wp-json/wp/v2/activity",
+  API_EVENTS_PATH: "/wp-json/wp/v2/events",
 };

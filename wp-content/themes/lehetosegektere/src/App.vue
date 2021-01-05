@@ -22,6 +22,7 @@
 <style lang="scss">
   @import "./assets/css/breakpoints.scss";
   .site-content {
+    width: 100%;
     @include media("<=tablet") {
       // margin-top: 15vw;
     }

@@ -1,8 +1,10 @@
 <template>
   <div class="page">
     <Section>
+      <HiddenTitle text="Foglalkozások"></HiddenTitle>
       <ActivitiesList :activities="allActivities" :windowWidth="windowWidth"></ActivitiesList>
     </Section>
+    <Modal v-if="modal.isModalActive" :url="modal.pdfUrl"/>
   </div>
 </template>
 
@@ -15,6 +17,8 @@ import {debounce} from '../helpers';
 import Section from './partials/Layout/Section';
 
 import ActivitiesList from './partials/ActivitiesList';
+import HiddenTitle from './partials/HiddenTitle';
+import Modal from './partials/Modal';
 
 export default {
   name: 'Activities',
@@ -26,7 +30,9 @@ export default {
   },
   components: {
     Section,
-    ActivitiesList
+    ActivitiesList,
+    HiddenTitle,
+    Modal
   },
   data() {
     return {
@@ -37,6 +43,7 @@ export default {
     ...mapGetters({
       allActivities: 'allActivities',
       allActivitiesLoaded: 'allActivitiesLoaded',
+      modal: 'modal'
     }),
   },
   mounted() {

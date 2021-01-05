@@ -111,3 +111,47 @@ function get_rest_featured_image( $object, $field_name, $request ) {
     }
     return false;
 }
+
+// TODO order
+
+function my_pre_get_posts( $query ) {
+	
+	// do not modify queries in the admin
+	if( is_admin() ) {
+		
+		return $query;
+		
+	}
+	
+
+	// only modify queries for 'event' post type
+	if( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] == 'events' ) {
+		
+		$query->set('orderby', 'meta_value');	
+		$query->set('meta_key', 'date_start');	 
+		$query->set('order', 'DESC'); 
+		
+	}
+	
+
+	// return
+	return $query;
+
+}
+
+add_action('pre_get_posts', 'my_pre_get_posts');
+
+// TODO add tags to cpt
+
+function ag_filter_post_json($response, $post, $context) {
+	$tags = wp_get_post_tags($post->ID);
+	$response->data['tag_names'] = [];
+
+	foreach ($tags as $tag) {
+			$response->data['tag_names'][] = $tag->name;
+	}
+
+	return $response;
+}
+
+add_filter( 'rest_prepare_events', 'ag_filter_post_json', 10, 3 );

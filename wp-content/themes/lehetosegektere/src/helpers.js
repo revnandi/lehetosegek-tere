@@ -9,3 +9,7 @@ export function debounce (fn, delay) {
     }, delay)
   }
 }
+
+export function convertDateToShortString (datesString) {
+  return datesString;
+}

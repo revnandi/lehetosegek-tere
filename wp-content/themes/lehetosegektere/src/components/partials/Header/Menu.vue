@@ -2,7 +2,7 @@
   <nav class="c-main-navigation" v-if="menu">
     <ul class="c-main-navigation__list">
       <li class="c-main-navigation__item" v-for="(item, index) in this.menu.items" :key="index">
-        <a :href="item.url" v-smooth-scroll>{{ item.title }}</a>
+        <a @click.prevent="scrollTo(item.url, $event)">{{ item.title }}</a>
       </li>
     </ul>
   </nav>
@@ -21,7 +21,8 @@
       text-align: center;
       font-size: 0.625vw;
       text-transform: uppercase;
-      @include media("<=tablet") {
+      cursor: pointer;
+      @include media("<=tablet") {  
         margin-bottom: 0.85em;
         font-size: 4vw;
       }
@@ -36,6 +37,33 @@
 export default {
   props: [
     'menu'
-  ]
+  ],
+  methods: {
+    scrollTo(anchor, event) {
+      
+      if(anchor && anchor.lastIndexOf('#') === 0) {
+        if (anchor.lastIndexOf('/') === 0) {
+          this.$router.push(anchor)
+        } else if (anchor.lastIndexOf('#') === 0) {
+          if (this.$route.name === 'Home') {
+            const elementToScrollTo = document.getElementById(anchor.substring(1));
+            this.$smoothScroll({
+              scrollTo: elementToScrollTo,
+            });
+          } else {
+            this.$router.push('/' + anchor)
+            setTimeout(() => {
+              const elementToScrollTo = document.getElementById(anchor.substring(1));
+              this.$smoothScroll({
+                scrollTo: elementToScrollTo,
+              });
+            }, 50);
+          }
+        }
+      } else if (anchor && anchor === '/') {
+        this.$router.push(anchor)
+      }
+    }
+  },
 }
 </script>

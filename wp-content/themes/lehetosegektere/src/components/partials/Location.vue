@@ -12,11 +12,11 @@
               <span>Aktuális programok</span>
             </Button>
           </a>
-          <a href="/foglalkozasok">
+          <router-link :to="{ name: 'Activities' }">
             <Button >
               <span>Tovább a Foglalkozásokra</span>
             </Button>
-          </a>
+          </router-link>
           <Button>
             Térkép
           </Button>

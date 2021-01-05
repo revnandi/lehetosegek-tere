@@ -15,9 +15,9 @@
           <Swiper></Swiper>
         </div>
         <div class="col-span-12 h-full">
-          <EventsTable id="events"></EventsTable>
+          <EventList id="events" :limit="5"></EventList>
         </div>
-        <ScrollIcon :isVisible="showScrollIcon"></ScrollIcon>
+        <!-- <ScrollIcon :isVisible="showScrollIcon"></ScrollIcon> -->
       </div>
     </Section>
     <Section id="about" padding="0">
@@ -52,7 +52,7 @@ import Section from './partials/Layout/Section';
 import RecentPostsWidget from './widgets/RecentPosts.vue';
 import PagesWidget from './widgets/Pages.vue';
 
-import EventsTable from './partials/EventsTable';
+import EventList from './partials/EventList';
 import InfoModals from './partials/InfoModals';
 import Location from './partials/Location';
 import PartnerLogos from './partials/PartnerLogos';
@@ -69,7 +69,7 @@ export default {
     'scrollPosition'
   ],
   components: {
-    EventsTable,
+    EventList,
     InfoModals,
     Location,
     Section,

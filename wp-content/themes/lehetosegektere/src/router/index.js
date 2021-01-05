@@ -13,7 +13,8 @@ import Activities from '../components/Activities.vue';
 
 Vue.use(Router);
 Vue.use(VueSmoothScroll, {
-  duration: 600, 
+  duration: 600,
+  updateHistory: false,
   easingFunction: t => 1+(--t)*t*t*t*t
 });
 

@@ -2,8 +2,10 @@
   <div class="c-post">
     <template v-if="post">
       <Section backgroundColor="white">
-        <h1>{{ post.title.rendered }}</h1>
-        <div v-html="post.content.rendered"></div>
+        <Content>
+          <h1>{{ post.title.rendered }}</h1>
+          <div v-html="post.content.rendered"></div>
+        </Content>
       </Section>
     </template>
     <Loader v-else/>
@@ -12,6 +14,7 @@
 
 <style lang="scss" scoped>
   .c-post {
+    width: 100%;
     background: #fff;
   }
 </style>
@@ -24,6 +27,8 @@ import SETTINGS from "../../settings";
 
 import Section from '../partials/Layout/Section';
 
+import Content from '../partials/Content';
+
 export default {
   name: 'Post',
   data() {
@@ -34,7 +39,8 @@ export default {
 
   components: {
     Section,
-    Loader
+    Loader,
+    Content
   },
 
   computed: {},

@@ -6,6 +6,8 @@ import * as getters from './getters'
 import hub from './modules/hub'
 import user from './modules/user'
 import options from './modules/options'
+import ui from './modules/ui'
+import events from './modules/events'
 import post from './modules/post'
 import page from './modules/page'
 import activity from './modules/activity'
@@ -28,6 +30,8 @@ export default new Vuex.Store({
     hub,
     user,
     options,
+    ui,
+    events,
     post,
     page,
     activity,

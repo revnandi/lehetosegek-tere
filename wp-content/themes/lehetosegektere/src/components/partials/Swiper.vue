@@ -46,7 +46,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    padding-top: 5vw;
+    padding-top: 1vw;
     @include media(">tablet") {
       height: calc((100% / 3) * 2);
     }
