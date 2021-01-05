@@ -1,9 +1,9 @@
 <template>
   <div id="my-app" class="flex flex-col md:min-h-screen">
-    <app-header :isVisible="showHeader"/>
+    <app-header />
 
     <transition name="loader-animation" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-      <MenuButton :isOpened="showHeader" @click.native="toggleHeader"/>
+      <MenuButton :isOpened="isVisible" @click.native="toggleHeader"/>
     </transition>
 
     <transition name="loader-animation" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
@@ -21,6 +21,9 @@
 
 <style lang="scss">
   @import "./assets/css/breakpoints.scss";
+  .body--no-overflow {
+    overflow-y: hidden;
+  }
   .site-content {
     width: 100%;
     @include media("<=tablet") {
@@ -45,7 +48,6 @@ export default {
     return {
       showLoader: true,
       // scrollPosition: null,
-      showHeader: false,
       windowWidth: 0,
       windowHeight: 0,
       lastScrollPosition: 0
@@ -55,6 +57,8 @@ export default {
     ...mapGetters({
       isLoading: 'isLoading',
       loadingProgress: 'loadingProgress',
+      isVisible: 'isVisible',
+      isMobile: 'isMobile'
     }),
 
     loaderStyle() {
@@ -83,7 +87,8 @@ export default {
           return
         }
         if (this.windowWidth > 768 ) {
-          this.showHeader = currentScrollPosition < this.lastScrollPosition
+          let showHeader = currentScrollPosition < this.lastScrollPosition;
+          this.$store.dispatch('showMenu', { status: showHeader });
         }
         this.lastScrollPosition = currentScrollPosition
         // this.scrollPosition = window.scrollY;
@@ -91,12 +96,20 @@ export default {
     },
     getWindowWidth (event) {
       this.windowWidth = document.documentElement.clientWidth
+      this.updateView();
     },
     getWindowHeight (event) {
       this.windowHeight = document.documentElement.clientHeight
     },
     toggleHeader () {
-      this.showHeader = !this.showHeader;
+      this.$store.dispatch('toggleMenu');
+    },
+    updateView () {
+      if (this.windowWidth > 768) {
+        this.$store.dispatch('toggleMobile', { status: false })
+      } else {
+        this.$store.dispatch('toggleMobile', { status: true })
+      }
     }
   },
 
@@ -107,8 +120,9 @@ export default {
       window.addEventListener('resize', this.getWindowHeight);
       this.getWindowWidth();
       this.getWindowHeight();
+      this.updateView();
       if (this.windowWidth > 768 ) {
-        this.showHeader = true;
+        this.$store.dispatch('toggleMenu');
       }
     })
   },
@@ -129,6 +143,14 @@ export default {
         }, 1000);
       }
     },
+    isVisible (val) {
+      console.log(val)
+      if (this.isMobile && val === true) {
+        document.getElementById('body').classList.add('body--no-overflow');
+      } else if (val === false) {
+        document.getElementById('body').classList.remove('body--no-overflow');
+      }
+    }
   },
 };
 </script>

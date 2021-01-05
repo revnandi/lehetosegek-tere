@@ -26,6 +26,10 @@
     @include media("<=tablet") {
       margin-top: 100%;
       overflow-x: scroll;
+      padding: 0px 3.475vw 3.475vw
+    }
+    @include media(">tablet") {
+      padding: 0px 3.475vw 3.475vw
     }
     &__inner {
       display: flex;

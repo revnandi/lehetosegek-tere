@@ -36,11 +36,12 @@
 <script>
 export default {
   props: [
-    'menu'
+    'menu',
+    'isMobile'
   ],
   methods: {
     scrollTo(anchor, event) {
-      
+      this.$store.dispatch('showMenu', { status: false });
       if(anchor && anchor.lastIndexOf('#') === 0) {
         if (anchor.lastIndexOf('/') === 0) {
           this.$router.push(anchor)

@@ -1,5 +1,5 @@
 <template>
-  <header :v-if="this.isLoaded === true" class="c-header" :class="{ 'c-header--visible' : isVisible}">
+  <header :v-if="this.isLoaded === true" class="c-header" :class="{ 'c-header--visible' : isVisible }">
     <div class="c-header__inner">
       <div class="c-header__logo-container">
         <a href="/">
@@ -7,7 +7,7 @@
         </a>
       </div>
       <div class="c-header__navigation-container">
-        <Menu :menu="menu"></Menu>
+        <Menu :menu="menu" :isMobile="isMobile"></Menu>
       </div>
       <div class="c-header__social-container">
         <TopSocial :socials="allOptions.social_media"/>
@@ -102,9 +102,6 @@ import TopSocial from "./Header/TopSocial";
 
 export default {
   name: 'Header',
-  props: [
-    'isVisible'
-  ],
   data() {
     return {
       menu: false
@@ -125,6 +122,8 @@ export default {
     ...mapGetters({
       allOptions: 'allOptions',
       allOptionsLoaded: 'allOptionsLoaded',
+      isVisible: 'isVisible',
+      isMobile: 'isMobile'
     }),
   },
 

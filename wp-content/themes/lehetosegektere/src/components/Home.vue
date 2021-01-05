@@ -14,11 +14,11 @@
           </ScrollBox>
           <Swiper></Swiper>
         </div>
-        <div class="col-span-12 h-full">
-          <EventList id="events" :limit="5"></EventList>
-        </div>
-        <!-- <ScrollIcon :isVisible="showScrollIcon"></ScrollIcon> -->
+        <ScrollIcon :isVisible="showScrollIcon"></ScrollIcon>
       </div>
+    </Section>
+    <Section padding="0">
+      <EventList id="events" :limit="5"></EventList>
     </Section>
     <Section id="about" padding="0">
       <InfoModals/>
