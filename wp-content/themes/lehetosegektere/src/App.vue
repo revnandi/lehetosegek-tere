@@ -30,7 +30,7 @@
       // margin-top: 15vw;
     }
     @include media(">tablet") {
-      margin-top: 3.700vw;
+      margin-top: 4.450vw;
     }
   }
 </style>
@@ -122,7 +122,9 @@ export default {
       this.getWindowHeight();
       this.updateView();
       if (this.windowWidth > 768 ) {
-        this.$store.dispatch('toggleMenu');
+        this.$store.dispatch('showMenu', { status: true });
+      } else {
+        this.$store.dispatch('showMenu', { status: false });
       }
     })
   },
@@ -144,7 +146,6 @@ export default {
       }
     },
     isVisible (val) {
-      console.log(val)
       if (this.isMobile && val === true) {
         document.getElementById('body').classList.add('body--no-overflow');
       } else if (val === false) {

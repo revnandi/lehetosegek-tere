@@ -54,7 +54,7 @@ export default {
       });
   },
 
-  getPosts(limit = 5, cb) {
+  getPosts(limit = 50, cb) {
     axios
       .get(SETTINGS.API_BASE_PATH + 'posts?per_page=' + limit)
       .then(response => {

@@ -1,11 +1,11 @@
 <template>
   <div class="c-news-swiper" v-if="recentPostsLoaded">
     <swiper ref="mySwiper" :options="swiperOptions">
-      <swiper-slide v-for="post in recentPosts(limit)" :key="post.id">
+      <swiper-slide v-for="post in visibleSlides" :key="post.id">
         <div class="c-news-swiper__inner">
 
           <div class="c-news-swiper__image-container">
-            <img class="c-news-swiper__image lazyload"
+            <img v-if="post.featured_image_sizes" class="c-news-swiper__image lazyload"
               data-sizes="auto"
               :src="post.featured_image_sizes.lqip"
               :data-srcset="`${post.featured_image_sizes.thumbnail} 150w,
@@ -14,10 +14,13 @@
               ${post.featured_image_sizes.large} 900w`"
               alt=""
             />
+            <div v-else class="c-news-swiper__image-placeholder"></div>
           </div>
           <div class="c-news-swiper__main">
             <div class="c-news-swiper__info">
-              <h1 class="c-news-swiper__title">{{ post.title.rendered }}</h1>
+              <h2 class="c-news-swiper__title">
+                <a :href="post.link">{{ post.title.rendered }}</a>
+              </h2>
               <div class="c-news-swiper__meta">
                 <div :v-if="post.categories[0]" class="c-news-swiper__tag">#{{ getPostCategoryString(post.categories[0]) }}</div>
                 <div :v-if="post.acf.date" class="c-news-swiper__date">{{ post.acf.date }}</div>
@@ -26,7 +29,7 @@
             </div>
             <div class="c-news-swiper__footer">
               <a class="c-news-swiper__link" :href="post.link">Tovább</a>
-              <a class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
+              <a :v-if="post.acf.link" class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
             </div>
           </div>
         </div>
@@ -47,6 +50,9 @@
     width: 100%;
     height: 100%;
     padding-top: 1vw;
+    @include media("<=tablet") {
+      margin-top: 5vw;
+    }
     @include media(">tablet") {
       height: calc((100% / 3) * 2);
     }
@@ -75,12 +81,19 @@
       object-fit: cover;
       object-position: center;
     }
+    &__image-placeholder {
+      width:100%;
+      height:100%;
+      background: rgb(249,16,30);
+      background: -moz-linear-gradient(90deg, rgba(249,16,30,1) 0%, rgba(235,107,45,1) 100%);
+      background: -webkit-linear-gradient(90deg, rgba(249,16,30,1) 0%, rgba(235,107,45,1) 100%);
+      background: linear-gradient(90deg, rgba(249,16,30,1) 0%, rgba(235,107,45,1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f9101e",endColorstr="#eb6b2d",GradientType=1);
+    }
     &__info {
       padding: 1.15vw;
       margin: 1.15vw;
       background: #fff;
-      @include media("<=tablet") {
-      }
       @include media(">tablet") {
         max-width: 65%;
       }
@@ -90,6 +103,11 @@
       margin: 0;
       font-size: 1.300vw;
       text-transform: uppercase;
+      opacity: 1;
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      &:hover {
+        opacity: 0.75;
+      }
       @include media("<=tablet") {
         font-size: $text-base-mobile;
       }
@@ -191,7 +209,9 @@ export default {
     currentCategories() {
       return this.allCategories.map( item => ({name:item.name, id:item.id}));
     },
-
+    visibleSlides() {
+      return this.recentPosts(this.limit).filter(post => post.acf.display_in_slider === true);
+    }
   },
   methods: {
     getPostCategoryString(categoryId) {
@@ -200,7 +220,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getPosts', { limit: this.limit });
-    console.log('Current Swiper instance object', this.swiper);
+    // console.log('Current Swiper instance object', this.swiper);
   }
 }
 </script> 

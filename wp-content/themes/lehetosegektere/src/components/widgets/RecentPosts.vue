@@ -50,7 +50,7 @@ export default {
 
   methods: {
     getAuthor(post) {
-      console.log(post);
+      // console.log(post);
     },
   },
 

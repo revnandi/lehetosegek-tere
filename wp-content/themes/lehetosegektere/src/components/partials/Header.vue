@@ -70,7 +70,7 @@
       @include media(">tablet") {
         grid-column: span 3 / span 3;
         margin: auto;
-        width: calc(66.666% - 0.5em);
+        width: calc(95% - 0.5em);
       }
     }
     &__navigation-container {

@@ -18,7 +18,6 @@ const getters = {
       return state.recent;
     }
     let recent = state.recent;
-    console.log(typeof recent)
     return recent.slice(0, limit);
   },
 

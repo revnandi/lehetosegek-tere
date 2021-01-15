@@ -13,13 +13,14 @@
   .c-main-navigation {
     &__list {
       display: flex;
+      justify-content: space-evenly;
       @include media("<=tablet") {
         flex-direction: column;
       }
     }
     &__item {
       text-align: center;
-      font-size: 0.625vw;
+      font-size: 0.68vw;
       text-transform: uppercase;
       cursor: pointer;
       @include media("<=tablet") {  

@@ -39,7 +39,7 @@
         content: '';
         position: absolute;
         right: -1.9vw;
-        width: 0.2em;
+        width: 0.25em;
         height: 100%;
         background: rgb(253,29,29);
         background: linear-gradient(90deg, rgba(253,29,29,1) 0%, rgba(250,82,244,1) 100%);
