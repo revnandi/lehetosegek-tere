@@ -2,7 +2,7 @@
   <div class="c-staff">
     <HiddenTitle text="Kikkel lehet?" />
     <Grid rowGap="7vw">
-      <div class="col-span-12 md:col-span-3 h-full" v-for="(member, index) in this.staff" :key="index">
+      <div class="c-staff__column h-full" v-for="(member, index) in this.staff" :key="index">
         <div class="c-staff__item">
           <div class="c-staff__image-container">
             <img class="c-staff__image lazyload"
@@ -27,6 +27,15 @@
   @import "../../assets/css/breakpoints.scss";
   @import "../../assets/css/variables.scss";
   .c-staff {
+    &__column {
+      height: 100%;
+        @include media("<=tablet") {
+          grid-column: span 12 / span 12;
+        }
+      @include media(">tablet") {
+        grid-column: span 3 / span 3;
+      }
+    }
     &__item {
       display: flex;
       flex-direction: column;
