@@ -1,6 +1,6 @@
 <template>
   <div class="c-puzzle">
-    <div class="c-puzzle__grid" ref="puzzleContainer">
+    <div class="c-puzzle__grid" ref="puzzleContainer" @mouseover="handleNotificationMouseOver" @mouseleave="handleNotificationMouseLeave">
       <div class="c-puzzle__item c-puzzle__item--rotateable" data-item-number="1" data-rotation="0" @click.stop="handleClick" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
         <div class="c-puzzle__item-inner">
             <GradientCircle/>
@@ -63,6 +63,9 @@
           </svg>
         </div>
       </div>
+      <div class="c-puzzle__notification" :class="{ 'c-puzzle__notification--visible' : this.showNotification && !this.hasChanged }">
+        <span>Rendezd át az elemeket</span>
+      </div>
     </div>
   </div>
 </template>
@@ -79,6 +82,24 @@
     padding-bottom: 100%;
     @include media(">tablet") {
       height: 100%;
+    }
+  }
+  &__notification {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    padding: 1.15vw;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    &--visible {
+      display: block;
+      animation: appear 1s;
+      animation-iteration-count: 1;
     }
   }
   &__item {
@@ -114,6 +135,17 @@
   svg {
     width: 100%;
     pointer-events: none;
+  }
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      top: 40%;
+    }
+    100% {
+      opacity: 100%;
+      top: 50%;
+    }
   }
 }
 </style>
@@ -203,7 +235,9 @@ export default {
         }
       },
       history: [],
-      delay: -50
+      delay: -50,
+      showNotification: false,
+      hasChanged: false,
     }
   },
   mounted() {
@@ -215,6 +249,10 @@ export default {
       this.delay += 50;
       setTimeout(this.setup, this.delay, tiles[i]);
     }
+
+    setTimeout(() => {
+      this.showNotification = true;
+    }, 3000);
   },
   methods: {
     shuffleFirstLetter: function() {
@@ -309,6 +347,7 @@ export default {
     },
 
     handleClick(event) {
+      this.hasChanged = true;
       const targetElement = event.currentTarget;
       const tileNumber = targetElement.dataset.itemNumber;
       this.moveTile(targetElement);
@@ -338,7 +377,15 @@ export default {
       const newTransformString = `translateX(${xMovement}%) translateY(${yMovement}%) rotateZ(${rotation}deg) scale(1)`;
       targetElement.style.zIndex = '0';
       targetElement.style.webkitTransform = newTransformString;
-    }
+    },
+
+    handleNotificationMouseOver(event) {
+      this.showNotification = false;
+    },
+
+    handleNotificationMouseLeave(event) {
+      this.showNotification = true;
+    },
   },
 }
 </script>
