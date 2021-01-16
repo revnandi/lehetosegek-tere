@@ -4,7 +4,7 @@
       <HiddenTitle text="Kövessetek bennünket!"/>
       <div class="c-footer__inner">
         <a href="#events" v-smooth-scroll>
-          <Button>Események</Button>
+          <Button>Partnerek</Button>
         </a>
         <div class="c-footer__social">
           <div class="c-footer__social-title">Kövessetek bennünket!</div>
