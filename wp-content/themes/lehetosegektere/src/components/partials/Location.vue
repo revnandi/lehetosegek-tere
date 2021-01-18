@@ -7,7 +7,7 @@
       </div>
       <div class="col-span-12 md:col-span-5">
         <div class="c-location__buttons">
-          <a href="#events" v-smooth-scroll>
+          <a @click.prevent="scrollTo('#events', $event)">
             <Button >
               <span>Aktuális programok</span>
             </Button>
@@ -115,6 +115,39 @@ export default {
     Button,
     HiddenTitle,
     ScrollBox
-  }
+  },
+  methods: {
+    scrollTo(anchor, event) {
+      this.$store.dispatch('showMenu', { status: false });
+      if (anchor && anchor === '#events') {
+        const elementToScrollTo = document.getElementById(anchor.substring(1));
+        this.$smoothScroll({
+          scrollTo: elementToScrollTo,
+          offset: -200
+        });
+      } else if(anchor && anchor.lastIndexOf('#') === 0) {
+        if (anchor.lastIndexOf('/') === 0) {
+          this.$router.push(anchor)
+        } else if (anchor.lastIndexOf('#') === 0) {
+          if (this.$route.name === 'Home') {
+            const elementToScrollTo = document.getElementById(anchor.substring(1));
+            this.$smoothScroll({
+              scrollTo: elementToScrollTo,
+            });
+          } else {
+            this.$router.push('/' + anchor)
+            setTimeout(() => {
+              const elementToScrollTo = document.getElementById(anchor.substring(1));
+              this.$smoothScroll({
+                scrollTo: elementToScrollTo,
+              });
+            }, 50);
+          }
+        }
+      } else if (anchor && anchor === '/') {
+        this.$router.push(anchor)
+      }
+    }
+  },
 }
 </script>
