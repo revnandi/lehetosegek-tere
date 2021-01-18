@@ -17,9 +17,11 @@
               <span>Tovább a Foglalkozásokra</span>
             </Button>
           </router-link>
-          <Button>
-            Térkép
-          </Button>
+          <a href="https://goo.gl/maps/AAYFfoX4biRQ28mH7" target="_blank">
+            <Button>
+              Térkép
+            </Button>
+          </a>
         </div>
       </div>
       <div class="col-span-12">
