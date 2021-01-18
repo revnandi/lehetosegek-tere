@@ -3,7 +3,7 @@
     <HiddenTitle text="Hol lehet?"/>
     <Grid>
       <div class="col-span-12">
-        <h2 class="c-location__title">Práter 63.</h2>
+        <h2 class="c-location__title">Práter 63</h2>
       </div>
       <div class="col-span-12 md:col-span-5">
         <div class="c-location__buttons">
