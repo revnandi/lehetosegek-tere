@@ -20,7 +20,7 @@
     }
     &__item {
       text-align: center;
-      font-size: 0.68vw;
+      font-size: 0.8vw;
       text-transform: uppercase;
       cursor: pointer;
       @include media("<=tablet") {  
@@ -28,7 +28,7 @@
         font-size: 4vw;
       }
       @include media(">tablet") {
-        width: calc(100% / 7 * 1);
+        width: calc(100% / 5 * 1);
       }
     }
   }
