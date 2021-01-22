@@ -26,7 +26,7 @@
       <Location/>
     </Section>
     <Section id="perks" backgroundColor="orange-red">
-      <Perks :gallery="allOptions.gallery"/>
+      <Perks :gallery="allOptions.gallery" :principles="allOptions.principles" :link="allOptions.link"/>
     </Section>
     <Section id="staff" backgroundColor="white">
       <Staff :staff="allOptions.staff"/>

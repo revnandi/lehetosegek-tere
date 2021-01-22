@@ -1,14 +1,24 @@
 <template>
   <div class="c-perks">
-    <HiddenTitle text="Mit lehet még?"/>
     <div class="c-perks__circle-element-container">
       <GradientCircle/>
     </div>
     <ul class="c-perks__list">
-      <li class="c-perks__item">A tanulás mint élmény</li>
-      <li class="c-perks__item">Közösség és közösségi szemlélet</li>
-      <li class="c-perks__item">Fiatalok aktív bevonása, egyenrangú partnerként kezelése</li>
-      <li class="c-perks__item">Reflektált viszony a társadalmi és hatalmi struktúrákhoz</li>
+      <li class="c-perks__item c-perks__item--title">
+        <h1>Alapelveink</h1>
+      </li>
+      <template v-if="principles">
+        <li v-for="(item, index) in principles" :key="index" class="c-perks__item">
+          {{ item.text }}
+        </li>
+        <li v-if="link" class="c-perks__item c-perks__item--link">
+          <a :href="link">
+            <Button>
+              Bővebben
+            </Button>
+          </a>
+        </li>
+      </template>
     </ul>
     <div class="c-perks__gallery">
       <swiper ref="perksSwiper" :options="swiperOptions">
@@ -81,7 +91,7 @@
         margin-bottom: 25vw;
       }
     }
-    @for $i from 1 through 4 {
+    @for $i from 1 through 6 {
       &__item{
         position: relative;
         padding-left: 1.200vw;
@@ -95,7 +105,7 @@
           font-size: $text-xxl-desktop;
         }
         &:nth-child(#{$i})::after {
-          content: '0#{$i}';
+          content: '0#{$i - 1}';
           position: absolute;
           left: 0.500vw;
           display: flex;
@@ -120,6 +130,23 @@
             font-size: 1.300vw;
           }
         }
+        &--title {
+          display: inline-block;
+          margin: 0 0 1em 0;
+          text-transform: uppercase;
+          &::after {
+            content: none!important;
+          }
+          & h1 {
+            margin: 0;
+          }
+        }
+        &--link {
+          margin: 1em 0 0 0;
+          &::after {
+            content: none!important;
+          }
+        }
       }
     }
     &__gallery{
@@ -136,7 +163,8 @@
     }
     &__gallery .swiper-container.swiper-container-fade.swiper-container-initialized.swiper-container-horizontal {
       @include media(">tablet") {
-        transform: translateY(5%);
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
     &__gallery-inner {
@@ -160,15 +188,15 @@
 <script>
 import GradientCircle from './VisualElements/GradientCircle';
 
-import HiddenTitle from './HiddenTitle';
+import Button from './Button';
 
 export default {
   name: 'Perks',
   title: 'Perks Swiper',
-  props: ['gallery'],
+  props: ['gallery', 'principles', 'link'],
   components: {
     GradientCircle,
-    HiddenTitle
+    Button
   },
   data() {
     return {
