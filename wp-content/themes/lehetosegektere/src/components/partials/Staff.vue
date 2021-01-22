@@ -19,6 +19,11 @@
           <div class="c-staff__description">{{ member.description }}</div>
         </div>
       </div>
+      <!-- <div class="col-span-12 text-center">
+        <Button>
+          Tovább a foglalkozásokhoz
+        </Button>
+      </div> -->
     </Grid>
   </div>
 </template>
@@ -100,6 +105,7 @@ import 'lazysizes';
 import Grid from './Layout/Grid';
 
 import HiddenTitle from './HiddenTitle';
+import Button from './Button';
 
 export default {
   props: [
@@ -107,6 +113,7 @@ export default {
   ],
   components: {
     Grid,
+    Button,
     HiddenTitle
   }
 }
