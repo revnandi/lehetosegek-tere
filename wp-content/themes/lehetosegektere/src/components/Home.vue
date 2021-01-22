@@ -14,7 +14,6 @@
           </ScrollBox>
           <Swiper></Swiper>
         </div>
-        <ScrollIcon :isVisible="showScrollIcon"></ScrollIcon>
       </div>
     </Section>
     <Section padding="0">
