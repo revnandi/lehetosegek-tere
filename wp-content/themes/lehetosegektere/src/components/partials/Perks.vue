@@ -139,6 +139,12 @@
           }
           & h1 {
             margin: 0;
+            @include media("<=tablet") {
+              font-size: $text-md-mobile;
+            }
+            @include media(">tablet") {
+              font-size: $text-xxxl-desktop;
+            }
           }
         }
         &--link {
