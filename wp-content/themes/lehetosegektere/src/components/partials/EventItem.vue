@@ -4,7 +4,7 @@
     <td class="c-event-item__cell c-event-item__cell--width-3">{{ eventItem.title.rendered }}</td>
     <td class="c-event-item__cell c-event-item__cell--width-2">{{ formattedLocation }}</td>
     <td class="c-event-item__cell c-event-item__cell--width-6">
-      <span v-for="(item, index) in tagsArray" :key="index" class="c-event-item__tag">#{{ item }}</span>
+      <span v-for="(item, index) in tagsArray" :key="" class="c-event-item__tag">#{{ item }}</span>
     </td>
   </tr>
 </template>
@@ -46,7 +46,7 @@
         font-size: $text-base-mobile;
       }
       @include media(">tablet") {
-        font-size: $text-base-desktop;
+        font-size: $text-lg-desktop;
       }
       &--date {
         vertical-align: middle;
