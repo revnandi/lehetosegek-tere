@@ -15,7 +15,7 @@
       {{ activity.acf.name }}
     </div>
     <h2 class="c-activities-item__title" v-html="activity.title.rendered" :style="{ 'min-height' : `${minimumTitleHeight}px` }"></h2>
-    <CloseButton :isRotated="true" :isDisabled="!hasPdf" @click.native="handleClick"></CloseButton>
+    <CloseButton :isRotated="true" :isDisabled="!hasLink" @click.native="handleClick"></CloseButton>
     <div class="c-activities-item__description" v-html="activity.content.rendered"></div>
     <div></div>
   </div>
@@ -106,8 +106,8 @@ export default {
       let heightValue = Math.max(...this.heights);
       return heightValue.toString();
     },
-    hasPdf() {
-      if(this.activity.acf.pdf && typeof this.activity.acf.pdf.url !== 'undefined') {
+    hasLink() {
+      if(this.activity.acf.link) {
         return true;
       } else {
         return false;
@@ -121,9 +121,8 @@ export default {
       this.heights = activityTitleElementsArray.map(x => x.clientHeight);
     },
     handleClick() {
-      if(this.hasPdf) {
-        this.$store.dispatch('changePdfUrl', { url: this.activity.acf.pdf.url } );
-        this.$store.dispatch('toggleModal');
+      if(this.activity.acf.link) {
+        window.location = this.activity.acf.link;
       } else {
         return;
       }
