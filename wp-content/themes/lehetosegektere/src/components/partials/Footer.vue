@@ -3,7 +3,7 @@
     <Section>
       <HiddenTitle text="Kövessetek bennünket!"/>
       <div class="c-footer__inner">
-        <a href="#events" v-smooth-scroll>
+        <a href="/partnerek">
           <Button>Partnerek</Button>
         </a>
         <div class="c-footer__social">
