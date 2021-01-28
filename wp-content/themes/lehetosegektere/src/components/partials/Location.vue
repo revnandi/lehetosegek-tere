@@ -31,21 +31,7 @@
           </div>
           <div class="w-full md:w-1/2">
             <ScrollBox height="23vw">
-              <p>2020 őszén egy olyan teret és programot hozunk létre a 8. kerületben, ahol a motiváció, a kíváncsiság újralesztésével és a közösségben megélt értékesség élményével átfordítható a hátrányokból megélt sikertelenség tapasztalata.</p>
-
-              <p>A LEHETŐSÉGEK TERE egy olyan diák-közösség és közösségi tér, ahol fejlesztjük a fiatalok dialógus- és vitakultúráját, kreativitását egyénileg és csoportosan is, folyamatos szakmai jelenlét mellett. Célunk, hogy a diákok megismerjék önmagukat, kibontakoztassák belső értékeiket, megélhessék saját kezdeményező-képességüket egy kooperatív és támogató közösségben.</p>
-
-              <p>Ebben a térben iskolaidőn kívül olyan nyitott kreatív foglalkozásokon lehetnek
-              együtt a diákok, amelyekhez szabadon csatlakozhatnak, és tematikájukat -
-              érdeklődésüknek megfelelően - velük együtt alakítjuk ki. Emellett lehetőségük
-              van egyéni és társas tanulásra, valamint kötetlenebb csoportos együttlétre és
-              egyéni elvonulásra (olvasás, alkotás) is.</p>
-
-              <p>Az iskolai tanulást kiegészítve kreativitásuk művészeti programokon,
-              vitakurzusokon, filozófiai beszélgetésekben, film- és videókészítésben
-              bontakozhat ki. Meglévő készségeik fejlesztése mellett személyiségük épül,
-              formálódik társas kompetenciájuk és jövőképük. Célunk egy olyan közösség
-              létrehozása, ahol támogatják és elfogadják egymást a fiatalok.</p>
+              <div v-html="text"></div>
             </ScrollBox>
           </div>
         </div>
@@ -109,6 +95,7 @@ import HiddenTitle from './HiddenTitle';
 import ScrollBox from './ScrollBox';
 
 export default {
+  props: ['text'],
   components: {
     Grid,
     GradientBridge,

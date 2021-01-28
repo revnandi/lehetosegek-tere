@@ -8,9 +8,7 @@
         </div>
         <div class="col-span-12 md:col-start-7 md:col-span-6 h-full">
           <ScrollBox class="c-scroll-box--hero">
-            <p>Művészeti szakemberek, társadalomkutatók, szülők, pedagógusok közösségeként, mi is, mint sokan mások, azzal a ténnyel szembesülünk, hogy az állami közoktatás rendszeréből nagyrészt hiányoznak a hagyományos tantárgyi oktatáson, a lexikális tudás számonkérésén túlmutató tanulási lehetőségek. A gyerekek és fiatalok személyiségét, gondolkodását, kreativitását fejlesztő, és a felnőtt élethez elengedhetetlen képességeket csak különórákon és iskolán kívüli képzéseken pótolhatják azok, akiknek a szülei ezt lehetővé tudják tenni. Ugyanakkor nagyon sok fiatal nem juthat hozzá ezekhez a szemléletformáló tudásokhoz, és ezáltal ahhoz a meggyőződéshez, hogy saját életét felelősen irányíthatja, megtalálhatja az érdeklődésének és képességeinek megfelelő életutat.</p>
-            <p>Ezek a hiányok és tapasztalatok hívták életre első találkozásunkat, az a vízió, hogy e tudásokat azok számára is elérhetővé tehetjük, akik más-más okokból nem férhetnek hozzá. A tenni akarás közös motorja mellett egymást és egymás módszereit is megismertük. Az elmúlt egy év során foglalkozások keretében próbáltuk ki a különböző munkamódszereket, megéltük az együtt gondolkodás dinamikáit, a közös célok kialakítását, kutatásokat folytattunk és kerestük a tudásmegosztás, a kapcsolódás formáit, miközben valódi közösséggé váltunk.</p>
-            <p>Felelősséget érzünk a fiatal generáció tagjai iránt, hiszen ha fiatalok nem látnak jövőt maguk előtt, hogyan válhatnak saját véleménnyel rendelkező, a szűkebb és tágabb környezetükért felelős, cselekvő felnőttekké? Ezért döntöttünk úgy, hogy elindítjuk a LEHETŐSÉGEK TERÉT, egy olyan helyet, ahol a tanulásról és a közösségről is új élményeket lehet szerezni, és amelyet a fiatalokkal organikus folyamat során közösen formálunk.</p>
+            <div v-html="allOptions.hero_box"></div>
           </ScrollBox>
           <Swiper></Swiper>
         </div>
@@ -23,7 +21,7 @@
       <InfoModals/>
     </Section>
     <Section id="location" backgroundColor="purple-red">
-      <Location/>
+      <Location :text="allOptions.location_box"/>
     </Section>
     <Section id="perks" backgroundColor="orange-red">
       <Perks :gallery="allOptions.gallery" :principles="allOptions.principles" :link="allOptions.link"/>
