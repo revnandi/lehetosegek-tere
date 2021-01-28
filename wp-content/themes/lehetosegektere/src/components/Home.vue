@@ -59,6 +59,7 @@ import ScrollBox from './partials/ScrollBox';
 import ScrollIcon from './partials/ScrollIcon';
 import Staff from './partials/Staff';
 import Swiper from './partials/Swiper';
+import GradientDiamond from './partials/VisualElements/GradientDiamond.vue';
 
 export default {
   name: 'Home',
@@ -78,7 +79,8 @@ export default {
     ScrollBox,
     ScrollIcon,
     Staff,
-    Swiper
+    Swiper,
+    GradientDiamond
   },
   data() {
     return {

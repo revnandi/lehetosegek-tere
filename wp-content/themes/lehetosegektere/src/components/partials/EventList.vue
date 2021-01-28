@@ -1,5 +1,6 @@
 <template>
   <div class="c-event-list">
+    <GradientDiamond></GradientDiamond>
     <div class="c-event-list__inner">
       <div class="c-event-list__table-container">
         <template v-if="recentEventsLoaded">
@@ -23,6 +24,7 @@
   @import "../../assets/css/variables.scss";
   .c-event-list {
     $self: &;
+    display: flex;
     @include media("<=tablet") {
       margin-top: 100%;
       overflow-x: scroll;
@@ -31,9 +33,17 @@
     @include media(">tablet") {
       padding: 0px 3.475vw 3.475vw
     }
+    & svg {
+      width: calc(100% / 6);
+      @include media("<=tablet") {
+        display: none;
+      }
+    }
     &__inner {
       display: flex;
+      width: calc((100% / 6) * 5);
       @include media("<=tablet") {
+        display: block;
         width: 200%;
       }
     }
@@ -64,6 +74,7 @@ import { mapGetters } from 'vuex';
 // import {debounce} from '../helpers';
 
 import EventItem from './EventItem';
+import GradientDiamond from './VisualElements/GradientDiamond';
 import Spinner from './Spinner';
 
 export default {
@@ -77,6 +88,7 @@ export default {
   // },
   components: {
     EventItem,
+    GradientDiamond,
     Spinner
   },
   computed: {
