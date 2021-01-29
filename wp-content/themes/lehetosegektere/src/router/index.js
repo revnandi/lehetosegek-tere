@@ -4,6 +4,7 @@ import {Swiper as SwiperClass, Pagination, Navigation, Mousewheel, Autoplay, Eff
 import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter';
 
 import VueSmoothScroll from 'vue2-smooth-scroll';
+import VueYoutube from 'vue-youtube'
 
 // Components
 import Home from '../components/Home.vue';
@@ -17,6 +18,7 @@ Vue.use(VueSmoothScroll, {
   updateHistory: false,
   easingFunction: t => 1+(--t)*t*t*t*t
 });
+Vue.use(VueYoutube);
 
 SwiperClass.use([Pagination, Mousewheel, Navigation, Autoplay, EffectFade])
 Vue.use(getAwesomeSwiper(SwiperClass))

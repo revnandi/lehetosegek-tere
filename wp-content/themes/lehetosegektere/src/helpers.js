@@ -13,3 +13,7 @@ export function debounce (fn, delay) {
 export function convertDateToShortString (datesString) {
   return datesString;
 }
+
+export function generateRandomString () {
+  return (length=6)=>Math.random().toString(20).substr(2, length);
+}

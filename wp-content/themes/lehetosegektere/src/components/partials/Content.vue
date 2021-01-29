@@ -20,5 +20,8 @@
         font-size: $text-xxl-desktop;
       }
     }
+    & iframe {
+      margin: 2rem auto;
+    }
   }
 </style>

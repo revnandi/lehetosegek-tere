@@ -1,20 +1,16 @@
 <template>
   <div class="c-news-swiper" v-if="recentPostsLoaded">
-    <swiper ref="mySwiper" :options="swiperOptions" @click-slide="alert('changed')">
+    <swiper ref="mySwiper" :options="swiperOptions">
       <template v-for="post in visibleSlides">
         <swiper-slide v-if="post.acf.youtube" :key="post.id">
           <div class="c-news-swiper__inner">
             <div v-if="post.acf.youtube" class="c-news-swiper__video-container">
-              <lite-youtube class="lite-player" :videoid="getVideoID(post.acf.youtube)" params="controls=0&modestbranding=2&rel=0&enablejsapi=1" :style="`background-image: url('https://i.ytimg.com/vi/${getVideoID(post.acf.youtube)}/hqdefault.jpg');`">
-                <button type="button" class="lty-playbtn">
-                  <span class="lyt-visually-hidden">Play Video</span>
-                </button>
-              </lite-youtube>
+              <youtube class="c-news-swiper__video-player" :video-id="getVideoID(post.acf.youtube)" ref="youtube" :nocookie="true" :resize="true" :fitParent="true"></youtube>
               <div class="c-news-swiper__image-placeholder"></div>
             </div>
             <div class="c-news-swiper__main">
               <div class="c-news-swiper__footer">
-                <a class="c-news-swiper__link" href="/gaa">Tovább</a>
+                <a class="c-news-swiper__link" :href="post.link">Tovább</a>
               </div>
             </div>
           </div>
@@ -93,14 +89,7 @@
       position: relative;
       width: 100%;
       height: 100%;
-      background-color: #fff;
-      & lite-youtube {
-        z-index: 1;
-        @include media("<=tablet") {
-          top: 50%;
-          transform: translateY(-50%);
-        }
-      }
+      // background-color: #fff;
       &::before {
         content: '';
         position: absolute;
@@ -108,6 +97,18 @@
         height: 100%;
         background: #fff;
       }
+      &::v-deep iframe {
+        position: relative;
+        z-index: 1;
+        @include media("<=tablet") {
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+    &__video-player {
+      position: absolute;
+      z-index: 1;
     }
     &__image-container {
       position: absolute;
@@ -217,7 +218,6 @@
 
 <script>
 import getYouTubeID from 'get-youtube-id';
-import LiteYTEmbed from 'lite-youtube-embed';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -253,6 +253,9 @@ export default {
     },
     visibleSlides() {
       return this.recentPosts(this.limit).filter(post => post.acf.display_in_slider === true);
+    },
+    youtubesPlayers() {
+      return this.$refs.youtube
     }
   },
   methods: {
@@ -261,14 +264,19 @@ export default {
     },
     getVideoID(id) {
       return getYouTubeID(id);
-    }
+    },
+    stopVideos() {
+      this.$refs.youtube.forEach(player => {
+        player.player.stopVideo()
+      });
+    },
   },
   mounted() {
     this.$store.dispatch('getPosts', { limit: this.limit });
-    // console.log('Current Swiper instance object', this.swiper);
-    // this.swiper.on('slideChange', function () {
-    //   console.log('slide changed');
-    // });
+    this.swiper.on('slideChange', () => {
+      console.log('slide changed');
+      this.stopVideos();
+    });
   }
 }
 </script> 
