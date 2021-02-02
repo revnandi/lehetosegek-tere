@@ -1,5 +1,5 @@
 <template>
-  <tr class="c-event-item">
+  <tr class="c-event-item" @click="handleClick">
     <td class="c-event-item__cell c-event-item__cell--date c-event-item__cell--width-1">{{ formattedDate }}</td>
     <td class="c-event-item__cell c-event-item__cell--width-3">{{ eventItem.title.rendered }}</td>
     <td class="c-event-item__cell c-event-item__cell--width-2">{{ formattedLocation }}</td>
@@ -9,13 +9,31 @@
   </tr>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import "../../assets/css/breakpoints.scss";
   @import "../../assets/css/variables.scss";
   .c-event-item {
     $self: &;
     height: 1em;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.75;
+    }
     &:first-child {
+      #{ $self }__cell {
+        &:nth-child(2) {
+          padding: 0;
+        }
+        &:nth-child(2) {
+          padding: 0.6vw;
+        }
+        &:nth-child(3) {
+          padding: 0.6vw;
+        }
+        &:nth-child(4) {
+          padding: 0.3vw 0.6vw 0 0.6vw;
+        }
+      }
     }
     &:nth-child(2), &:nth-child(3), &:nth-child(4){
       #{ $self }__cell {
@@ -32,7 +50,7 @@
         padding: 0.6vw 0 0 0.6vw;
         border-bottom: none;
         &--date {
-          padding: 0.6vw 0 0 0;
+          padding: 0.9vw 0 0.3vw 0;
         }
       }
     }
@@ -129,6 +147,15 @@ export default {
         return Object.values(this.eventItem.tag_names);
       } else {
         return [''];
+      }
+    }
+  },
+  methods: {
+    handleClick() {
+      if (this.eventItem.acf.link) {
+        window.location.href = this.eventItem.acf.link
+      } else {
+        return
       }
     }
   },
