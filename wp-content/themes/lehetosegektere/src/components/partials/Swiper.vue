@@ -279,7 +279,6 @@ export default {
   mounted() {
     this.$store.dispatch('getPosts', { limit: this.limit });
     this.swiper.on('slideChange', () => {
-      console.log('slide changed');
       this.stopVideos();
     });
     if (this.carouselOptions.autoplay) {
@@ -290,7 +289,6 @@ export default {
       this.swiper.autoplay.stop();
       this.swiper.params.autoplay = false;
     }
-    console.log(this.swiperOptions);
   }
 }
 </script> 
