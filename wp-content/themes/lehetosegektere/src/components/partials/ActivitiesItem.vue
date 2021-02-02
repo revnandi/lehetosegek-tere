@@ -73,11 +73,12 @@
     }
     &__description {
       margin-top: 2vw;
+      font-family: 'Montserrat', sans-serif;
       @include media("<=tablet") {
         font-size: $text-base-mobile;
       }
       @include media(">tablet") {
-        font-size: 0.725vw;
+        font-size: $text-longread-desktop;
       }
     }
   }
