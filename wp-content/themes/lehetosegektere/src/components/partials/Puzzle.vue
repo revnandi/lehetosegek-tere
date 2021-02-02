@@ -75,6 +75,7 @@
 .c-puzzle {
   width: 100%;
   height: 100%;
+  padding: 10%;
   .c-puzzle__grid {
     position: relative;
     width: 100%;
