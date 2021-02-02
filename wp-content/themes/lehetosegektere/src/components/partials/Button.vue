@@ -54,13 +54,13 @@
     &__content {
       padding: 1.150vw 0;
       color: #fff;
-      font-size: 0.525vw;
+      font-size: 0.625vw;
       text-transform: uppercase;
       @include media("<=tablet") {
         font-size: $text-base-mobile;
       }
       @include media(">tablet") {
-        font-size: $text-md-desktop;
+        font-size: $text-lg-desktop;
       }
     }
   }
