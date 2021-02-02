@@ -14,7 +14,9 @@
             <a class="c-footer__social-link c-footer__social-link--bottom" :href="allOptions.social_media.instagram.link" target="blank_">insta</a>
           </div>
         </div>
-        <Button>Hírlevél</Button>
+        <a :href="allOptions.newsletter_url">
+          <Button>Hírlevél</Button>
+        </a>
       </div>
     </Section>
   </footer>
