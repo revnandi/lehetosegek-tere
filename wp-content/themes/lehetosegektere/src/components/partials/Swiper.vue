@@ -229,6 +229,10 @@ export default {
       swiperOptions: {
         effect: 'fade',
         fadeEffect: { crossFade: true },
+        autoplay: {
+          delay: 5000,
+        },
+        loop: true,
         speed: 400,
         pagination: {
           el: '.swiper-pagination',
@@ -244,6 +248,7 @@ export default {
       allCategoriesLoaded: 'allCategoriesLoaded',
       recentPosts: 'recentPosts',
       recentPostsLoaded: 'recentPostsLoaded',
+      carouselOptions: 'carouselOptions'
     }),
     swiper() {
       return this.$refs.mySwiper.$swiper;
@@ -277,6 +282,15 @@ export default {
       console.log('slide changed');
       this.stopVideos();
     });
+    if (this.carouselOptions.autoplay) {
+      this.swiper.autoplay.stop();
+      this.swiper.params.autoplay.delay = this.carouselOptions.delay;
+      this.swiper.autoplay.start();
+    } else {
+      this.swiper.autoplay.stop();
+      this.swiper.params.autoplay = false;
+    }
+    console.log(this.swiperOptions);
   }
 }
 </script> 

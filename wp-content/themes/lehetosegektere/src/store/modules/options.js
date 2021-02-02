@@ -11,7 +11,11 @@ const state = {
 // getters
 const getters = {
   allOptions: state => state.options,
-  allOptionsLoaded: state => state.loaded
+  allOptionsLoaded: state => state.loaded,
+  carouselOptions: state => new Object({
+    autoplay: state.options.carousel_autoplay,
+    delay: state.options.carousel_delay
+  })
 }
 
 // actions
