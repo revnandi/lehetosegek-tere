@@ -64,6 +64,8 @@ export default {
         }
       } else if (anchor && anchor === '/') {
         this.$router.push(anchor)
+      } else if (anchor) {
+        window.location.href = anchor
       }
     }
   },
