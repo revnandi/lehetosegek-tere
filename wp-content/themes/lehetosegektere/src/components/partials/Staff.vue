@@ -68,7 +68,7 @@
         font-size: $text-md-mobile;
       }
       @include media(">tablet") {
-        font-size: $text-lg-desktop;
+        font-size: $text-xl-desktop;
         margin-bottom: 0.450vw;
       }
     }
@@ -81,8 +81,8 @@
         margin-bottom: 1em;
       }
       @include media(">tablet") {
-        font-size: $text-md-desktop;
-        margin-bottom: 1.500vw;
+        font-size: $text-lg-desktop;
+        margin-bottom: 2vw;
       }
     }
     &__description {
