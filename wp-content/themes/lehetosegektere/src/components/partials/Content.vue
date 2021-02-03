@@ -20,6 +20,14 @@
         font-size: $text-xxl-desktop;
       }
     }
+    & {
+      a {
+        color: #fa52f4;
+        &:hover {
+          opacity: 0.75;
+        }
+      }
+    }
     & iframe {
       margin: 2rem auto;
     }
