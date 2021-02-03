@@ -9,7 +9,7 @@
         <div class="c-info-modals__buttons">
           <a href="#about" v-smooth-scroll>
             <Button v-if="!showKidsModal" @click.native="toggleKidsModal">
-              <span>Nem múltam 26 éves</span>
+              <span>Nem múltam el 26 éves</span>
             </Button>
           </a>
           <CloseButton v-if="showKidsModal" @click.native="toggleKidsModal"/>
@@ -46,7 +46,7 @@
         <div class="c-info-modals__buttons">
           <a href="#about" v-smooth-scroll>
             <Button v-if="!showAdultModal" @click.native="toggleAdultModal">
-              <span>Elmúltam el 26 éves</span>
+              <span>Elmúltam 26 éves</span>
             </Button>
           </a>
           <CloseButton v-if="showAdultModal" @click.native="toggleAdultModal"/>
