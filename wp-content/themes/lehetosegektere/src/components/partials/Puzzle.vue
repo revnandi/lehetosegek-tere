@@ -73,6 +73,8 @@
 <style lang="scss" scoped>
 @import "../../assets/css/breakpoints.scss";
 .c-puzzle {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
   padding: 10%;
@@ -81,9 +83,6 @@
     width: 100%;
     height: 0;
     padding-bottom: 100%;
-    @include media(">tablet") {
-      height: 100%;
-    }
   }
   &__notification {
     content: '';
