@@ -15,6 +15,10 @@ const getters = {
   carouselOptions: state => new Object({
     autoplay: state.options.carousel_autoplay,
     delay: state.options.carousel_delay
+  }),
+  infoModals: state => new Object({
+    kids: state.options.kids,
+    adult: state.options.adult
   })
 }
 

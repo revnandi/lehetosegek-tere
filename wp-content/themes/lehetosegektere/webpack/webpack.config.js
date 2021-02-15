@@ -1,5 +1,6 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const plugins = require('./plugins');
 const loaders = require('./loaders');
@@ -49,6 +50,7 @@ module.exports = {
               toplevel: false,
             },
           }),
-        ],
+          new MiniCssExtractPlugin()
+        ]
   },
 };

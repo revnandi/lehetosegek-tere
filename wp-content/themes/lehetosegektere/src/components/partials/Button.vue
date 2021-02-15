@@ -21,11 +21,11 @@
     box-shadow: 0 1px 2px rgba(255,255,255,0.15);
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     @include media("<=tablet") {
-      width: 70vw;
+      min-width: 70vw;
       padding: 2vw;
     }
     @include media(">tablet") {
-      width: 13.800vw;
+      min-width: 13.800vw;
     }
     &::after {
       content: '';
@@ -60,7 +60,11 @@
         font-size: $text-base-mobile;
       }
       @include media(">tablet") {
+        padding: 1.150vw 1vw;
         font-size: $text-lg-desktop;
+        & * {
+          white-space: nowrap;
+        }
       }
     }
   }

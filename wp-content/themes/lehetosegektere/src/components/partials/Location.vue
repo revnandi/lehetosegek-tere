@@ -5,7 +5,7 @@
       <div class="col-span-12">
         <h2 class="c-location__title">Práter 63</h2>
       </div>
-      <div class="col-span-12 md:col-span-5">
+      <div class="col-span-12 md:col-span-6">
         <div class="c-location__buttons">
           <a @click.prevent="scrollTo('#events', $event)">
             <Button >
@@ -30,9 +30,9 @@
             <GradientBridge/>
           </div>
           <div class="w-full md:w-1/2">
-            <ScrollBox height="23vw">
+            <TextBox :url="allOptions.location_box_link" class="c-textbox--location" height="100%">
               <div v-html="text"></div>
-            </ScrollBox>
+            </TextBox>
           </div>
         </div>
       </div>
@@ -62,7 +62,6 @@
           margin-bottom: 5vw;
         }
         @include media(">tablet") {
-          width: 14.125vw;
         }
       }
       & > *:nth-child(2) {
@@ -70,7 +69,6 @@
           margin-bottom: 5vw;
         }
         @include media(">tablet") {
-          width: 14.125vw;
         }
       }
       & > *:last-child {
@@ -78,7 +76,6 @@
           margin-bottom: 5vw;
         }
         @include media(">tablet") {
-          width: 6.325vw;
         }
       }
     }
@@ -86,13 +83,15 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import Grid from './Layout/Grid';
 
 import GradientBridge from './VisualElements/GradientBridge';
 
 import Button from './Button';
 import HiddenTitle from './HiddenTitle';
-import ScrollBox from './ScrollBox';
+import TextBox from './TextBox';
 
 export default {
   props: ['text'],
@@ -101,7 +100,7 @@ export default {
     GradientBridge,
     Button,
     HiddenTitle,
-    ScrollBox
+    TextBox
   },
   methods: {
     scrollTo(anchor, event) {
@@ -136,5 +135,11 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      allOptions: 'allOptions',
+      allOptionsLoaded: 'allOptionsLoaded',
+    }),
+  }
 }
 </script>

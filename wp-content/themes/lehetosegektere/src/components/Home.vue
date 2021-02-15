@@ -7,9 +7,9 @@
           <Puzzle/>
         </div>
         <div class="col-span-12 md:col-start-7 md:col-span-6 h-full">
-          <ScrollBox class="c-scroll-box--hero">
+          <TextBox :url="allOptions.hero_box_link" class="c-textbox--hero">
             <div v-html="allOptions.hero_box"></div>
-          </ScrollBox>
+          </TextBox>
           <Swiper></Swiper>
         </div>
       </div>
@@ -55,9 +55,9 @@ import Location from './partials/Location';
 import PartnerLogos from './partials/PartnerLogos';
 import Perks from './partials/Perks';
 import Puzzle from './partials/Puzzle';
-import ScrollBox from './partials/ScrollBox';
 import ScrollIcon from './partials/ScrollIcon';
 import Staff from './partials/Staff';
+import TextBox from './partials/TextBox';
 import Swiper from './partials/Swiper';
 import GradientDiamond from './partials/VisualElements/GradientDiamond.vue';
 
@@ -76,9 +76,9 @@ export default {
     PartnerLogos,
     Perks,
     Puzzle,
-    ScrollBox,
     ScrollIcon,
     Staff,
+    TextBox,
     Swiper,
     GradientDiamond
   },

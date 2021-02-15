@@ -271,9 +271,11 @@ export default {
       return getYouTubeID(id);
     },
     stopVideos() {
-      this.$refs.youtube.forEach(player => {
-        player.player.stopVideo()
-      });
+      if(this.$refs.youtube) {
+        this.$refs.youtube.forEach(player => {
+          player.player.stopVideo()
+        });
+      }
     },
   },
   mounted() {

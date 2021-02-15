@@ -4,9 +4,9 @@
    your CSS as normal! */
 
 
-@import './_tailwind';
 @import './breakpoints.scss';
 @import './global';
 @import './mixins';
+@import './grid';
 @import './components/progress-bar';
 @import './components/swiper-fix';
