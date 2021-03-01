@@ -5,9 +5,14 @@ span.swiper-pagination-bullet {
   height: 0.5em!important;
   background: #000!important;
   opacity: 1!important;
-  margin: 0 0.225vw!important;
   border-radius: 50%;
   cursor: pointer;
+  @include media("<=tablet") {
+    margin: 0 0.5vw!important;
+  }
+  @include media(">tablet") {
+    margin: 0 0.225vw!important;
+  }
   &:hover {
     opacity: 0.75;
   }
@@ -36,5 +41,24 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   }
   @include media(">tablet") {
     height: calc(1.325vw * 2);
+  }
+}
+
+.swiper-slide-active {
+  z-index: 2;
+}
+
+.swiper-wrapper {
+  @include media("<=tablet") {
+    height: auto!important;
+  }
+}
+
+.swiper-slide {
+  @include media("<=tablet") {
+    height: auto!important;
+  }
+  @include media(">tablet") {
+    height: 100%;
   }
 }

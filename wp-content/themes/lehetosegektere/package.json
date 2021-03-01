@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "watch": "NODE_ENV=development webpack --watch --config ./webpack/webpack.config.js",
-    "production": "NODE_ENV=production webpack --config ./webpack/webpack.config.js --display-entrypoints",
+    "production": "rimraf ../dist && NODE_ENV=production webpack --config ./webpack/webpack.config.js --display-entrypoints",
     "rmdist": "rimraf dist"
   },
   "devDependencies": {
@@ -47,7 +47,8 @@
     "webpack-cli": "^3.3.2",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-dev-server": "^3.10.1",
-    "webpack-hot-middleware": "^2.25.0"
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-monitor": "^1.0.14"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -55,7 +56,6 @@
     "lazysizes": "^5.2.2",
     "stylelint-order": "^4.0.0",
     "swiper": "5.4.5",
-    "tailwindcss": "^1.1.4",
     "vue": "^2.6",
     "vue-awesome-swiper": "^4.1.1",
     "vue-youtube": "^1.4.0",

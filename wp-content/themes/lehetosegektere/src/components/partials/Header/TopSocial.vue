@@ -1,14 +1,14 @@
 <template>
-  <ul class="c-top-social">
-    <ol :v-if="this.socials.facebook.visible" class="c-top-social__item">
-      <a :href="this.socials.facebook.link" target="blank_">Facebook</a>
-    </ol>
-    <ol :v-if="this.socials.instagram.visible" class="c-top-social__item">
-      <a :href="this.socials.instagram.link" target="blank_">Insta</a>
-    </ol>
-    <ol :v-if="this.socials.youtube.visible" class="c-top-social__item">
-      <a :href="this.socials.youtube.link" target="blank_">Youtube</a>
-    </ol>
+  <ul v-if="allOptionsLoaded" class="c-top-social">
+    <li :v-if="allOptions.social_media.facebook.visible" class="c-top-social__item">
+      <a :href="allOptions.social_media.facebook.link" target="blank_" rel="noopener">Facebook</a>
+    </li>
+    <li :v-if="allOptions.social_media.instagram.visible" class="c-top-social__item">
+      <a :href="allOptions.social_media.instagram.link" target="blank_" rel="noopener">Insta</a>
+    </li>
+    <li :v-if="allOptions.social_media.youtube.visible" class="c-top-social__item">
+      <a :href="allOptions.social_media.youtube.link" target="blank_" rel="noopener">Youtube</a>
+    </li>
   </ul>
 </template>
 
@@ -59,9 +59,13 @@
 </style>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  props:  [
-    'socials'
-  ]
+  computed: {
+    ...mapGetters({
+      allOptions: 'allOptions',
+      allOptionsLoaded: 'allOptionsLoaded'
+    })
+  }
 }
 </script>

@@ -82,7 +82,6 @@ export default {
     axios
       .get(SETTINGS.API_BASE_PATH + 'events?per_page=' + limit)
       .then(response => {
-        console.log(response.data);
         cb(response.data);
       })
       .catch(e => {

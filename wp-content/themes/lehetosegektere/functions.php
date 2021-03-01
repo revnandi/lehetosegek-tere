@@ -155,3 +155,5 @@ function ag_filter_post_json($response, $post, $context) {
 }
 
 add_filter( 'rest_prepare_events', 'ag_filter_post_json', 10, 3 );
+
+remove_action( 'wp_enqueue_scripts', 'wp_common_block_scripts_and_styles' );

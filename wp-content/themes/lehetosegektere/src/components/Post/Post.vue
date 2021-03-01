@@ -3,7 +3,7 @@
     <template v-if="post">
       <Section backgroundColor="white">
         <Content>
-          <h1>{{ post.title.rendered }}</h1>
+          <h1 v-html="post.title.rendered"></h1>
           <div v-html="post.content.rendered"></div>
         </Content>
       </Section>

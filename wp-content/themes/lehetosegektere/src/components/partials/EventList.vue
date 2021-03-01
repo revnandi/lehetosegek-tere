@@ -4,9 +4,9 @@
     <div class="c-event-list__inner">
       <div class="c-event-list__table-container">
         <template v-if="recentEventsLoaded">
-          <table class="c-event-list__table">
+          <div class="c-event-list__table">
             <EventItem v-for="item in this.recentEvents(limit)" :key="item.id" :eventItem="item"></EventItem>
-          </table>
+          </div>
         </template>
         <template v-else>
           <div class="c-event-list__loader">
@@ -26,7 +26,7 @@
     $self: &;
     display: flex;
     @include media("<=tablet") {
-      margin-top: 100%;
+      // margin-top: 100%;
       overflow-x: scroll;
       padding: 0px 3.475vw 3.475vw
     }
@@ -44,14 +44,13 @@
       width: calc((100% / 6) * 5);
       @include media("<=tablet") {
         display: block;
-        width: 200%;
+        width: auto;
       }
     }
     &__table-container {
       width: 100%;
       min-height: 100%;
-      padding: 0.6vw;
-      background: #fff;
+      // background: #fff;
       @include media("<=tablet") {
         overflow-x: hidden;
       }

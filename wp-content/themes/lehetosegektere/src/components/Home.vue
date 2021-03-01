@@ -3,11 +3,11 @@
     <Section padding="0 3.475vw 3.475vw 3.475vw">
       <PartnerLogos/>
       <div class="grid grid-cols-12 gap-6 items-center relative">
-        <div class="col-span-12 md:col-span-6 h-full">
+        <div class="col-span-12 lg:col-span-6 h-full">
           <Puzzle/>
         </div>
-        <div class="col-span-12 md:col-start-7 md:col-span-6 h-full">
-          <TextBox :url="allOptions.hero_box_link" class="c-textbox--hero">
+        <div class="col-span-12 lg:col-span-6 lg:h-full">
+          <TextBox :url="allOptions.hero_box_link" :linkAsText="true" class="c-textbox--hero">
             <div v-html="allOptions.hero_box"></div>
           </TextBox>
           <Swiper></Swiper>

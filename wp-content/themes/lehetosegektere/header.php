@@ -4,6 +4,7 @@
 
   <head>
     <title><?php bloginfo('name'); ?></title>
+    <meta name="description" content="A Lehetőségek tere középiskolások és fiatal felnőttek számára - és velük együtt - kialakított közösségi tér.">
     <meta
       charset="<?php bloginfo('charset'); ?>"
       title="<?php bloginfo('name'); ?>"
@@ -14,8 +15,10 @@
     <link rel="apple-touch-icon" href="<?php echo get_site_icon_url(180); ?>" />
     <meta name="msapplication-TileImage" content="<?php echo get_site_icon_url(270); ?>" />
     <link rel="profile" href="http://gmpg.org/xfn/11">
-    <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
     <?php wp_head(); ?>
     <style>
       .fz-spinner-container {

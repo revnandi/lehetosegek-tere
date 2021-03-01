@@ -1,12 +1,24 @@
 <template>
-  <tr class="c-event-item" @click="handleClick">
-    <td class="c-event-item__cell c-event-item__cell--date c-event-item__cell--width-1">{{ formattedDate }}</td>
-    <td class="c-event-item__cell c-event-item__cell--width-3">{{ eventItem.title.rendered }}</td>
-    <td class="c-event-item__cell c-event-item__cell--width-2">{{ formattedLocation }}</td>
-    <td class="c-event-item__cell c-event-item__cell--width-6">
-      <span v-for="(item, index) in tagsArray" :key="" class="c-event-item__tag">#{{ item }}</span>
-    </td>
-  </tr>
+  <div class="c-event-item">
+    <div class="c-event-item__cell c-event-item__cell--date c-event-item__cell--width-1">{{ formattedDate }}</div>
+    <template v-if="this.eventItem.acf.link">
+      <a class="c-event-item__cell c-event-item__cell--width-3" v-html="eventItem.title.rendered" :href="this.eventItem.acf.link"></a>
+    </template>
+    <template v-else>
+      <div class="c-event-item__cell c-event-item__cell--width-3" v-html="eventItem.title.rendered"></div>
+    </template>
+    <template v-if="eventItem.acf.location_link">
+      <a class="c-event-item__cell c-event-item__cell--width-2" :href="eventItem.acf.location_link" target="_blank" rel="noopener">
+        {{ formattedLocation }}
+      </a>
+    </template>
+    <template v-else>
+      <div class="c-event-item__cell c-event-item__cell--width-2">{{ formattedLocation }}</div>
+    </template>
+    <div class="c-event-item__cell c-event-item__cell--width-6">
+      <span v-for="(item, index) in tagsArray" :key="index" class="c-event-item__tag">#{{ item }}</span>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -14,12 +26,11 @@
   @import "../../assets/css/variables.scss";
   .c-event-item {
     $self: &;
-    height: 1em;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.75;
-    }
+    display: flex;
+    height: calc(100% / 5);
+    background: #fff;
     &:first-child {
+      padding: 0.6vw 0.6vw 0 0.6vw;
       #{ $self }__cell {
         &:nth-child(2) {
           padding: 0;
@@ -36,6 +47,7 @@
       }
     }
     &:nth-child(2), &:nth-child(3), &:nth-child(4){
+      padding: 0 0.6vw;
       #{ $self }__cell {
         padding: 0.6vw;
       }
@@ -46,6 +58,7 @@
       }
     }
     &:last-child {
+      padding: 0 0.6vw 0.6vw 0.6vw;
       #{ $self }__cell {
         padding: 0.6vw 0 0 0.6vw;
         border-bottom: none;
@@ -53,6 +66,9 @@
           padding: 0.9vw 0 0.3vw 0;
         }
       }
+    }
+    @include media("<=tablet") {
+      min-height: 5em;
     }
     &__cell {
       vertical-align: top;
@@ -72,6 +88,7 @@
         line-height: 1;
         border-right: 1px solid #fa52f4;
         @include media("<=tablet") {
+          padding: 0.3vw 0.6vw;
           font-size: $text-md-mobile;
         }
         @include media(">tablet") {
@@ -81,26 +98,26 @@
       &--width-1 {
         width: calc(((100% / 12 ) * 2));
         @include media("<=tablet") {
-          width: 7em;
+          width: 65vw!important;
         }
       }
       &--width-2 {
         width: calc(((100% / 12 ) * 4));
         @include media("<=tablet") {
-          width: auto;
+          width: 65vw!important;
         }
       }
       &--width-3 {
         width: calc(((100% / 12 ) * 4));
         @include media("<=tablet") {
-          width: auto;
+          width: 120vw!important;
         }
       }
       &--width-6 {
         width: calc(((100% / 12 ) * 2));
         border-right: none;
         @include media("<=tablet") {
-          width: auto;
+          width: 65vw!important;
         }
       }
     }
@@ -109,12 +126,15 @@
       margin-right: 0.5em;
       text-transform: uppercase;
     }
+    & a {
+      &:hover {
+        opacity: 0.75;
+      }
+    }
   }
 </style>
 
 <script>
-import { mapGetters } from 'vuex';
-import { convertDateToShortString } from '../../helpers';
 
 export default {
   name: 'eventitem',
@@ -125,7 +145,8 @@ export default {
   computed: {
     formattedDate() {
       if (this.eventItem.acf.date_start) {
-        const dateToFormat = new Date(this.eventItem.acf.date_start);
+        const correctedDateString = this.eventItem.acf.date_start.replace(/\s/g, 'T')
+        const dateToFormat = new Date(correctedDateString);
         const formattedDate = new Intl.DateTimeFormat('hu-HU', {
           month: 'short',
           day: 'numeric'
@@ -151,13 +172,6 @@ export default {
     }
   },
   methods: {
-    handleClick() {
-      if (this.eventItem.acf.link) {
-        window.location.href = this.eventItem.acf.link
-      } else {
-        return
-      }
-    }
   },
 }
 </script>

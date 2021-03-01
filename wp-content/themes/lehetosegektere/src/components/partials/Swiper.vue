@@ -11,6 +11,7 @@
             <div class="c-news-swiper__main">
               <div class="c-news-swiper__footer">
                 <a class="c-news-swiper__link" :href="post.link">Tovább</a>
+                <a v-if="post.acf.link !== ''" class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
               </div>
             </div>
           </div>
@@ -21,19 +22,22 @@
             <div class="c-news-swiper__image-container">
               <img v-if="post.featured_image_sizes" class="c-news-swiper__image lazyload"
                 data-sizes="auto"
+                width="402px"
+                height="230px"
                 :src="post.featured_image_sizes.lqip"
                 :data-srcset="`${post.featured_image_sizes.thumbnail} 150w,
                 ${post.featured_image_sizes.medium} 300w,
                 ${post.featured_image_sizes.medium_large} 600w,
                 ${post.featured_image_sizes.large} 900w`"
-                alt=""
+                :alt="post.title.rendered"
               />
               <div v-else class="c-news-swiper__image-placeholder"></div>
             </div>
             <div class="c-news-swiper__main">
               <div class="c-news-swiper__info">
                 <h2 class="c-news-swiper__title">
-                  <a :href="post.link">{{ post.title.rendered }}</a>
+                  <a v-if="post.acf.title_as_link_url && post.acf.title_as_link_url.title_as_link_url !== ''" :href="post.acf.title_as_link_url" v-html="post.title.rendered" class="c-news-swiper__title-link c-news-swiper__title-link--page-url"></a>
+                  <a v-else :href="post.link" v-html="post.title.rendered" class="c-news-swiper__title-link c-news-swiper__title-link--post-url"></a>
                 </h2>
                 <div class="c-news-swiper__meta">
                   <div :v-if="post.categories[0]" class="c-news-swiper__tag">#{{ getPostCategoryString(post.categories[0]) }}</div>
@@ -43,7 +47,7 @@
               </div>
               <div class="c-news-swiper__footer">
                 <a class="c-news-swiper__link" :href="post.link">Tovább</a>
-                <a :v-if="post.acf.link" class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
+                <a v-if="post.acf.link !== ''" class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
               </div>
             </div>
           </div>
@@ -63,10 +67,10 @@
   .c-news-swiper {
     position: relative;
     width: 100%;
-    height: 100%;
     padding-top: 1vw;
     @include media("<=tablet") {
       margin-top: 5vw;
+      height: auto;
     }
     @include media(">tablet") {
       height: calc((100% / 3) * 2);
@@ -111,9 +115,14 @@
       z-index: 1;
     }
     &__image-container {
-      position: absolute;
       width: 100%;
       height: 100%;
+      @include media("<=tablet") {
+        position: relative;
+      }
+      @include media(">tablet") {
+        position: absolute;
+      }
     }
     &__image {
       width:100%;
@@ -133,7 +142,7 @@
     &__info {
       padding: 1.15vw;
       margin: 1.15vw;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.75);
       z-index: 2;
       @include media(">tablet") {
         max-width: 65%;
@@ -147,6 +156,9 @@
       opacity: 1;
       transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       &:hover {
+        opacity: 0.75;
+      }
+      & a:hover {
         opacity: 0.75;
       }
       @include media("<=tablet") {
@@ -167,7 +179,7 @@
       }
     }
     &__tag {
-      color: #cbcac7;
+      color: #000;
       text-transform: uppercase;
     }
     &__date {
@@ -191,6 +203,7 @@
       padding: 1.15vw;
       background: #fff;
       @include media("<=tablet") {
+        padding-bottom: 2rem;
         font-size: $text-base-mobile;
       }
       @include media(">tablet") {
@@ -203,6 +216,7 @@
       transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       &:hover {
         opacity: 0.75;
+        text-decoration: underline;
       }
     }
     &__pagination-container {
@@ -211,7 +225,12 @@
     }
     & .swiper-container {
       width: 100%;
-      height: 100%;
+      @include media("<=tablet") {
+        height: auto!important;
+      }
+      @include media(">tablet") {
+        height: 100%;
+      }
     }
   }
 </style>
@@ -231,8 +250,8 @@ export default {
         fadeEffect: { crossFade: true },
         autoplay: {
           delay: 5000,
+          disableOnInteraction: false
         },
-        loop: true,
         speed: 400,
         pagination: {
           el: '.swiper-pagination',

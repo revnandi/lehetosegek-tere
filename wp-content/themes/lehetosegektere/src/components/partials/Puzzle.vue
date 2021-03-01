@@ -1,5 +1,5 @@
 <template>
-  <div class="c-puzzle">
+  <div class="c-puzzle" ref="puzzle">
     <div class="c-puzzle__grid" ref="puzzleContainer" @mouseover="handleNotificationMouseOver" @mouseleave="handleNotificationMouseLeave">
       <div class="c-puzzle__item c-puzzle__item--rotateable" data-item-number="1" data-rotation="0" @click.stop="handleClick" @mouseover="handleMouseOver" @mouseleave="handleMouseLeave">
         <div class="c-puzzle__item-inner">
@@ -78,6 +78,11 @@
   width: 100%;
   height: 100%;
   padding: 10%;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  &--visible {
+    opacity: 1;
+  }
   .c-puzzle__grid {
     position: relative;
     width: 100%;
@@ -249,6 +254,10 @@ export default {
       this.delay += 50;
       setTimeout(this.setup, this.delay, tiles[i]);
     }
+    
+    setTimeout(() => {
+      this.$refs.puzzle.classList.add('c-puzzle--visible');
+    }, 800);
 
     setTimeout(() => {
       this.showNotification = true;

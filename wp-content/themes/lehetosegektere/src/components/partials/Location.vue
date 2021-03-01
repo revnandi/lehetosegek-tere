@@ -17,7 +17,7 @@
               <span>Tovább a Foglalkozásokra</span>
             </Button>
           </router-link>
-          <a href="https://goo.gl/maps/AAYFfoX4biRQ28mH7" target="_blank">
+          <a href="https://goo.gl/maps/AAYFfoX4biRQ28mH7" target="_blank" rel="noopener">
             <Button>
               Térkép
             </Button>

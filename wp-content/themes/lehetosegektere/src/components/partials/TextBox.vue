@@ -1,7 +1,14 @@
 <template>
   <div class="c-textbox" :style="{ height: this.height }">
-    <slot></slot>
-    <a :href="this.url" class="c-textbox__link">Tovább</a>
+    <template v-if="this.linkAsText">
+      <a :href="this.url">
+        <slot></slot>
+      </a>
+    </template>
+    <template v-else>
+      <slot></slot>
+      <a :href="this.url" class="c-textbox__link">Tovább</a>
+    </template>
   </div>
 </template>
 
@@ -37,13 +44,18 @@
         position: absolute;
       }
       & div {
-      @include media("<=tablet") {
-        padding: 1.5vw;
+        @include media("<=tablet") {
+          padding: 1.5vw;
+        }
+        @include media(">tablet") {
+          padding: 1.5vw 0 0.75vw 0;
+        }
       }
-      @include media(">tablet") {
-        padding: 1.5vw 0 0.75vw 0;
+      & a {
+        &:hover {
+          text-decoration: underline;
+        }
       }
-    }
     }
     &--location {
       @include media("<=tablet") {
@@ -68,6 +80,13 @@
       }
     }
     }
+    & a {
+      display: inline-block;
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      &:hover {
+        opacity: 0.75;
+      }
+    }
     &__link {
       text-transform: uppercase;
       opacity: 1;
@@ -80,6 +99,7 @@
       }
       &:hover {
         opacity: 0.75;
+        text-decoration: underline;
       }
     }
   }
@@ -97,6 +117,10 @@ export default {
     url: {
       type: String,
       default: '#'
+    },
+    linkAsText : {
+      type: Boolean,
+      default: false
     }
   },
   components: {

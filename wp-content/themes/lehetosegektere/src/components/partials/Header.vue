@@ -10,7 +10,7 @@
         <Menu :menu="menu" :isMobile="isMobile"></Menu>
       </div>
       <div class="c-header__social-container">
-        <TopSocial :socials="allOptions.social_media"/>
+        <TopSocial/>
       </div>
     </div>
   </header>

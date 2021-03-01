@@ -21,8 +21,7 @@ module.exports = {
     'postcss-hexrgba': {},
     'postcss-reporter': {
       clearMessages: true,
-    },
-    tailwindcss: './tailwind.config.js',
+    }
   },
   sourceMap: true || 'inline',
 };

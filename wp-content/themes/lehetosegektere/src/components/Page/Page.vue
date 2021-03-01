@@ -3,7 +3,7 @@
     <template v-if="allPagesLoaded">
       <Section backgroundColor="white">
         <Content>
-          <h1>{{ pageContent.title.rendered }}</h1>
+          <h1 v-html="pageContent.title.rendered"></h1>
           <div v-html="pageContent.content.rendered"></div>
         </Content>
       </Section>

@@ -8,7 +8,7 @@ const loaders = require('./loaders');
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  mode: process.env.NODE_ENV || 'development',
+  mode: 'production',
   entry: {
     index: ['babel-polyfill', './src/app.js'],
   },

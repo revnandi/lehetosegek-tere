@@ -1,5 +1,7 @@
 <template>
-  <div class="c-loader">Betöltés...</div>
+  <div class="c-loader">
+    <Spinner></Spinner>
+  </div>
 </template>
 
 <style lang="scss">
@@ -10,3 +12,13 @@
     align-items: center;
   }
 </style>
+
+<script>
+import Spinner from './Spinner'
+
+export default {
+  components: {
+    Spinner
+  }
+}
+</script>

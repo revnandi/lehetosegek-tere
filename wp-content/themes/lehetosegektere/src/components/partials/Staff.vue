@@ -6,6 +6,8 @@
         <div class="c-staff__item">
           <div class="c-staff__image-container">
             <img class="c-staff__image lazyload"
+            width="385px"
+            height="385px"
               data-sizes="auto"
               :src="member.image.sizes.lqip"
               :data-srcset="`${member.image.sizes.thumbnail} 150w,

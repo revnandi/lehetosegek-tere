@@ -10,12 +10,14 @@
           <div class="c-footer__social-title">Kövessetek bennünket!</div>
           <div class="c-footer__heart-container">
             <GradientHeart/>
-            <a class="c-footer__social-link c-footer__social-link--top" :href="allOptions.social_media.facebook.link" target="blank_">facebook</a>
-            <a class="c-footer__social-link c-footer__social-link--bottom" :href="allOptions.social_media.instagram.link" target="blank_">insta</a>
+            <template v-if="allOptionsLoaded">
+              <a v-if="allOptions.social_media.facebook.link" class="c-footer__social-link c-footer__social-link--top" :href="allOptions.social_media.facebook.link" target="blank_">facebook</a>
+              <a v-if="allOptions.social_media.instagram.link" class="c-footer__social-link c-footer__social-link--bottom" :href="allOptions.social_media.instagram.link" target="blank_">insta</a>
+            </template>
           </div>
         </div>
         <a :href="allOptions.newsletter_url">
-          <Button>Hírlevél</Button>
+          <Button>{{ allOptions.newsletter_label }}</Button>
         </a>
       </div>
     </Section>
