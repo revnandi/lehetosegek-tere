@@ -9,18 +9,16 @@
         <div class="c-location__buttons">
           <a @click.prevent="scrollTo('#events', $event)">
             <Button >
-              <span>Aktuális programok</span>
+              <span>{{ $t("location.current") }}</span>
             </Button>
           </a>
           <router-link :to="{ name: 'Activities' }">
             <Button >
-              <span>Tovább a Foglalkozásokra</span>
+              <span>{{ $t("location.continue") }}</span>
             </Button>
           </router-link>
           <a href="https://goo.gl/maps/AAYFfoX4biRQ28mH7" target="_blank" rel="noopener">
-            <Button>
-              Térkép
-            </Button>
+            <Button>{{ $t("location.map") }}</Button>
           </a>
         </div>
       </div>

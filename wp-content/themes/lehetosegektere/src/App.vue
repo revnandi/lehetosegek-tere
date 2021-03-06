@@ -1,7 +1,6 @@
 <template>
   <div id="my-app" class="flex flex-col md:min-h-screen">
     <app-header />
-
     <transition name="loader-animation" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
       <MenuButton :isOpened="isVisible" @click.native="toggleHeader"/>
     </transition>

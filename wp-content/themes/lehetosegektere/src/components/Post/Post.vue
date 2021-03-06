@@ -3,8 +3,14 @@
     <template v-if="post">
       <Section backgroundColor="white">
         <Content>
-          <h1 v-html="post.title.rendered"></h1>
-          <div v-html="post.content.rendered"></div>
+          <template v-if="$i18n.locale === 'hu'">
+            <h1 v-html="post.title.rendered"></h1>
+            <div v-html="post.content.rendered"></div>
+          </template>
+          <template v-else>
+            <h1 v-html="post.acf.title_en"></h1>
+            <div v-html="post.acf.content_en.rendered"></div>
+          </template>
         </Content>
       </Section>
     </template>

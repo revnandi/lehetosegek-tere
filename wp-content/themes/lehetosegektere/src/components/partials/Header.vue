@@ -11,6 +11,7 @@
       </div>
       <div class="c-header__social-container">
         <TopSocial/>
+        <LanguageSelector></LanguageSelector>
       </div>
     </div>
   </header>
@@ -83,8 +84,13 @@
     }
     &__social-container {
       @include media("<=tablet") {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
       @include media(">tablet") {
+        display: flex;
+        align-items: center;
         grid-column: span 2 / span 2;
       }
     }
@@ -99,6 +105,7 @@ import { mapGetters } from 'vuex';
 import Logo from "./VisualElements/Logo";
 import Menu from "./Header/Menu";
 import TopSocial from "./Header/TopSocial";
+import LanguageSelector from './LanguageSelector.vue';
 
 export default {
   name: 'Header',
@@ -111,7 +118,8 @@ export default {
   components: {
     Logo,
     Menu,
-    TopSocial
+    TopSocial,
+    LanguageSelector
   },
 
   beforeMount() {

@@ -48,10 +48,8 @@
         }
       }
       &:last-child {
-        @include media("<=tablet") {
-          &::after {
-            content: none;
-          }
+        &::after {
+          content: none;
         }
       }
     }
