@@ -16,16 +16,11 @@
               ${member.image.sizes.large} 900w`"
               :alt="member.image.alt"/>
           </div>
-          <h2 class="c-staff__name">{{ member.name }}</h2>
-          <div class="c-staff__title">{{ member.title }}</div>
-          <div class="c-staff__description">{{ member.description }}</div>
+          <h2 class="c-staff__name">{{ $i18n.locale === 'hu' ? member.name : member.name_en }}</h2>
+          <div class="c-staff__title">{{ $i18n.locale === 'hu' ? member.title : member.title_en }}</div>
+          <div class="c-staff__description">{{ $i18n.locale === 'hu' ? member.description : member.description_en }}</div>
         </div>
       </div>
-      <!-- <div class="col-span-12 text-center">
-        <Button>
-          Tovább a foglalkozásokhoz
-        </Button>
-      </div> -->
     </Grid>
   </div>
 </template>

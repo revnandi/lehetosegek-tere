@@ -8,7 +8,7 @@
         </div>
         <div class="col-span-12 lg:col-span-6 lg:h-full">
           <TextBox :url="allOptions.hero_box_link" :linkAsText="true" class="c-textbox--hero">
-            <div v-html="allOptions.hero_box"></div>
+            <div v-html="$i18n.locale === 'hu' ? allOptions.hero_box : allOptions.hero_box_en"></div>
           </TextBox>
           <Swiper></Swiper>
         </div>
@@ -21,7 +21,7 @@
       <InfoModals/>
     </Section>
     <Section id="location" backgroundColor="purple-red">
-      <Location :text="allOptions.location_box"/>
+      <Location :text="$i18n.locale === 'hu' ? allOptions.location_box : allOptions.location_box_en"/>
     </Section>
     <Section id="perks" backgroundColor="orange-red">
       <Perks :gallery="allOptions.gallery" :principles="allOptions.principles" :link="allOptions.link"/>

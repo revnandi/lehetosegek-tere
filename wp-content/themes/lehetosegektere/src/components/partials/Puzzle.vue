@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="c-puzzle__notification" :class="{ 'c-puzzle__notification--visible' : this.showNotification && !this.hasChanged }">
-        <span>Rendezd át az elemeket</span>
+        <span>{{ $t("puzzle.rearrange") }}</span>
       </div>
     </div>
   </div>

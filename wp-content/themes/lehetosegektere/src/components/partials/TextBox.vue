@@ -7,7 +7,7 @@
     </template>
     <template v-else>
       <slot></slot>
-      <a :href="this.url" class="c-textbox__link">Tovább</a>
+      <a :href="this.url" class="c-textbox__link">{{ $t('buttons.continue') }}</a>
     </template>
   </div>
 </template>

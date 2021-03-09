@@ -148,7 +148,10 @@ function ag_filter_post_json($response, $post, $context) {
 	$response->data['tag_names'] = [];
 
 	foreach ($tags as $tag) {
-			$response->data['tag_names'][] = $tag->name;
+			$response->data['tag_names'][]	= (object) array (
+				'name' => $tag->name,
+				'name_en' => get_field('name_en', $tag)
+			);
 	}
 
 	return $response;

@@ -9,20 +9,20 @@
         <div class="c-info-modals__buttons">
           <a href="#about" v-smooth-scroll>
             <Button v-if="!showKidsModal" @click.native="toggleKidsModal">
-              <span>Nem múltam el 26 éves</span>
+              <span>{{ $t("info_modals.under_26") }}</span>
             </Button>
           </a>
           <CloseButton v-if="showKidsModal" @click.native="toggleKidsModal"/>
         </div>
         <div class="c-info-modals__buttons">
           <Button v-if="showKidsModal" @click.native="changekidsContent('for_who')">
-            <span>Kiknek szól?</span>
+            <span>{{ $t("info_modals.for_who") }}</span>
           </Button>
           <Button v-if="showKidsModal" @click.native="changekidsContent('what')">
-            <span>Mi ez a hely?</span>
+            <span>{{ $t("info_modals.what") }}</span>
           </Button>
           <Button v-if="showKidsModal" @click.native="changekidsContent('who')">
-            <span>Mit lehet itt csinálni?</span>
+            <span>{{ $t("info_modals.who") }}</span>
           </Button>
         </div>
         <div v-if="showAdultModal" class="c-info-modals__modal">
@@ -33,7 +33,7 @@
             </ScrollBox>
             <router-link :to="{ name: 'Activities' }">
               <Button >
-                <span>Tovább a Foglalkozásokra</span>
+                <span>{{ $t("location.continue") }}</span>
               </Button>
             </router-link>
           </div>
@@ -46,20 +46,20 @@
         <div class="c-info-modals__buttons">
           <a href="#about" v-smooth-scroll>
             <Button v-if="!showAdultModal" @click.native="toggleAdultModal">
-              <span>Elmúltam 26 éves</span>
+              <span>{{ $t("info_modals.over_26") }}</span>
             </Button>
           </a>
           <CloseButton v-if="showAdultModal" @click.native="toggleAdultModal"/>
         </div>
         <div class="c-info-modals__buttons">
           <Button v-if="showAdultModal" @click.native="changeAdultContent('for_who')">
-            <span>Kiknek szól?</span>
+            <span>{{ $t('info_modals.for_who') }}</span>
           </Button>
           <Button v-if="showAdultModal" @click.native="changeAdultContent('what')">
             <span>Mi ez a hely?</span>
           </Button>
           <Button v-if="showAdultModal" @click.native="changeAdultContent('who')">
-            <span>Mit lehet itt csinálni?</span>
+            <span>{{ $t('info_modals.who') }}</span>
           </Button>
         </div>
         <div v-if="showKidsModal" class="c-info-modals__modal">
@@ -71,7 +71,7 @@
             </ScrollBox>
             <router-link :to="{ name: 'Activities' }">
               <Button >
-                <span>Tovább a Foglalkozásokra</span>
+                <span>{{ $t("location.continue") }}</span>
               </Button>
             </router-link>
           </div>
@@ -210,37 +210,37 @@ export default {
   },
   methods: {
     toggleKidsModal: function() {
-      this.kidsModalTitle = 'Kinek szól?';
-      this.kidsModalContent = this.content.kids.for_who;
+      this.kidsModalTitle = this.$t('info_modals.for_who');
+      this.kidsModalContent = this.$i18n.locale === 'hu' ? this.content.kids.for_who : this.content.kids.for_who_en;
       this.showKidsModal = !this.showKidsModal;
     },
     toggleAdultModal: function() {
-      this.adultModalTitle = 'Kinek szól?';
-      this.adultModalContent = this.content.adult.for_who;
+      this.adultModalTitle = this.$t('info_modals.for_who');
+      this.adultModalContent = this.$i18n.locale === 'hu' ? this.content.adult.for_who : this.content.adult.for_who_en;
       this.showAdultModal = !this.showAdultModal;
     },
     changeAdultContent(contentType) {
       if (contentType === 'what') {
         this.adultModalTitle = 'Mi ez a hely?';
-        this.adultModalContent = this.content.adult.what;
+        this.adultModalContent = this.$i18n.locale === 'hu' ? this.content.adult.what : this.content.adult.what_en;
       } else if (contentType === 'who'){
-        this.adultModalTitle = 'Mit lehet itt csinálni?';
-        this.adultModalContent = this.content.adult.who;
+        this.adultModalTitle = this.$t('info_modals.who');
+        this.adultModalContent = this.$i18n.locale === 'hu' ? this.content.adult.who : this.content.adult.who_en;
       } else {
-        this.adultModalTitle = 'Kinek szól?';
-        this.adultModalContent = this.content.adult.for_who;
+        this.adultModalTitle = this.$t('info_modals.for_who');
+        this.adultModalContent = this.$i18n.locale === 'hu' ? this.content.adult.for_who : this.content.adult.for_who_en;
       }
     },
     changekidsContent(contentType) {
       if (contentType === 'what') {
         this.kidsModalTitle = 'Mi ez a hely?';
-        this.kidsModalContent = this.content.kids.what;
+        this.kidsModalContent = this.$i18n.locale === 'hu' ? this.content.kids.what : this.content.kids.what_en;
       } else if (contentType === 'who') {
-        this.kidsModalTitle = 'Mit lehet itt csinálni?';
-        this.kidsModalContent = this.content.kids.who;
+        this.kidsModalTitle = this.$t('info_modals.who');
+        this.kidsModalContent = this.$i18n.locale === 'hu' ? this.content.kids.who : this.content.kids.who_en;
       } else {
-        this.kidsModalTitle = 'Kinek szól?';
-        this.kidsModalContent = this.content.kids.for_who;
+        this.kidsModalTitle = this.$t('info_modals.for_who');
+        this.kidsModalContent = this.$i18n.locale === 'hu' ? this.content.kids.for_who : this.content.kids.for_who_en;
       }
     }
   },

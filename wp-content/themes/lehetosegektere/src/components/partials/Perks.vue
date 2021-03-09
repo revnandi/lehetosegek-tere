@@ -5,40 +5,22 @@
     </div>
     <ul class="c-perks__list">
       <li class="c-perks__item c-perks__item--title">
-        <h1>Alapelveink</h1>
+        <h1>{{ $t('values.title') }}</h1>
       </li>
       <template v-if="principles">
         <li v-for="(item, index) in principles" :key="index" class="c-perks__item">
-          {{ item.text }}
+          {{ $i18n.locale === 'hu' ? item.text : item.text_en }}
         </li>
         <li v-if="link" class="c-perks__item c-perks__item--link">
           <a :href="link">
-            <Button>
-              Bővebben
-            </Button>
+            <Button>{{ $t('values.button') }}</Button>
           </a>
         </li>
       </template>
     </ul>
     <div class="c-perks__gallery">
       <swiper ref="perksSwiper" :options="swiperOptions">
-        <!-- <swiper-slide v-for="item in gallery" :key="item.id">
-          <div class="c-perks__gallery-inner">
-            <img class="c-perks__gallery-image lazyload"
-              data-sizes="auto"
-              :src="item.sizes.lqip"
-              :data-srcset="`${item.sizes.thumbnail} 150w,
-              ${item.sizes.medium} 300w,
-              ${item.sizes.medium_large} 600w,
-              ${item.sizes.large} 900w`"
-              alt=""
-            />
-          </div>
-        </swiper-slide> -->
-        <!-- <swiper-slide :v-if="gallery" v-for="item in gallery" :key="item.id">
-        </swiper-slide> -->
         <swiper-slide v-for="(item, index) in gallery" :key="index">
-        <!-- <div>{{item}}</div> -->
           <div class="c-perks__gallery-inner">
             <img class="c-perks__gallery-image lazyload"
               data-sizes="auto"

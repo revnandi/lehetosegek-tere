@@ -12,11 +12,11 @@
         :alt="activity.acf.image.alt"/>
     </div>
     <div class="c-activities-item__name">
-      {{ activity.acf.name }}
+      {{ $i18n.locale === 'hu' ? activity.acf.name : activity.acf.name_en }}
     </div>
-    <h2 class="c-activities-item__title" v-html="activity.title.rendered" :style="{ 'min-height' : `${minimumTitleHeight}px` }"></h2>
+    <h2 class="c-activities-item__title" v-html="$i18n.locale === 'hu' ? activity.title.rendered : activity.acf.title_en" :style="{ 'min-height' : `${minimumTitleHeight}px` }"></h2>
     <CloseButton :isRotated="true" :isDisabled="!hasLink" @click.native="handleClick"></CloseButton>
-    <div class="c-activities-item__description" v-html="activity.content.rendered"></div>
+    <div class="c-activities-item__description" v-html="$i18n.locale === 'hu' ? activity.content.rendered : activity.acf.content_en"></div>
     <div></div>
   </div>
 </template>

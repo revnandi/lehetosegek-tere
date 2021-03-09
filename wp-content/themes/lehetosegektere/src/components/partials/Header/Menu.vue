@@ -2,7 +2,9 @@
   <nav class="c-main-navigation" v-if="menu">
     <ul class="c-main-navigation__list">
       <li class="c-main-navigation__item" v-for="(item, index) in this.menu.items" :key="index">
-        <a @click.prevent="scrollTo(item.url, $event)">{{ item.title }}</a>
+        <a @click.prevent="scrollTo(item.url, $event)">
+          {{ $i18n.locale === 'hu' ? item.title : item.title_en }}
+        </a>
       </li>
     </ul>
   </nav>

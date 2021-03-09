@@ -10,8 +10,8 @@
             </div>
             <div class="c-news-swiper__main">
               <div class="c-news-swiper__footer">
-                <a class="c-news-swiper__link" :href="post.link">Tovább</a>
-                <a v-if="post.acf.link !== ''" class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
+                <a class="c-news-swiper__link" :href="post.link">{{ $t('buttons.continue') }}</a>
+                <a v-if="post.acf.link !== ''" class="c-news-swiper__link" :href="post.acf.link">{{ $i18n.locale === 'hun' ? post.acf.link_text : post.acf.link_text_en }}</a>
               </div>
             </div>
           </div>
@@ -29,15 +29,15 @@
                 ${post.featured_image_sizes.medium} 300w,
                 ${post.featured_image_sizes.medium_large} 600w,
                 ${post.featured_image_sizes.large} 900w`"
-                :alt="post.title.rendered"
+                :alt="$i18n.locale === 'hun' ? post.title.rendered : post.acf.title_en"
               />
               <div v-else class="c-news-swiper__image-placeholder"></div>
             </div>
             <div class="c-news-swiper__main">
               <div class="c-news-swiper__info">
                 <h2 class="c-news-swiper__title">
-                  <a v-if="post.acf.title_as_link_url && post.acf.title_as_link_url.title_as_link_url !== ''" :href="post.acf.title_as_link_url" v-html="post.title.rendered" class="c-news-swiper__title-link c-news-swiper__title-link--page-url"></a>
-                  <a v-else :href="post.link" v-html="post.title.rendered" class="c-news-swiper__title-link c-news-swiper__title-link--post-url"></a>
+                  <a v-if="post.acf.title_as_link_url && post.acf.title_as_link_url.title_as_link_url !== ''" :href="post.acf.title_as_link_url" v-html="$i18n.locale === 'hun' ? post.title.rendered : post.acf.title_en" class="c-news-swiper__title-link c-news-swiper__title-link--page-url"></a>
+                  <a v-else :href="post.link" v-html="$i18n.locale === 'hun' ? post.title.rendered : post.acf.title_en" class="c-news-swiper__title-link c-news-swiper__title-link--post-url"></a>
                 </h2>
                 <div class="c-news-swiper__meta">
                   <div :v-if="post.categories[0]" class="c-news-swiper__tag">#{{ getPostCategoryString(post.categories[0]) }}</div>
@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div class="c-news-swiper__footer">
-                <a class="c-news-swiper__link" :href="post.link">Tovább</a>
+                <a class="c-news-swiper__link" :href="post.link">{{ $t('buttons.continue') }}</a>
                 <a v-if="post.acf.link !== ''" class="c-news-swiper__link" :href="post.acf.link">{{ post.acf.link_text }}</a>
               </div>
             </div>
@@ -273,7 +273,7 @@ export default {
       return this.$refs.mySwiper.$swiper;
     },
     currentCategories() {
-      return this.allCategories.map( item => ({name:item.name, id:item.id}));
+      return this.allCategories.map( item => ({name:item.name, name_en:item.acf.name_en, id:item.id}));
     },
     visibleSlides() {
       return this.recentPosts(this.limit).filter(post => post.acf.display_in_slider === true);
@@ -284,7 +284,11 @@ export default {
   },
   methods: {
     getPostCategoryString(categoryId) {
-      return this.currentCategories.filter(category=> category.id === categoryId)[0].name;
+      if (this.$i18n.locale === 'hu') {
+        return this.currentCategories.filter(category=> category.id === categoryId)[0].name;
+      } else {
+        return this.currentCategories.filter(category=> category.id === categoryId)[0].name_en;
+      }
     },
     getVideoID(id) {
       return getYouTubeID(id);

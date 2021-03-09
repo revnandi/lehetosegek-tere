@@ -2,10 +2,10 @@
   <div class="c-event-item">
     <div class="c-event-item__cell c-event-item__cell--date c-event-item__cell--width-1">{{ formattedDate }}</div>
     <template v-if="this.eventItem.acf.link">
-      <a class="c-event-item__cell c-event-item__cell--width-3" v-html="eventItem.title.rendered" :href="this.eventItem.acf.link"></a>
+      <a class="c-event-item__cell c-event-item__cell--width-3" v-html="$i18n.locale === 'hu' ? eventItem.title.rendered : eventItem.acf.title_en" :href="this.eventItem.acf.link"></a>
     </template>
     <template v-else>
-      <div class="c-event-item__cell c-event-item__cell--width-3" v-html="eventItem.title.rendered"></div>
+      <div class="c-event-item__cell c-event-item__cell--width-3" v-html="$i18n.locale === 'hu' ? eventItem.title.rendered : eventItem.acf.title_en"></div>
     </template>
     <template v-if="eventItem.acf.location_link">
       <a class="c-event-item__cell c-event-item__cell--width-2" :href="eventItem.acf.location_link" target="_blank" rel="noopener">
@@ -16,7 +16,7 @@
       <div class="c-event-item__cell c-event-item__cell--width-2">{{ formattedLocation }}</div>
     </template>
     <div class="c-event-item__cell c-event-item__cell--width-6">
-      <span v-for="(item, index) in tagsArray" :key="index" class="c-event-item__tag">#{{ item }}</span>
+      <span v-for="(item, index) in tagsArray" :key="index" class="c-event-item__tag">#{{ $i18n.locale === 'hu' ? item.name : item.name_en }}</span>
     </div>
   </div>
 </template>
@@ -147,7 +147,7 @@ export default {
       if (this.eventItem.acf.date_start) {
         const correctedDateString = this.eventItem.acf.date_start.replace(/\s/g, 'T')
         const dateToFormat = new Date(correctedDateString);
-        const formattedDate = new Intl.DateTimeFormat('hu-HU', {
+        const formattedDate = new Intl.DateTimeFormat(this.$i18n.locale === 'hu' ? 'hu-HU': 'en-EN', {
           month: 'short',
           day: 'numeric'
         }).format(dateToFormat);
@@ -157,14 +157,22 @@ export default {
       }
     },
     formattedLocation() {
-      if (this.eventItem.acf.location) {
-        return this.eventItem.acf.location;
+      if (this.$i18n.locale === 'hu') {
+        if (this.eventItem.acf.location) {
+          return this.eventItem.acf.location;
+        } else {
+          return '?';
+        }
       } else {
-        return '?';
+        if (this.eventItem.acf.location_en) {
+          return this.eventItem.acf.location_en;
+        } else {
+          return '?';
+        }
       }
     },
     tagsArray() {
-      if (Object.values(this.eventItem.tag_names).length > 0) {
+      if (this.eventItem.tag_names.length > 0) {
         return Object.values(this.eventItem.tag_names);
       } else {
         return [''];

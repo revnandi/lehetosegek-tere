@@ -4,10 +4,10 @@
       <HiddenTitle text="Kövessetek bennünket!"/>
       <div class="c-footer__inner">
         <a href="/partnerek">
-          <Button>Partnerek</Button>
+          <Button>{{ $t("footer.partners") }}</Button>
         </a>
         <div class="c-footer__social">
-          <div class="c-footer__social-title">Kövessetek bennünket!</div>
+          <div class="c-footer__social-title">{{ $t("footer.follow") }}</div>
           <div class="c-footer__heart-container">
             <GradientHeart/>
             <template v-if="allOptionsLoaded">
@@ -16,8 +16,8 @@
             </template>
           </div>
         </div>
-        <a :href="allOptions.newsletter_url">
-          <Button>{{ allOptions.newsletter_label }}</Button>
+        <a :href="allOptions.contact_url">
+          <Button>{{ $i18n.locale === 'hu' ? allOptions.contact_label : allOptions.contact_label_en }}</Button>
         </a>
       </div>
     </Section>
@@ -51,6 +51,7 @@
     &__social-title {
       text-transform: uppercase;
       margin-bottom: 1.200vw;
+      text-align: center;
       @include media("<=tablet") {
         font-size: $text-base-mobile;
       }

@@ -1,7 +1,29 @@
 {
+  "puzzle": {
+    "rearrange": "Rendezd át az elemeket"
+  },
+  "info_modals": {
+    "under_26": "Nem múltam el 26 éves",
+    "over_26": "Elmúltam 26 éves",
+    "for_who": "Kinek szól?",
+    "what": "Miről szól?",
+    "who": "Mit lehet itt csinálni?"
+  },
   "location": {
-    "current": "Aktuális programok",
-    "continue": "Tovább a foglalkozásokra",
+    "current": "Aktuális események",
+    "continue": "Foglalkozások",
     "map": "Térkép"
+  },
+  "values": {
+    "title": "Alapelveink",
+    "button": "Bővebben"
+  },
+  "footer": {
+    "partners": "Partnerek",
+    "contact": "Kapcsolat",
+    "follow": "Kövessetek bennünket!"
+  },
+  "buttons" : {
+    "continue": "Tovább"
   }
 }
