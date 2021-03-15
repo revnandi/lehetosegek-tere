@@ -1,5 +1,5 @@
 <template>
-  <div class="c-news-swiper" v-if="recentPostsLoaded">
+  <div class="c-news-swiper" v-show="recentPostsLoaded">
     <swiper ref="mySwiper" :options="swiperOptions">
       <template v-for="post in visibleSlides">
         <swiper-slide v-if="post.acf.youtube" :key="post.id">
@@ -11,7 +11,7 @@
             <div class="c-news-swiper__main">
               <div class="c-news-swiper__footer">
                 <a class="c-news-swiper__link" :href="post.link">{{ $t('buttons.continue') }}</a>
-                <a v-if="post.acf.link !== ''" class="c-news-swiper__link" :href="post.acf.link">{{ $i18n.locale === 'hun' ? post.acf.link_text : post.acf.link_text_en }}</a>
+                <a v-if="post.acf.link !== ''" class="c-news-swiper__link" :href="post.acf.link">{{ $i18n.locale === 'hu' ? post.acf.link_text : post.acf.link_text_en }}</a>
               </div>
             </div>
           </div>
@@ -29,15 +29,15 @@
                 ${post.featured_image_sizes.medium} 300w,
                 ${post.featured_image_sizes.medium_large} 600w,
                 ${post.featured_image_sizes.large} 900w`"
-                :alt="$i18n.locale === 'hun' ? post.title.rendered : post.acf.title_en"
+                :alt="$i18n.locale === 'hu' ? post.title.rendered : post.acf.title_en"
               />
               <div v-else class="c-news-swiper__image-placeholder"></div>
             </div>
             <div class="c-news-swiper__main">
               <div class="c-news-swiper__info">
                 <h2 class="c-news-swiper__title">
-                  <a v-if="post.acf.title_as_link_url && post.acf.title_as_link_url.title_as_link_url !== ''" :href="post.acf.title_as_link_url" v-html="$i18n.locale === 'hun' ? post.title.rendered : post.acf.title_en" class="c-news-swiper__title-link c-news-swiper__title-link--page-url"></a>
-                  <a v-else :href="post.link" v-html="$i18n.locale === 'hun' ? post.title.rendered : post.acf.title_en" class="c-news-swiper__title-link c-news-swiper__title-link--post-url"></a>
+                  <a v-if="post.acf.title_as_link_url && post.acf.title_as_link_url.title_as_link_url !== ''" :href="post.acf.title_as_link_url" v-html="$i18n.locale === 'hu' ? post.title.rendered : post.acf.title_en" class="c-news-swiper__title-link c-news-swiper__title-link--page-url"></a>
+                  <a v-else :href="post.link" v-html="$i18n.locale === 'hu' ? post.title.rendered : post.acf.title_en" class="c-news-swiper__title-link c-news-swiper__title-link--post-url"></a>
                 </h2>
                 <div class="c-news-swiper__meta">
                   <div :v-if="post.categories[0]" class="c-news-swiper__tag">#{{ getPostCategoryString(post.categories[0]) }}</div>
@@ -236,6 +236,7 @@
 </style>
 
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
 import getYouTubeID from 'get-youtube-id';
 import { mapGetters } from 'vuex';
 

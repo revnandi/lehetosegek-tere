@@ -3,8 +3,14 @@
     <template v-if="allPagesLoaded">
       <Section backgroundColor="white">
         <Content>
-          <h1 v-html="pageContent.title.rendered"></h1>
-          <div v-html="pageContent.content.rendered"></div>
+          <template v-if="$i18n.locale === 'hu'">
+            <h1 v-html="pageContent.title.rendered"></h1>
+            <div v-html="pageContent.content.rendered"></div>
+          </template>
+          <template v-else>
+            <h1 v-if="pageContent.acf.title_en" v-html="pageContent.acf.title_en"></h1>
+            <div v-if="pageContent.acf.content_en" v-html="pageContent.acf.content_en"></div>
+          </template>
         </Content>
       </Section>
     </template>
@@ -20,7 +26,7 @@
 </style>
 
 <script>
-import Loader from '../partials/Loader.vue';
+import Loader from '../partials/Loader';
 import { mapGetters } from 'vuex';
 
 import Section from '../partials/Layout/Section';
@@ -28,6 +34,7 @@ import Section from '../partials/Layout/Section';
 import Content from '../partials/Content';
 
 export default {
+  name: 'Page',
   computed: {
     ...mapGetters({
       page: 'page',

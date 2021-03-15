@@ -7,15 +7,16 @@
     "over_26": "I am over 26",
     "for_who": "Who is it for?",
     "what": "What is it about?",
+    "what_place": "What is this place?",
     "who": "What I can do here?"
   },
   "location": {
     "current": "Current Activities",
-    "continue": "See Activities",
+    "continue": "Activities",
     "map": "Map"
   },
   "values": {
-    "title": "Alapelveink",
+    "title": "Our Principles",
     "button": "Read More"
   },
   "footer": {

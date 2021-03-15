@@ -79,7 +79,7 @@ add_filter( 'jwt_auth_whitelist', function ( $endpoints ) {
 // Add featured image to posts
 add_theme_support( 'post-thumbnails' );
 
-// Add post featured image to REST API
+// Add post and grant featured image to REST API
 
 add_action('rest_api_init', 'register_post_featured_image_in_rest' );
 function register_post_featured_image_in_rest(){
@@ -92,6 +92,18 @@ function register_post_featured_image_in_rest(){
         )
     );
 }
+add_action('rest_api_init', 'register_grants_featured_image_in_rest' );
+function register_grants_featured_image_in_rest(){
+	register_rest_field( array('grants'),
+			'featured_image_sizes',
+			array(
+					'get_callback'    => 'get_rest_featured_image',
+					'update_callback' => null,
+					'schema'          => null,
+			)
+	);
+}
+
 function get_rest_featured_image( $object, $field_name, $request ) {
     if( $object['featured_media'] ){
         // $img = wp_get_attachment_image_src( $object['featured_media'], 'app-thumb' );

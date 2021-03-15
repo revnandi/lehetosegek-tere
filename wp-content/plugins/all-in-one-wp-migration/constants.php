@@ -35,7 +35,7 @@ define( 'AI1WM_DEBUG', false );
 // ==================
 // = Plugin Version =
 // ==================
-define( 'AI1WM_VERSION', '7.36' );
+define( 'AI1WM_VERSION', '7.39' );
 
 // ===============
 // = Plugin Name =
@@ -208,9 +208,14 @@ define( 'AI1WM_GD_SYSTEM_PLUGIN_NAME', 'gd-system-plugin.php' );
 define( 'AI1WM_WP_STACK_CACHE_NAME', 'wp-stack-cache.php' );
 
 // ===========================
-// = WP.com Site Helper Name =
+// = WP.com Site Loader Name =
 // ===========================
 define( 'AI1WM_WP_COMSH_LOADER_NAME', 'wpcomsh-loader.php' );
+
+// ===========================
+// = WP.com Site Helper Name =
+// ===========================
+define( 'AI1WM_WP_COMSH_HELPER_NAME', 'wpcomsh' );
 
 // ================================
 // = WP Engine System Plugin Name =
@@ -226,16 +231,6 @@ define( 'AI1WM_WPE_SIGN_ON_PLUGIN_NAME', 'wpe-wp-sign-on-plugin.php' );
 // = WP Engine Security Auditor Name =
 // ===================================
 define( 'AI1WM_WP_ENGINE_SECURITY_AUDITOR_NAME', 'wpengine-security-auditor.php' );
-
-// ===================
-// = Export Log Name =
-// ===================
-define( 'AI1WM_EXPORT_NAME', 'export.log' );
-
-// ===================
-// = Import Log Name =
-// ===================
-define( 'AI1WM_IMPORT_NAME', 'import.log' );
 
 // ==================
 // = Error Log Name =

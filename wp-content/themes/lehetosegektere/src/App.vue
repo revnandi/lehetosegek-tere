@@ -57,7 +57,8 @@ export default {
       isLoading: 'isLoading',
       loadingProgress: 'loadingProgress',
       isVisible: 'isVisible',
-      isMobile: 'isMobile'
+      isMobile: 'isMobile',
+      language: 'language'
     }),
 
     loaderStyle() {
@@ -109,6 +110,17 @@ export default {
       } else {
         this.$store.dispatch('toggleMobile', { status: true })
       }
+    }
+  },
+
+  beforeMount() {
+    if(this.$storage.has('lehetosegek_tere')) {
+      const storageData = this.$storage.get('lehetosegek_tere')
+      this.$i18n.locale = storageData.locale
+      console.info('locale loaded')
+    } else {
+      this.$storage.set('lehetosegek_tere', { locale: 'hu' })
+      console.info('locale saved')
     }
   },
 

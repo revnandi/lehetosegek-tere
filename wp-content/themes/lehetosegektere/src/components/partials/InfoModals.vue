@@ -56,7 +56,7 @@
             <span>{{ $t('info_modals.for_who') }}</span>
           </Button>
           <Button v-if="showAdultModal" @click.native="changeAdultContent('what')">
-            <span>Mi ez a hely?</span>
+            <span>{{ $t('info_modals.what') }}</span>
           </Button>
           <Button v-if="showAdultModal" @click.native="changeAdultContent('who')">
             <span>{{ $t('info_modals.who') }}</span>
@@ -221,7 +221,7 @@ export default {
     },
     changeAdultContent(contentType) {
       if (contentType === 'what') {
-        this.adultModalTitle = 'Mi ez a hely?';
+        this.adultModalTitle = this.$t('info_modals.what');
         this.adultModalContent = this.$i18n.locale === 'hu' ? this.content.adult.what : this.content.adult.what_en;
       } else if (contentType === 'who'){
         this.adultModalTitle = this.$t('info_modals.who');
@@ -233,7 +233,7 @@ export default {
     },
     changekidsContent(contentType) {
       if (contentType === 'what') {
-        this.kidsModalTitle = 'Mi ez a hely?';
+        this.kidsModalTitle = this.$t('info_modals.what_place');
         this.kidsModalContent = this.$i18n.locale === 'hu' ? this.content.kids.what : this.content.kids.what_en;
       } else if (contentType === 'who') {
         this.kidsModalTitle = this.$t('info_modals.who');

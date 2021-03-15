@@ -16,7 +16,7 @@
             </template>
           </div>
         </div>
-        <a :href="allOptions.contact_url">
+        <a :href="allOptions.contact_url" target="_blank">
           <Button>{{ $i18n.locale === 'hu' ? allOptions.contact_label : allOptions.contact_label_en }}</Button>
         </a>
       </div>

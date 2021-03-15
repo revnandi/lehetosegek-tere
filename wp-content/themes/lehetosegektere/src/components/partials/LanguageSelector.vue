@@ -1,6 +1,6 @@
 <template>
   <div class="c-language-selector">
-    <select name="language" v-model="$i18n.locale">
+    <select name="language" v-model="$i18n.locale" @change="updateLocale($i18n.locale)">
       <option value="hu">HU</option>
       <option value="en">EN</option>
     </select>
@@ -34,6 +34,11 @@
 
 <script>
 export default {
-
+  methods: {
+    updateLocale(lang) {
+      this.$store.dispatch('changeLocale', { slug: lang });
+      this.$storage.set('lehetosegek_tere', { locale: this.$store.state.language.locale })
+    }
+  },
 }
 </script>

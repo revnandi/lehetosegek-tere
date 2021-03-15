@@ -10,7 +10,9 @@ import VueYoutube from 'vue-youtube'
 import Home from '../components/Home.vue';
 import Post from '../components/Post/Post.vue';
 import Page from '../components/Page/Page.vue';
+import Grant from '../components/Grant.vue';
 import Activities from '../components/Activities.vue';
+import Grants from '../components/Grants.vue';
 
 Vue.use(Router);
 Vue.use(VueSmoothScroll, {
@@ -39,6 +41,16 @@ const router = new Router({
       component: Activities,
     },
     {
+      path: '/palyazatok',
+      name: 'Grants',
+      component: Grants,
+    },
+    {
+      path: '/palyazatok/:grantSlug',
+      name: 'Grant',
+      component: Grant,
+    },
+    {
       // Assuming you're using the default permalink structure for posts
       path: '/:year/:month/:day/:postSlug',
       name: 'Post',
@@ -48,7 +60,7 @@ const router = new Router({
       path: '/:pageSlug',
       name: 'Page',
       component: Page,
-    },
+    }
   ],
   mode: 'history',
   base: '',

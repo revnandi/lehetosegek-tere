@@ -8,8 +8,8 @@
             <div v-html="post.content.rendered"></div>
           </template>
           <template v-else>
-            <h1 v-html="post.acf.title_en"></h1>
-            <div v-html="post.acf.content_en.rendered"></div>
+            <h1 v-if="post.acf.title_en" v-html="post.acf.title_en"></h1>
+            <div v-if="post.acf.content_en" v-html="post.acf.content_en"></div>
           </template>
         </Content>
       </Section>
